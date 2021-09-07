@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.utils.LogUtils
 import com.zhao.wanandroid.weight.GeneralDialog
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  *创建时间： 2021/9/1
