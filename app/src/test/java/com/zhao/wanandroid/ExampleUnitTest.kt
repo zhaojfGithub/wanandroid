@@ -1,5 +1,6 @@
 package com.zhao.wanandroid
 
+import android.util.Log
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +13,9 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        print("1"+this.javaClass.name+"\n")
+        print("2"+this.javaClass.canonicalName!!+"\n")
+        print("3"+this.javaClass.simpleName+"\n")
+        print("4"+this.javaClass.typeName+"\n")
     }
 }

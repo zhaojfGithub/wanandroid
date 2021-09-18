@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.zhao.wanandroid.base.BaseViewModel
+import com.zhao.wanandroid.base.launch
+import com.zhao.wanandroid.utils.ExceptionUtil
 import com.zhao.wanandroid.utils.LogUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,21 +20,22 @@ import kotlinx.coroutines.withContext
  */
 class LoginViewModel @ViewModelInject constructor(private val repository: LoginRepository) : BaseViewModel() {
 
-    val showChaptersData = MutableLiveData<String>()
+    // 0登录  1注册
+    val type = MutableLiveData(0)
+    val isSubmit = MutableLiveData<Boolean>()
 
-    fun getRepository() {
-        viewModelScope.launch {
-            try {
-                isShowLoading.value = true
-                withContext(Dispatchers.IO){ repository.getChaptersData() }.data.also {
-                    showChaptersData.value = Gson().toJson(it)
-                }
-            }catch (e:Exception){
-                LogUtils.e(e.toString())
-            }finally {
-                isShowLoading.value = false
-            }
-
-        }
+    fun updateType(type: Int) {
+        this.type.value = type
     }
+
+    fun login(userName: String, password: String) = launch({
+        isShowLoading.value = true
+        val bean = withContext(Dispatchers.IO){ repository.login(userName, password) }
+        LogUtils.e(bean.id.toString())
+    }, {
+        LogUtils.e(TAG,"错误为${ExceptionUtil.catchException(it)}")
+        showMsg.value = ExceptionUtil.catchException(it)
+    }, {
+        isShowLoading.value = false
+    })
 }

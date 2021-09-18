@@ -20,13 +20,14 @@ class GeneralDialog(context: Context) : AlertDialog(context) {
     var onClickCancel: ((Boolean) -> Unit)? = null
     var body: String? = null
     var onClickSure: ((Boolean) -> Unit)? = null
+    var binding : DialogGeneraBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setCancelable(false)
-        val binding: DialogGeneraBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_genera, null, false)
-        setContentView(binding.root)
-        binding.data = this
+        binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_genera, null, false)
+        setContentView(binding!!.root)
+        binding!!.data = this
     }
 
     fun setDialogSetting(title: String?, body: String?, onClickSure: ((Boolean) -> Unit)?, onClickCancel: ((Boolean) -> Unit)?) {

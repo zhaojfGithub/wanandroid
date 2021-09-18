@@ -16,20 +16,31 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     override fun initOnclick() {
-
+        binding.btRegister.setOnClickListener {
+            viewModel.updateType(1)
         }
-
-    override fun initData() {
-        viewModel.getRepository()
+        binding.btLogin.setOnClickListener {
+            if (viewModel.type.value!! == 0){
+                //去登陆
+                val userName = binding.editUsername.text.toString()
+                val passWord = binding.editPassword.text.toString()
+                if (userName.isBlank() && passWord.isBlank()){
+                    showGeneralDialog(null,"账号或者密码为NULL",null)
+                }else{
+                    viewModel.login(userName,passWord)
+                }
+            }else{
+                //去注册
+            }
+        }
     }
+
+    override fun initData() {}
 
     override fun observe() {
         super.observe()
         binding.data = viewModel
         viewModel.apply {
-            showChaptersData.observe({lifecycle}){
-                LogUtils.e(it)
-            }
 
         }
     }

@@ -4,17 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="com.zhao.wanandroid.weight.GeneralDialog" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/white"
-        android:layout_margin="@dimen/view_8dp"
-        android:paddingBottom="@dimen/view_16dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/view_8dp"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/view_16dp">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvGeneraDialogTitle"
@@ -22,76 +26,80 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/view_8dp"
+            android:text="@{data.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/view_18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@{data.title}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
+            android:layout_width="@dimen/view_0dp"
+            android:layout_height="@dimen/view_1dp"
             android:background="@color/gray"
-            app:layout_constraintTop_toBottomOf="@id/tvGeneraDialogTitle"
             app:layout_constraintEnd_toEndOf="@id/tvGeneraDialogBody"
             app:layout_constraintStart_toStartOf="@id/tvGeneraDialogBody"
-            android:layout_width="@dimen/view_0dp"
-            android:layout_height="@dimen/view_1dp" />
+            app:layout_constraintTop_toBottomOf="@id/tvGeneraDialogTitle" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvGeneraDialogBody"
-            android:text='@{data.body ?? ""}'
-            android:gravity="center"
             android:layout_width="@dimen/view_0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/view_18dp"
-            android:layout_marginEnd="@dimen/view_18dp"
-            android:padding="@dimen/view_8dp"
-            android:textSize="@dimen/view_16sp"
-            android:minHeight="@dimen/view_100dp"
+            android:layout_margin="@dimen/view_18dp"
+            android:gravity="center"
             android:maxHeight="@dimen/view_200dp"
+            android:minHeight="@dimen/view_100dp"
+            android:padding="@dimen/view_8dp"
+            android:text='@{data.body ?? ""}'
+            android:textSize="@dimen/view_16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvGeneraDialogTitle" />
 
         <View
+            android:id="@+id/viewDivisionEnd"
+            android:layout_width="@dimen/view_0dp"
+            android:layout_height="@dimen/view_1dp"
             android:background="@color/gray"
-            app:layout_constraintTop_toBottomOf="@id/tvGeneraDialogBody"
+            android:layout_marginBottom="@dimen/view_16dp"
             app:layout_constraintEnd_toEndOf="@id/tvGeneraDialogBody"
             app:layout_constraintStart_toStartOf="@id/tvGeneraDialogBody"
-            android:layout_width="@dimen/view_0dp"
-            android:layout_height="@dimen/view_1dp" />
+            app:layout_constraintTop_toBottomOf="@id/tvGeneraDialogBody"
+            app:layout_constraintBottom_toBottomOf="@id/btGeneraDialogCancel"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btGeneraDialogCancel"
-            android:onClick="@{() -> data.btGeneraDialogCancelOnclick()}"
-            android:text="@string/cancel"
-            android:textColor="@color/black"
-            android:layout_marginTop="@dimen/view_16dp"
             android:layout_width="@dimen/view_0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/view_16dp"
             android:layout_marginEnd="@dimen/view_16dp"
+            android:onClick="@{() -> data.btGeneraDialogCancelOnclick()}"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            android:visibility="@{data.onClickCancel == null ? View.GONE : View.VISIBLE}"
             app:backgroundTint="@color/white"
             app:cornerRadius="@dimen/view_6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/btGeneraDialogSure"
             app:layout_constraintStart_toStartOf="@id/tvGeneraDialogBody"
-            app:layout_constraintTop_toBottomOf="@id/tvGeneraDialogBody" />
+            app:layout_constraintTop_toBottomOf="@id/viewDivisionEnd" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btGeneraDialogSure"
-            android:onClick="@{() -> data.btGeneraDialogSureOnclick()}"
-            android:text="@string/sure"
-            android:textColor="@color/black"
-            android:layout_marginTop="@dimen/view_16dp"
             android:layout_width="@dimen/view_0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/view_16dp"
             android:layout_marginEnd="@dimen/view_16dp"
             android:backgroundTint="@color/white"
+            android:onClick="@{() -> data.btGeneraDialogSureOnclick()}"
+            android:text="@string/sure"
+            android:textColor="@color/black"
+            android:visibility="@{data.onClickSure == null ? View.GONE : View.VISIBLE}"
             app:cornerRadius="@dimen/view_6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/tvGeneraDialogBody"
             app:layout_constraintStart_toEndOf="@id/btGeneraDialogCancel"
-            app:layout_constraintTop_toBottomOf="@id/tvGeneraDialogBody" />
+            app:layout_constraintTop_toBottomOf="@id/viewDivisionEnd" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

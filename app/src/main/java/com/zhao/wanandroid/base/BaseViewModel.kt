@@ -11,7 +11,9 @@ import androidx.lifecycle.ViewModel
  */
 abstract class BaseViewModel : ViewModel(){
 
+    protected val TAG = this.javaClass.simpleName
+
     val isShowLoading = MutableLiveData<Boolean>()
 
-
+    val showMsg = MutableLiveData<String>()
 }

@@ -5,12 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="com.zhao.wanandroid.ui.login.LoginViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.login.LoginActivity">
@@ -30,9 +34,9 @@
             android:id="@+id/layoutTextName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_24dp"
             android:layout_marginTop="@dimen/view_50dp"
-            android:layout_marginStart="@dimen/view_16dp"
-            android:layout_marginEnd="@dimen/view_16dp"
+            android:layout_marginEnd="@dimen/view_24dp"
             android:hint="@string/hint_username"
             app:boxBackgroundColor="@color/white"
             app:counterEnabled="true"
@@ -43,9 +47,9 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editUsername"
-                android:textSize="@dimen/view_18sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/view_18sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,33 +66,37 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editPassword"
-                android:textSize="@dimen/view_18sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textSize="@dimen/view_18sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btRegister"
-            android:text="@string/register"
-            android:textSize="@dimen/view_16sp"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/layoutTextPassword"
-            app:layout_constraintEnd_toEndOf="@id/layoutTextPassword"/>
-        <com.google.android.material.button.MaterialButton
-            android:text="@string/login"
-            android:textSize="@dimen/view_18sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="@dimen/view_24dp"
-            android:layout_marginStart="@dimen/view_24dp"
-            android:layout_marginEnd="@dimen/view_24dp"
-            app:layout_constraintStart_toStartOf="@id/layoutTextPassword"
+            android:text="@string/register"
+            android:textSize="@dimen/view_16sp"
+            android:visibility="@{data.type == 0 ? View.VISIBLE:View.GONE}"
             app:layout_constraintEnd_toEndOf="@id/layoutTextPassword"
-            app:layout_constraintTop_toBottomOf="@id/btRegister"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextPassword" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btLogin"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="@dimen/view_24dp"
+            android:text="@{data.type == 0 ? @string/login : @string/register}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/view_18sp"
+            app:layout_constraintEnd_toEndOf="@id/layoutTextPassword"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/layoutTextPassword"
+            app:layout_constraintTop_toBottomOf="@id/btRegister" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

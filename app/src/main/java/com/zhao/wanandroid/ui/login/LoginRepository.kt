@@ -10,7 +10,9 @@ import javax.inject.Inject
  *页面功能:
  */
 
-class LoginRepository @Inject constructor(){
+class LoginRepository @Inject constructor() {
 
-    suspend fun getChaptersData() = ApiHost.API.getWxArticle()
+    suspend fun login(userName: String, password: String) = ApiHost.API.login(userName, password).getApiData()
+
+    suspend fun register(userName: String, password: String, repassWord: String) = ApiHost.API.register(userName, password, repassWord).getApiData()
 }

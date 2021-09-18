@@ -13,7 +13,7 @@ import dagger.hilt.android.HiltAndroidApp
 class MyApplication : Application() {
 
     companion object {
-        var instance: MyApplication? = null
+        private var instance: MyApplication? = null
 
         const val isDebug: Boolean = false
         fun Instance() = instance!!

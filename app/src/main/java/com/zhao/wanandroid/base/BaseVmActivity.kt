@@ -1,20 +1,11 @@
 package com.zhao.wanandroid.base
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.zhao.wanandroid.R
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.components.ActivityComponent
 
 /**
  *创建时间： 2021/9/1
@@ -38,6 +29,9 @@ abstract class BaseVmActivity<VM: BaseViewModel, VB: ViewDataBinding> : BaseActi
         viewModel.apply {
             isShowLoading.observe({lifecycle}){
                 if (it) showLoadingDialog() else hideLoadingDialog()
+            }
+            showMsg.observe({lifecycle}){
+                showGeneralDialog(null,it,null)
             }
         }
     }

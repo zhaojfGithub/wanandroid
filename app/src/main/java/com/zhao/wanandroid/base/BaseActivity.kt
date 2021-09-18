@@ -1,15 +1,10 @@
 package com.zhao.wanandroid.base
 
-import android.content.Context
 import android.os.Bundle
-import android.view.Gravity
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.zhao.wanandroid.R
-import com.zhao.wanandroid.utils.LogUtils
 import com.zhao.wanandroid.weight.GeneralDialog
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  *创建时间： 2021/9/1
@@ -59,13 +54,19 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-    protected fun showGeneralDialog() {
+    protected fun showGeneralDialog(title: String?, msg: String, onResult: ((Boolean) -> Unit)?) {
         hideGeneralDialog()
-        generalDialog.setDialogSetting(null, "这是一条提示",{
-            LogUtils.e("点击确定")
-        }){
-            LogUtils.e("点击取消")
+        onResult?.also { onClick ->
+            generalDialog.setDialogSetting(title, msg, {
+                onClick(true)
+            }) {
+                onClick(false)
+            }
+        } ?: run {
+            generalDialog.setDialogSetting(title, msg, null, null)
         }
+
+        generalDialog.show()
     }
 
     protected fun hideGeneralDialog() {
