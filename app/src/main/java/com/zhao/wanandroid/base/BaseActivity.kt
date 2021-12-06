@@ -1,8 +1,14 @@
 package com.zhao.wanandroid.base
 
 import android.os.Bundle
+import android.view.Window
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationSet
+import android.view.animation.TranslateAnimation
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.weight.GeneralDialog
 
@@ -13,14 +19,18 @@ import com.zhao.wanandroid.weight.GeneralDialog
  */
 abstract class BaseActivity : AppCompatActivity() {
 
+    protected val TAG = this.javaClass.simpleName
+
     private val loadingDialog: AlertDialog by lazy {
         AlertDialog.Builder(this).setView(R.layout.dialog_loading).create()
     }
 
     private val generalDialog: GeneralDialog by lazy { GeneralDialog(this) }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+        window.sharedElementsUseOverlay = false
         super.onCreate(savedInstanceState)
         initCreate(savedInstanceState)
     }

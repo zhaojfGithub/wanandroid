@@ -22,7 +22,8 @@ class LoginViewModel @ViewModelInject constructor(private val repository: LoginR
 
     // 0登录  1注册
     val type = MutableLiveData(0)
-    val isSubmit = MutableLiveData<Boolean>()
+    // 0登录成功 1注册成功
+    val submitType = MutableLiveData<Int>()
 
     fun updateType(type: Int) {
         this.type.value = type
@@ -30,10 +31,9 @@ class LoginViewModel @ViewModelInject constructor(private val repository: LoginR
 
     fun login(userName: String, password: String) = launch({
         isShowLoading.value = true
-        val bean = withContext(Dispatchers.IO){ repository.login(userName, password) }
-        LogUtils.e(bean.id.toString())
+        val bean = withContext(Dispatchers.IO) { repository.login(userName, password) }
+        submitType.value = 0
     }, {
-        LogUtils.e(TAG,"错误为${ExceptionUtil.catchException(it)}")
         showMsg.value = ExceptionUtil.catchException(it)
     }, {
         isShowLoading.value = false

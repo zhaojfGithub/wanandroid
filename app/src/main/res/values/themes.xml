@@ -1,17 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Wanandroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">@color/blue</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/blue</item>
-        <item name="colorSecondaryVariant">@color/blue</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <!-- appbar背景色，应用的主要色调，actionBar默认使用此颜色 -->
+        <item name="colorPrimary">@color/blue_500</item>
+        <!--colorPrimary的对比色-->
+        <item name="colorOnPrimary">@color/orange_500</item>
+        <!--app次级颜色，通常作为主色的补充色-->
+        <item name="colorSecondary">@color/blue_200</item>
+        <!--colorSecondary的对比色-->
+        <item name="colorOnSecondary">@color/orange_200</item>
+        <!--组件界面（卡片，表格，菜单等）的颜色-->
+        <item name="colorSurface">@color/blue_400</item>
+        <!--colorSurface的对比色-->
+        <item name="colorOnSurface">@color/orange_400</item>
+        <!--错误信息-->
+        <item name="colorError">@color/black</item>
     </style>
 
     <!---->

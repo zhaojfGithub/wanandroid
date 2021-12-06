@@ -24,7 +24,6 @@ class GeneralDialog(context: Context) : AlertDialog(context) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setCancelable(false)
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_genera, null, false)
         setContentView(binding!!.root)
         binding!!.data = this

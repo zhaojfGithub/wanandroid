@@ -1,15 +1,25 @@
 package com.zhao.wanandroid.ui.login
 
-import androidx.lifecycle.Observer
-import com.google.gson.Gson
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmActivity
 import com.zhao.wanandroid.databinding.ActivityLoginBinding
+import com.zhao.wanandroid.ui.main.activity.MainActivity
 import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
+
+    companion object {
+        private const val ACTIVITY_TYPE = "activity_type"
+        fun start(context: AppCompatActivity, type: Int = 0) {
+            val intent = Intent(context,LoginActivity::class.java)
+            intent.putExtra(ACTIVITY_TYPE,type)
+            context.startActivity(intent)
+        }
+    }
 
     override fun initView() {
 
@@ -17,31 +27,47 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun initOnclick() {
         binding.btRegister.setOnClickListener {
-            viewModel.updateType(1)
+            start(this,type = 1)
         }
         binding.btLogin.setOnClickListener {
-            if (viewModel.type.value!! == 0){
+            if (viewModel.type.value!! == 0) {
                 //去登陆
                 val userName = binding.editUsername.text.toString()
                 val passWord = binding.editPassword.text.toString()
-                if (userName.isBlank() && passWord.isBlank()){
-                    showGeneralDialog(null,"账号或者密码为NULL",null)
-                }else{
-                    viewModel.login(userName,passWord)
+                if (userName.isBlank() && passWord.isBlank()) {
+                    showGeneralDialog(null, "账号或者密码为NULL", null)
+                } else {
+                    viewModel.login(userName, passWord)
                 }
-            }else{
+            } else {
                 //去注册
+
             }
         }
     }
 
-    override fun initData() {}
+    override fun initData() {
+        val type = intent.getIntExtra(ACTIVITY_TYPE,0)
+        viewModel.updateType(type)
+    }
 
     override fun observe() {
         super.observe()
         binding.data = viewModel
         viewModel.apply {
-
+            submitType.observe({ lifecycle }) {
+                when (it) {
+                    0 -> {
+                        MainActivity.start(this@LoginActivity)
+                    }
+                    1 -> {
+                        viewModel.updateType(0)
+                    }
+                    else -> {
+                        LogUtils.e(TAG, "type设置错误")
+                    }
+                }
+            }
         }
     }
 
