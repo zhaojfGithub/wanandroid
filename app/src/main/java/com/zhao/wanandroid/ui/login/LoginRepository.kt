@@ -1,5 +1,7 @@
 package com.zhao.wanandroid.ui.login
 
+import com.zhao.wanandroid.local.SpName
+import com.zhao.wanandroid.local.getSpValue
 import com.zhao.wanandroid.network.ApiHost
 import com.zhao.wanandroid.utils.LogUtils
 import javax.inject.Inject
@@ -11,6 +13,8 @@ import javax.inject.Inject
  */
 
 class LoginRepository @Inject constructor() {
+
+    fun isLogin(key:String) = getSpValue(SpName.cookie.COOLIE, hashSetOf<String>())
 
     suspend fun login(userName: String, password: String) = ApiHost.API.login(userName, password).getApiData()
 

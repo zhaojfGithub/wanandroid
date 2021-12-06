@@ -15,8 +15,8 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
     companion object {
         private const val ACTIVITY_TYPE = "activity_type"
         fun start(context: AppCompatActivity, type: Int = 0) {
-            val intent = Intent(context,LoginActivity::class.java)
-            intent.putExtra(ACTIVITY_TYPE,type)
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.putExtra(ACTIVITY_TYPE, type)
             context.startActivity(intent)
         }
     }
@@ -27,7 +27,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun initOnclick() {
         binding.btRegister.setOnClickListener {
-            start(this,type = 1)
+            start(this, type = 1)
         }
         binding.btLogin.setOnClickListener {
             if (viewModel.type.value!! == 0) {
@@ -47,14 +47,20 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     override fun initData() {
-        val type = intent.getIntExtra(ACTIVITY_TYPE,0)
+        val type = intent.getIntExtra(ACTIVITY_TYPE, 0)
         viewModel.updateType(type)
+        viewModel.isLogin()
     }
 
     override fun observe() {
         super.observe()
         binding.data = viewModel
         viewModel.apply {
+            isLogin.observe({ lifecycle }) {
+                if (it) {
+                    MainActivity.start(this@LoginActivity)
+                }
+            }
             submitType.observe({ lifecycle }) {
                 when (it) {
                     0 -> {

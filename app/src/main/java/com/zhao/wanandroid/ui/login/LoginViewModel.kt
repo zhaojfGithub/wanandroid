@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.zhao.wanandroid.base.BaseViewModel
 import com.zhao.wanandroid.base.launch
+import com.zhao.wanandroid.local.SpName
 import com.zhao.wanandroid.utils.ExceptionUtil
 import com.zhao.wanandroid.utils.LogUtils
 import kotlinx.coroutines.Dispatchers
@@ -25,13 +26,24 @@ class LoginViewModel @ViewModelInject constructor(private val repository: LoginR
     // 0登录成功 1注册成功
     val submitType = MutableLiveData<Int>()
 
+    val isLogin = MutableLiveData<Boolean>()
+
     fun updateType(type: Int) {
         this.type.value = type
     }
 
+    fun isLogin() = launch({
+        isShowLoading.value = true
+        isLogin.value = repository.isLogin(SpName.cookie.COOLIE).isNotEmpty()
+    },{
+        showMsg.value = ExceptionUtil.catchException(it)
+    },{
+        isShowLoading.value = false
+    })
+
     fun login(userName: String, password: String) = launch({
         isShowLoading.value = true
-        val bean = withContext(Dispatchers.IO) { repository.login(userName, password) }
+        withContext(Dispatchers.IO) { repository.login(userName, password) }
         submitType.value = 0
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
