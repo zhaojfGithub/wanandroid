@@ -11,9 +11,9 @@
     <item
         android:id="@+id/navigation_open_number"
         android:icon="@drawable/ic_library_books"
-        android:title="@string/公众号"/>
+        android:title="@string/main_open_number"/>
     <item
         android:id="@+id/navigation_project"
         android:icon="@drawable/ic_article"
-        android:title="@string/项目"/>
+        android:title="@string/main_project"/>
 </menu>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="com.zhao.wanandroid.ui.main.activity.MainViewModel" />
@@ -14,6 +15,10 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.activity.MainActivity">
 
+        <include
+            android:id="@+id/include"
+            layout="@layout/base_toolbar" />
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPage"
             android:layout_width="@dimen/view_0dp"
@@ -21,16 +26,16 @@
             app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/include" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavigationView"
             android:layout_width="@dimen/view_0dp"
             android:layout_height="wrap_content"
-            app:menu="@menu/menu_home"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/menu_home" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
