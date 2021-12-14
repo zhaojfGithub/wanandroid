@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/drawerIntegral"
+            android:icon="@drawable/ic_integral"
+            android:title="@string/drawer_integral"/>
+        <item
+            android:id="@+id/drawerCollect"
+            android:icon="@drawable/ic_collect"
+            android:title="@string/drawer_collect"/>
+        <item
+            android:id="@+id/drawerTodo"
+            android:icon="@drawable/ic_todo"
+            android:title = "@string/drawer_todo"/>
+    </group>
+    <item android:title="@string/drawer_system_setting">
+        <menu>
+            <item
+                android:id="@+id/drawerNight"
+                android:icon="@drawable/ic_night"
+                android:title="@string/drawer_night"/>
+            <item
+                android:id="@+id/drawerSetting"
+                android:icon="@drawable/ic_setting"
+                android:title="@string/drawer_setting"/>
+            <item
+                android:id="@+id/drawerMy"
+                android:icon="@drawable/ic_pan_tool_alt"
+                android:title="@string/drawer_my"/>
+            <item
+                android:id="@+id/drawerExit"
+                android:icon="@drawable/ic_exit"
+                android:title="@string/drawer_exit"/>
+        </menu>
+    </item>
+</menu>

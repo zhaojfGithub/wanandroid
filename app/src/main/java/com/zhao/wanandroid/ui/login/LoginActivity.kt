@@ -2,12 +2,15 @@ package com.zhao.wanandroid.ui.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmActivity
 import com.zhao.wanandroid.databinding.ActivityLoginBinding
 import com.zhao.wanandroid.ui.main.activity.MainActivity
 import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
@@ -59,6 +62,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
             isLogin.observe({ lifecycle }) {
                 if (it) {
                     MainActivity.start(this@LoginActivity)
+                    finish()
                 }
             }
             submitType.observe({ lifecycle }) {

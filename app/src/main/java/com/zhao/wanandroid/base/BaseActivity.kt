@@ -2,6 +2,7 @@ package com.zhao.wanandroid.base
 
 import android.os.Bundle
 import android.view.Window
+import android.view.WindowManager
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.AnimationSet
@@ -36,6 +37,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun initCreate(savedInstanceState: Bundle?) {
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         initView()
         initOnclick()
         initData()

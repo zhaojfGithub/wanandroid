@@ -92,7 +92,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/view_24dp"
             android:text="@{data.type == 0 ? @string/login : @string/register}"
-            android:textColor="@color/black"
             android:textSize="@dimen/view_18sp"
             app:layout_constraintEnd_toEndOf="@id/layoutTextPassword"
             app:layout_constraintHorizontal_bias="0.0"

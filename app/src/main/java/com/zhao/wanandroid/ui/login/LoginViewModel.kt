@@ -34,7 +34,9 @@ class LoginViewModel @ViewModelInject constructor(private val repository: LoginR
 
     fun isLogin() = launch({
         isShowLoading.value = true
-        isLogin.value = repository.isLogin(SpName.cookie.COOLIE).isNotEmpty()
+        val data = repository.isLogin(SpName.cookie.COOLIE).isNotEmpty()
+        LogUtils.e(data.toString())
+        isLogin.value = data
     },{
         showMsg.value = ExceptionUtil.catchException(it)
     },{

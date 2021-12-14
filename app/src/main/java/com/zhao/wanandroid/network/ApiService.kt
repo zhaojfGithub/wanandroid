@@ -1,10 +1,9 @@
 package com.zhao.wanandroid.network
 
-import com.zhao.wanandroid.bean.HttpBean
-import com.zhao.wanandroid.bean.LoginBean
-import com.zhao.wanandroid.bean.WxArticleBean
+import com.zhao.wanandroid.bean.*
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -18,11 +17,17 @@ interface ApiService {
     suspend fun getWxArticle(): HttpBean<List<WxArticleBean>>
 
     @POST("/user/login")
-    suspend fun login(@Query("username") userName: String , @Query("password") password:String) : HttpBean<LoginBean>
+    suspend fun login(@Query("username") userName: String, @Query("password") password: String): HttpBean<LoginBean>
 
     @POST("/user/register")
-    suspend fun register(@Query("username") userName: String , @Query("password") password:String,@Query("repassword") repassWord :String) : HttpBean<LoginBean>
+    suspend fun register(@Query("username") userName: String, @Query("password") password: String, @Query("repassword") repassWord: String): HttpBean<LoginBean>
 
     @GET("/user/logout/json")
-    suspend fun quit():HttpBean<List<String>>
+    suspend fun quit(): HttpBean<List<String>>
+
+    @GET("/banner/json")
+    suspend fun getBanner(): HttpBean<List<BannerBean>>
+
+    @GET("article/list/{page}/json")
+    suspend fun getArticle(@Path("page") page: Int): HttpBean<ArticleBoxBean>
 }

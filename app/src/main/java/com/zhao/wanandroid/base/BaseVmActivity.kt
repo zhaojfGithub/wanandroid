@@ -38,8 +38,9 @@ abstract class BaseVmActivity<VM: BaseViewModel, VB: ViewDataBinding> : BaseActi
 
     override fun initCreate(savedInstanceState: Bundle?) {
         initViewDataBinding()
+        initView()
         observe()
-        super.initCreate(savedInstanceState)
+        initData()
     }
 
 
