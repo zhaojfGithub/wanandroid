@@ -37,7 +37,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun initCreate(savedInstanceState: Bundle?) {
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         initView()
         initOnclick()
         initData()

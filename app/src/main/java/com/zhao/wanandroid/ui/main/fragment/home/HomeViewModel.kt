@@ -21,12 +21,7 @@ class HomeViewModel @ViewModelInject constructor(private val repository: HomeRep
 
     val banner = MutableLiveData<List<BannerBean>>()
     val article = MutableLiveData<ArticleBoxBean>()
-    val bbb = MutableLiveData<String>()
 
-    fun aaa() {
-        LogUtils.e("aaa")
-        bbb.value = "jaajjajajjaja"
-    }
 
     fun initHomeData() = launch({
         isShowLoading.value = true
@@ -38,9 +33,14 @@ class HomeViewModel @ViewModelInject constructor(private val repository: HomeRep
         isShowLoading.value = false
     })
 
-    fun loadArticleData() = launch({
+    fun loadArticleData(isRefresh: Boolean = false) = launch({
         isShowLoading.value = true
-        article.value = repository.getArticle(article.value!!.curPage)
+        val page = if (isRefresh) {
+            0
+        } else {
+            article.value!!.curPage
+        }
+        article.value = repository.getArticle(page)
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {

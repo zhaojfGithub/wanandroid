@@ -1,6 +1,7 @@
 package com.zhao.wanandroid.ui.main.fragment.home
 
 
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.databinding.FragmentHomeBinding
@@ -16,12 +17,15 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
         fun newInstance() = HomeFragment()
     }
 
+    private val adapter: HomeAdapter by lazy { HomeAdapter() }
+
     override fun initData() {
-        viewModel.aaa()
+        //viewModel.initHomeData()
     }
 
     override fun initView() {
-
+        //binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        //binding.recyclerView.adapter = adapter
     }
 
     override fun getLayoutId(): Int {
@@ -35,8 +39,15 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
     override fun observer() {
         binding.data = viewModel
         viewModel.apply {
-            bbb.observe({ lifecycle }) {
-                LogUtils.e(it)
+            banner.observe({ lifecycle }) {
+                adapter.changedBanner(it)
+            }
+            article.observe({ lifecycle }) {
+                if (it.curPage == 1) {
+                    adapter.refreshArticle(it.data)
+                } else {
+                    adapter.addAllArticle(it.data)
+                }
             }
         }
     }

@@ -23,6 +23,7 @@ class LoginViewModel @ViewModelInject constructor(private val repository: LoginR
 
     // 0登录  1注册
     val type = MutableLiveData(0)
+
     // 0登录成功 1注册成功
     val submitType = MutableLiveData<Int>()
 
@@ -37,15 +38,15 @@ class LoginViewModel @ViewModelInject constructor(private val repository: LoginR
         val data = repository.isLogin(SpName.cookie.COOLIE).isNotEmpty()
         LogUtils.e(data.toString())
         isLogin.value = data
-    },{
+    }, {
         showMsg.value = ExceptionUtil.catchException(it)
-    },{
+    }, {
         isShowLoading.value = false
     })
 
     fun login(userName: String, password: String) = launch({
         isShowLoading.value = true
-        withContext(Dispatchers.IO) { repository.login(userName, password) }
+        repository.login(userName, password)
         submitType.value = 0
     }, {
         showMsg.value = ExceptionUtil.catchException(it)

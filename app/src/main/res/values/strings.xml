@@ -36,4 +36,5 @@
     <string name="drawer_setting">设置</string>
     <string name="drawer_my">关于我们</string>
     <string name="drawer_exit">退出登录</string>
+    <string name="backslash"> / </string>
 </resources>

@@ -22,12 +22,13 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewDataBinding> : BaseFr
 
     protected lateinit var result: ActivityResultLauncher<Array<String>>
 
-    protected val viewModel : VM by lazy { ViewModelProvider(requireActivity())[getModelClass()] }
+    protected val viewModel: VM by lazy { ViewModelProvider(requireActivity())[getModelClass()] }
 
     abstract fun getModelClass(): Class<VM>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater,getLayoutId(),null,false)
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), null, false)
+        binding.lifecycleOwner = this.viewLifecycleOwner
         return binding.root
     }
 

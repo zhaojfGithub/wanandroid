@@ -58,5 +58,5 @@ data class ArticleItemBean(
     val type: Int,
     val userId: Int,
     val visible: Int,
-    val zan: Int
+    val zan: Int,
 )

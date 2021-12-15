@@ -2,15 +2,12 @@ package com.zhao.wanandroid.ui.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmActivity
 import com.zhao.wanandroid.databinding.ActivityLoginBinding
 import com.zhao.wanandroid.ui.main.activity.MainActivity
 import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
@@ -30,9 +27,11 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun initOnclick() {
         binding.btRegister.setOnClickListener {
+            LogUtils.e("11111")
             start(this, type = 1)
         }
         binding.btLogin.setOnClickListener {
+            LogUtils.e("22222")
             if (viewModel.type.value!! == 0) {
                 //去登陆
                 val userName = binding.editUsername.text.toString()
@@ -47,6 +46,10 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
 
             }
         }
+        binding.ivLogo.setOnClickListener {
+            LogUtils.e("33333")
+        }
+        binding.root
     }
 
     override fun initData() {
@@ -85,3 +88,4 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun getLayoutId() = R.layout.activity_login
 }
+
