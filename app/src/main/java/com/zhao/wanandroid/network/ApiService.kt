@@ -28,6 +28,18 @@ interface ApiService {
     @GET("/banner/json")
     suspend fun getBanner(): HttpBean<List<BannerBean>>
 
-    @GET("article/list/{page}/json")
+    @GET("/article/list/{page}/json")
     suspend fun getArticle(@Path("page") page: Int): HttpBean<ArticleBoxBean>
+
+    @GET("/article/top/json")
+    suspend fun getTopArticle(): HttpBean<List<ArticleItemBean>>
+
+    @GET("/user_article/list/{page}/json")
+    suspend fun getPlazaArticle(@Path("page") page: Int): HttpBean<ArticleBoxBean>
+
+    @GET("/wxarticle/chapters/json")
+    suspend fun getOpenNumberBox(): HttpBean<List<OpenNumberBoxBean>>
+
+    @GET("/wxarticle/list/{id}/{page}/json")
+    suspend fun getOpenNumberItem(@Path("id") id : Int , @Path("page") page: Int) : HttpBean<ArticleBoxBean>
 }

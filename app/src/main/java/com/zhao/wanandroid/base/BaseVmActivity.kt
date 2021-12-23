@@ -22,9 +22,6 @@ abstract class BaseVmActivity<VM: BaseViewModel, VB: ViewDataBinding> : BaseActi
 
     abstract fun getModelClass(): Class<VM>
 
-    @LayoutRes
-    abstract fun getLayoutId(): Int
-
     open fun observe(){
         viewModel.apply {
             isShowLoading.observe({lifecycle}){

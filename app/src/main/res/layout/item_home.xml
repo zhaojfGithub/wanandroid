@@ -27,46 +27,15 @@
             android:layout_height="match_parent"
             android:padding="@dimen/view_6dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvItemHomeLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_frame_on_primary"
-                android:padding="@dimen/view_4dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:textColor="?attr/colorOnPrimary"
-                android:textSize="@dimen/view_10sp"
                 app:layout_constraintBottom_toBottomOf="@id/tvItemHomeTime"
+                app:layout_constraintEnd_toStartOf="@+id/tvItemHomeTime"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvItemHomeTime"
-                tools:text="置顶" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvItemHomeFresh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/view_4dp"
-                android:background="@drawable/shape_frame_on_primary"
-                android:padding="@dimen/view_4dp"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="@dimen/view_10sp"
-                app:layout_constraintBottom_toBottomOf="@id/tvItemHomeLabel"
-                app:layout_constraintStart_toEndOf="@+id/tvItemHomeLabel"
-                app:layout_constraintTop_toTopOf="@id/tvItemHomeLabel"
-                tools:text="新" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvItemHomeAnswer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/view_4dp"
-                android:background="@drawable/shape_frame_primary"
-                android:padding="@dimen/view_4dp"
-                android:textColor="?attr/colorPrimary"
-                android:textSize="@dimen/view_10sp"
-                app:layout_constraintBottom_toBottomOf="@id/tvItemHomeFresh"
-                app:layout_constraintStart_toEndOf="@id/tvItemHomeFresh"
-                app:layout_constraintTop_toTopOf="@id/tvItemHomeFresh"
-                tools:text="置顶" />
+                app:layout_constraintTop_toTopOf="@id/tvItemHomeTime" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvItemHomeTime"
@@ -74,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/view_8dp"
                 android:padding="@dimen/view_4dp"
-                android:text=""
+                android:text="@{data.niceDate}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="2021:11:10" />
@@ -84,12 +53,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/view_8dp"
-                android:lines="1"
-                android:maxEms="20"
                 android:text="@{data.title}"
                 android:textColor="?android:attr/textColorPrimary"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvItemHomeLabel"
+                app:layout_constraintTop_toBottomOf="@id/recyclerView"
                 tools:text="Android启动这些事儿，你都拎得清吗？" />
 
             <com.google.android.material.textview.MaterialTextView

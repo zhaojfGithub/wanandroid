@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom"
         android:title="@string/place_search_context"/>
+    <item
+        android:id="@+id/toolbarAdd"
+        android:icon="@drawable/ic_add"
+        app:showAsAction="ifRoom"
+        android:title="@string/place_search_context"/>
 </menu>

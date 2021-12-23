@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhao.wanandroid.ui.SearchTipsEditText
+        android:id="@+id/editText"
+        android:hint="显示啊崽种"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:background="?colorPrimary"
+        android:imeOptions="actionSearch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_50dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

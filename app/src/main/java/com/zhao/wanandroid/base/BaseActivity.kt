@@ -2,11 +2,7 @@ package com.zhao.wanandroid.base
 
 import android.os.Bundle
 import android.view.Window
-import android.view.WindowManager
-import android.view.animation.AlphaAnimation
-import android.view.animation.Animation
-import android.view.animation.AnimationSet
-import android.view.animation.TranslateAnimation
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
@@ -18,7 +14,7 @@ import com.zhao.wanandroid.weight.GeneralDialog
  *编   写：  zjf
  *页面功能:
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), BaseLoadingInterface {
 
     protected val TAG = this.javaClass.simpleName
 
@@ -37,16 +33,28 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     open fun initCreate(savedInstanceState: Bundle?) {
+        setContentView(getLayoutId())
         initView()
         initOnclick()
         initData()
     }
+
+    @LayoutRes
+    abstract fun getLayoutId(): Int
 
     abstract fun initView()
 
     abstract fun initOnclick()
 
     abstract fun initData()
+
+    override fun isShowLoadingDialog(isShow: Boolean) {
+        if (isShow) {
+            showLoadingDialog()
+        } else {
+            hideLoadingDialog()
+        }
+    }
 
     protected fun showLoadingDialog() {
         hideLoadingDialog()

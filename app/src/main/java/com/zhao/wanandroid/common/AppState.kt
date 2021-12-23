@@ -12,4 +12,8 @@ object AppState {
         const val ADAPTER_BOTTOM = 2
         const val ADAPTER_MIDDLE = 0
     }
+
+    enum class LoadingState{
+        REFRESH,LOAD_MORE,
+    }
 }

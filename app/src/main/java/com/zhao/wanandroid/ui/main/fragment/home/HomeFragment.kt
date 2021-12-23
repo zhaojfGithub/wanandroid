@@ -4,12 +4,14 @@ package com.zhao.wanandroid.ui.main.fragment.home
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
+import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.FragmentHomeBinding
-import com.zhao.wanandroid.utils.LogUtils
+import com.zhao.wanandroid.extend.isSlideBottom
+import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
+class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>(), RecyclerMoveInterface {
 
 
     companion object {
@@ -20,12 +22,18 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
     private val adapter: HomeAdapter by lazy { HomeAdapter() }
 
     override fun initData() {
-        //viewModel.initHomeData()
+        viewModel.initHomeData()
     }
 
     override fun initView() {
-        //binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        //binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.isSlideBottom {
+            viewModel.loadArticleData()
+        }
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.initHomeData()
+        }
     }
 
     override fun getLayoutId(): Int {
@@ -37,18 +45,24 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>() {
     }
 
     override fun observer() {
-        binding.data = viewModel
         viewModel.apply {
             banner.observe({ lifecycle }) {
                 adapter.changedBanner(it)
             }
             article.observe({ lifecycle }) {
                 if (it.curPage == 1) {
-                    adapter.refreshArticle(it.data)
+                    adapter.refreshAllItem(it.data)
                 } else {
-                    adapter.addAllArticle(it.data)
+                    adapter.addFooterItemAllData(it.data)
                 }
             }
+            isRefresh.observe({ lifecycle }) {
+                binding.swipeRefreshLayout.isRefreshing = it
+            }
         }
+    }
+
+    override fun moveHeader() {
+        binding.recyclerView.smoothScrollToHeaderPosition()
     }
 }

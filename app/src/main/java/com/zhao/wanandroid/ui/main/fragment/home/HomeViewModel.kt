@@ -2,22 +2,20 @@ package com.zhao.wanandroid.ui.main.fragment.home
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.zhao.wanandroid.base.BaseViewModel
-import com.zhao.wanandroid.base.launch
+import com.zhao.wanandroid.common.launch
 import com.zhao.wanandroid.bean.ArticleBoxBean
+import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.bean.BannerBean
+import com.zhao.wanandroid.ui.main.activity.MainRepository
 import com.zhao.wanandroid.utils.ExceptionUtil
-import com.zhao.wanandroid.utils.LogUtils
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 /**
  *创建时间： 2021/12/14
  *编   写：  zjf
  *页面功能:
  */
-class HomeViewModel @ViewModelInject constructor(private val repository: HomeRepository) : BaseViewModel() {
+class HomeViewModel @ViewModelInject constructor(private val repository: MainRepository) : BaseViewModel() {
 
     val banner = MutableLiveData<List<BannerBean>>()
     val article = MutableLiveData<ArticleBoxBean>()
@@ -26,24 +24,26 @@ class HomeViewModel @ViewModelInject constructor(private val repository: HomeRep
     fun initHomeData() = launch({
         isShowLoading.value = true
         banner.value = repository.getBanner()
-        article.value = repository.getArticle()
+        val topArticleList: List<ArticleItemBean> = repository.getTopArticle()
+        val articleData: ArticleBoxBean = repository.getArticle()
+        (articleData.data as ArrayList).addAll(topArticleList)
+        article.value = articleData
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {
         isShowLoading.value = false
+        isRefresh.value = false
+
     })
 
-    fun loadArticleData(isRefresh: Boolean = false) = launch({
+    fun loadArticleData() = launch({
         isShowLoading.value = true
-        val page = if (isRefresh) {
-            0
-        } else {
-            article.value!!.curPage
-        }
-        article.value = repository.getArticle(page)
+        isPullLoads.value = true
+        article.value = repository.getArticle(article.value!!.curPage)
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {
         isShowLoading.value = false
+        isPullLoads.value = false
     })
 }

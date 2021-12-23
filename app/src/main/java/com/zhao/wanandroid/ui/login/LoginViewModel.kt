@@ -2,16 +2,11 @@ package com.zhao.wanandroid.ui.login
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
 import com.zhao.wanandroid.base.BaseViewModel
-import com.zhao.wanandroid.base.launch
+import com.zhao.wanandroid.common.launch
 import com.zhao.wanandroid.local.SpName
 import com.zhao.wanandroid.utils.ExceptionUtil
 import com.zhao.wanandroid.utils.LogUtils
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 /**

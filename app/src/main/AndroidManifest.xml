@@ -13,10 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wanandroid">
         <activity
-            android:name=".ui.main.activity.MainActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.login.LoginActivity"
+            android:exported="true" />
+        <!--<activity
+            android:name=".ui.TestActivity"
+            android:exported="true" />-->
+        <activity
+            android:name=".ui.main.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

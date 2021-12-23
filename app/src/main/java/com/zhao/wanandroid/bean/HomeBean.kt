@@ -1,5 +1,7 @@
 package com.zhao.wanandroid.bean
 
+import com.google.gson.annotations.SerializedName
+
 /**
  *创建时间： 2021/12/14
  *编   写：  zjf
@@ -18,6 +20,7 @@ data class BannerBean(
 
 data class ArticleBoxBean(
     val curPage: Int,
+    @SerializedName("datas")
     val data: List<ArticleItemBean>,
     val offset: Int,
     val over: Boolean,
@@ -29,7 +32,7 @@ data class ArticleBoxBean(
 data class ArticleItemBean(
     val apkLink: String,
     val audit: Int,
-    val author: String,
+    val author: String? = null,
     val canEdit: Boolean,
     val chapterId: Int,
     val chapterName: String,
@@ -51,12 +54,18 @@ data class ArticleItemBean(
     val realSuperChapterId: Int,
     val selfVisible: Int,
     val shareDate: Long,
-    val shareUser: String,
+    val shareUser: String? = null,
     val superChapterId: Int,
     val superChapterName: String,
+    val tags: List<ArticleLabelBean>? = null,
     val title: String,
     val type: Int,
     val userId: Int,
     val visible: Int,
     val zan: Int,
+)
+
+data class ArticleLabelBean(
+    val name: String,
+    val url: String
 )

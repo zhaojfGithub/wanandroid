@@ -16,40 +16,45 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.activity.MainActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimaryDark"
+            <include
+                android:id="@+id/include"
+                layout="@layout/base_toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:popupTheme="@style/Theme.MaterialComponents.Light"
-                app:titleTextColor="?android:textColorSecondary" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPage"
-                android:layout_width="@dimen/view_0dp"
-                android:layout_height="@dimen/view_0dp"
-                app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbar" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigationView"
-                android:layout_width="@dimen/view_0dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
                 app:labelVisibilityMode="labeled"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/menu_home" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/white"
+                app:menu="@menu/menu_home"
+                app:layout_behavior=".weight.BottomNavigationBehavior"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="@dimen/view_20dp"
+                android:layout_marginBottom="@dimen/view_100dp"
+                android:contentDescription="@string/add"
+                android:src="@drawable/ic_arrow_upward"
+                app:layout_behavior=".weight.FloatingActionBehavior" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"

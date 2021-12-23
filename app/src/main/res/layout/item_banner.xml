@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/view_10dp"
     app:cardElevation="@dimen/view_6dp"
-    app:strokeWidth="@dimen/view_1dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/ivBannerImg"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </com.google.android.material.card.MaterialCardView>

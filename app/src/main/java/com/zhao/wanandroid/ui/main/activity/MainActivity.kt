@@ -5,17 +5,19 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmActivity
+import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.ActivityMainBinding
 import com.zhao.wanandroid.databinding.DrawerHeaderBinding
-import com.zhao.wanandroid.ui.main.fragment.*
+import com.zhao.wanandroid.ui.main.fragment.ProjectFragment
+import com.zhao.wanandroid.ui.main.fragment.SystemFragment
 import com.zhao.wanandroid.ui.main.fragment.home.HomeFragment
-import com.zhao.wanandroid.ui.main.fragment.home.HomeViewModel
+import com.zhao.wanandroid.ui.main.fragment.open_number.OpenNumberFragment
+import com.zhao.wanandroid.ui.main.fragment.plaza.PlazaFragment
 import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
@@ -30,44 +32,49 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initView() {
-        binding.toolbar.setNavigationIcon(R.drawable.ic_density_medium)
-        setSupportActionBar(binding.toolbar)
+        binding.include.toolbar.setNavigationIcon(R.drawable.ic_density_medium)
+        setSupportActionBar(binding.include.toolbar)
         binding.navigationView.addHeaderView(drawerHeaderBinder.root)
         val fragments = listOf(
             HomeFragment.newInstance(),
-            SystemFragment.newInstance(),
+            PlazaFragment.newInstance(),
             OpenNumberFragment.newInstance(),
-            NavigationFragment.newInstance(),
+            SystemFragment.newInstance(),
             ProjectFragment.newInstance()
         )
         val adapter = MainViewPageAdapter(lifecycle, supportFragmentManager, fragments)
         binding.viewPage.adapter = adapter
+        binding.viewPage.isUserInputEnabled = false
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     binding.viewPage.setCurrentItem(0, true)
+                    return@setOnItemSelectedListener true
                 }
-                R.id.navigation_system -> {
+                R.id.navigation_plaza -> {
                     binding.viewPage.setCurrentItem(1, true)
+                    return@setOnItemSelectedListener true
                 }
                 R.id.navigation_open_number -> {
                     binding.viewPage.setCurrentItem(2, true)
+                    return@setOnItemSelectedListener true
                 }
                 R.id.navigation_nv -> {
                     binding.viewPage.setCurrentItem(3, true)
+                    return@setOnItemSelectedListener true
                 }
                 R.id.navigation_project -> {
                     binding.viewPage.setCurrentItem(4, true)
+                    return@setOnItemSelectedListener true
                 }
             }
             false
         }
-        binding.viewPage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                binding.bottomNavigationView.menu.getItem(position).isChecked = true
-            }
-        })
+        binding.floatingActionButton.setOnClickListener {
+            val index = binding.viewPage.currentItem
+            val fragment : RecyclerMoveInterface = fragments[index] as RecyclerMoveInterface
+            fragment.moveHeader()
+        }
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.drawerIntegral -> {
@@ -121,8 +128,11 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
             R.id.toolbarSearch -> {
                 LogUtils.e("toolbarSearch")
             }
+            R.id.toolbarAdd -> {
+
+            }
         }
         return true
-    }
 
+    }
 }

@@ -22,7 +22,7 @@
     <string name="main_home">首页</string>
     <string name="main_system">体系</string>
     <string name="main_open_number">公众号</string>
-    <string name="main_navigation">导航</string>
+    <string name="main_plaza">广场</string>
     <string name="main_project">项目</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -37,4 +37,5 @@
     <string name="drawer_my">关于我们</string>
     <string name="drawer_exit">退出登录</string>
     <string name="backslash"> / </string>
+    <string name="add">add</string>
 </resources>

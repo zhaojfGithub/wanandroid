@@ -1,4 +1,4 @@
-package com.zhao.wanandroid.base
+package com.zhao.wanandroid.common
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

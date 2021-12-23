@@ -8,7 +8,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import dagger.hilt.android.AndroidEntryPoint
 
 /**
  *创建时间： 2021/12/6
@@ -38,6 +37,10 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewDataBinding> : BaseFr
         initData()
     }
 
-    abstract fun observer()
+    open fun observer() {
+        viewModel.isShowLoading.observe({ lifecycle }) {
+            (requireActivity() as BaseLoadingInterface).isShowLoadingDialog(it)
+        }
+    }
 
 }
