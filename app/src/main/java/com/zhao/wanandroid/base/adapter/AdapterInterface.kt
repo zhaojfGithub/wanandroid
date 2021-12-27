@@ -1,5 +1,10 @@
 package com.zhao.wanandroid.base.adapter
 
+import android.view.View
+import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.databinding.ViewDataBinding
+
 /**
  *创建时间： 2021/12/17
  *编   写：  zjf
@@ -56,4 +61,38 @@ interface AdapterInterface<T> {
      */
     fun removePartItemData(data: List<T>)
 
+    /**
+     * 添加列表头,并设置一个默认值，此值控制表头的显示和消息
+     */
+    fun addHeaderView()
+
+    /**
+     * 添加列表尾部,并设置一个默认值，此值控制表头的显示和消息
+     */
+    fun addFooterView()
+
+    /**
+     * 显示列表头
+     */
+    fun showHeaderView()
+
+    /**
+     * 显示列表尾
+     */
+    fun showFooterView()
+
+    /**
+     * 隐藏列表头
+     */
+    fun dismissHeaderView()
+
+    /**
+     * 隐藏列表尾
+     */
+    fun dismissFooterView()
+
+    /**
+     * 获取这个layout的bindingViewHolder
+     */
+    fun <VB : ViewDataBinding> getItemBindingViewHolder(parent: ViewGroup, @LayoutRes layout: Int): BindingViewHolder<ViewDataBinding>
 }

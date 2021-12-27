@@ -1,10 +1,11 @@
 package com.zhao.wanandroid.ui.main.fragment.home
 
+import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.adapter.BaseSimplifiedAdapter
-import com.zhao.wanandroid.base.BindingViewHolder
+import com.zhao.wanandroid.base.adapter.BindingViewHolder
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.databinding.ItemLabelBinding
 import com.zhao.wanandroid.utils.ThemeColorUtil
@@ -31,7 +32,7 @@ class HomeItemLabelAdapter(data: ArticleItemBean) : BaseSimplifiedAdapter<ItemLa
         return R.layout.item_label
     }
 
-    override fun onBindBindingHolder(holder: BindingViewHolder<ItemLabelBinding>, position: Int) {
+    override fun onBindBindingViewHolder(holder: BindingViewHolder<ItemLabelBinding>, position: Int) {
         holder.binding.data = list[position]
         when (list[position]) {
             "本站发布" -> {

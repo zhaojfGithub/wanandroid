@@ -11,7 +11,7 @@ import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.ActivityMainBinding
 import com.zhao.wanandroid.databinding.DrawerHeaderBinding
 import com.zhao.wanandroid.ui.main.fragment.ProjectFragment
-import com.zhao.wanandroid.ui.main.fragment.SystemFragment
+import com.zhao.wanandroid.ui.main.fragment.system.SystemFragment
 import com.zhao.wanandroid.ui.main.fragment.home.HomeFragment
 import com.zhao.wanandroid.ui.main.fragment.open_number.OpenNumberFragment
 import com.zhao.wanandroid.ui.main.fragment.plaza.PlazaFragment

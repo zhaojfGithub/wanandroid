@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import com.zhao.wanandroid.base.BindingViewHolder
 
 
 /**
@@ -15,21 +14,20 @@ import com.zhao.wanandroid.base.BindingViewHolder
  */
 abstract class BaseSimplifiedAdapter<VB : ViewDataBinding, T : Any> : BaseUniversalAdapter<T>() {
 
+    @LayoutRes
+    protected abstract fun layoutId(): Int
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<ViewDataBinding> {
+    override fun onCreateBindingViewHolder(parent: ViewGroup): BindingViewHolder<ViewDataBinding> {
         val view = LayoutInflater.from(parent.context).inflate(layoutId(), parent, false)
         val binder: VB = DataBindingUtil.bind(view)!!
         return BindingViewHolder(binder)
     }
 
-    override fun onBindViewHolder(holder: BindingViewHolder<ViewDataBinding>, position: Int) {
-        onBindBindingHolder(holder as BindingViewHolder<VB>, position)
+    override fun onBindItemViewHolder(holder: BindingViewHolder<ViewDataBinding>, position: Int) {
+        onBindBindingViewHolder(holder as BindingViewHolder<VB>,position)
     }
 
-    abstract fun onBindBindingHolder(holder: BindingViewHolder<VB>, position: Int)
-
-    @LayoutRes
-    protected abstract fun layoutId(): Int
+    abstract fun onBindBindingViewHolder(holder: BindingViewHolder<VB>,position: Int)
 
 }
 
