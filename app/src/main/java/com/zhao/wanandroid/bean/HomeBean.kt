@@ -67,5 +67,5 @@ data class ArticleItemBean(
 
 data class ArticleLabelBean(
     val name: String,
-    val url: String
+    val url: String? = null
 )

@@ -1,5 +1,6 @@
 package com.zhao.wanandroid.ui.main.fragment.open_number
 
+import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhao.wanandroid.R
@@ -30,12 +31,6 @@ class OpenNumberFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumbe
         TabLayoutMediator(binding.tabLayout, binding.viewPage) { tab, position ->
             tab.text = viewPageAdapter.getTitle(position)
         }.attach()
-        binding.viewPage.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                viewModel.setIndex(position)
-            }
-        })
     }
 
     override fun getLayoutId(): Int {
@@ -54,7 +49,7 @@ class OpenNumberFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumbe
                 viewPageAdapter.addAllData(it)
             }
             wxArticle.observe({ lifecycle }) {
-                val fragment: LoadMoreInterface<ArticleItemBean> = viewPageAdapter.getFragment(getIndex()) as OpenNumberItemFragment
+                val fragment: LoadMoreInterface<ArticleItemBean> = viewPageAdapter.getFragment(binding.viewPage.currentItem) as OpenNumberItemFragment
                 fragment.addData(it.first, it.second)
             }
         }

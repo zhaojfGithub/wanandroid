@@ -6,6 +6,7 @@ import com.zhao.wanandroid.base.BaseViewModel
 import com.zhao.wanandroid.common.launch
 import com.zhao.wanandroid.bean.ArticleBoxBean
 import com.zhao.wanandroid.bean.ArticleItemBean
+import com.zhao.wanandroid.bean.ArticleLabelBean
 import com.zhao.wanandroid.bean.BannerBean
 import com.zhao.wanandroid.ui.main.activity.MainRepository
 import com.zhao.wanandroid.utils.ExceptionUtil
@@ -26,7 +27,10 @@ class HomeViewModel @ViewModelInject constructor(private val repository: MainRep
         banner.value = repository.getBanner()
         val topArticleList: List<ArticleItemBean> = repository.getTopArticle()
         val articleData: ArticleBoxBean = repository.getArticle()
-        (articleData.data as ArrayList).addAll(topArticleList)
+        topArticleList.forEach {
+            (it.tags as ArrayList).add(0,ArticleLabelBean("置顶"))
+        }
+        (articleData.data as ArrayList).addAll(0,topArticleList)
         article.value = articleData
     }, {
         showMsg.value = ExceptionUtil.catchException(it)

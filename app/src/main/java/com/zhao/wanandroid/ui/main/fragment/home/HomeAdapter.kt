@@ -53,9 +53,9 @@ class HomeAdapter : BaseUniversalAdapter<ArticleItemBean>() {
                         }
                         layoutManager = linearLayoutManager
                     }
-                    if (adapter == null) {
-                        adapter = HomeItemLabelAdapter(list[position - 1])
-                    }
+
+                    adapter = HomeItemLabelAdapter(list[position - 1])
+
                 }
             }
             else -> {

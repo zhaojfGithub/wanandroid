@@ -22,11 +22,13 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
 
     companion object {
         private const val ID: String = "id"
+        private const val INDEX: String = "index"
 
         @JvmStatic
-        fun newInstance(id: Int): Fragment {
+        fun newInstance(id: Int, index: Int): Fragment {
             val bundle = Bundle()
             bundle.putInt(ID, id)
+            bundle.putInt(INDEX, index)
             val fragment = OpenNumberItemFragment()
             fragment.arguments = bundle
             return fragment
@@ -34,23 +36,26 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
     }
 
     private var id: Int? = null
+    private var index: Int? = null
+
 
     private val adapter: AdapterInterface<ArticleItemBean> by lazy { OpenNumberItemAdapter() }
 
     override fun initData() {
         val bundle = this.arguments
         id = bundle!!.getInt(ID)
-        viewModel.getWxArticle(id!!, AppState.LoadingState.REFRESH)
+        index = bundle.getInt(INDEX)
+        viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.REFRESH)
     }
 
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter as OpenNumberItemAdapter
         binding.recyclerView.isSlideBottom {
-            viewModel.getWxArticle(id!!, AppState.LoadingState.LOAD_MORE)
+            viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.LOAD_MORE)
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getWxArticle(id!!, AppState.LoadingState.REFRESH)
+            viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.REFRESH)
         }
     }
 
@@ -73,7 +78,11 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
                 binding.swipeRefreshLayout.isRefreshing = false
             }
             AppState.LoadingState.LOAD_MORE -> {
-                adapter.addFooterItemAllData(data)
+                if (data.isEmpty()) {
+                    adapter.showFooterView()
+                } else {
+                    adapter.addFooterItemAllData(data)
+                }
             }
         }
     }

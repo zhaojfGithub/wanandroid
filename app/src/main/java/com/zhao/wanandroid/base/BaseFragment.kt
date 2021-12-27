@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
  */
 abstract class BaseFragment: Fragment() {
 
+    private var isLazyInit = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(getLayoutId(),container,false)
     }
@@ -25,7 +27,7 @@ abstract class BaseFragment: Fragment() {
 
     open fun initCreated() {
         initView()
-        initData()
+
     }
 
     abstract fun initData()
@@ -34,4 +36,12 @@ abstract class BaseFragment: Fragment() {
 
     @LayoutRes
     abstract fun getLayoutId(): Int
+
+    override fun onResume() {
+        super.onResume()
+        if (!isLazyInit){
+            initData()
+            isLazyInit = true
+        }
+    }
 }

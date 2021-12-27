@@ -44,6 +44,11 @@ class HomeItemLabelAdapter(data: ArticleItemBean) : BaseSimplifiedAdapter<ItemLa
                 holder.binding.tvItemLabel.setTextColor(ThemeColorUtil.getThemeColor(holder.itemView.context, R.attr.colorPrimary))
 
             }
+            "问答" -> {
+                holder.binding.tvItemLabel.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.shape_frame_primary)
+                holder.binding.tvItemLabel.setTextColor(ThemeColorUtil.getThemeColor(holder.itemView.context, R.attr.colorPrimary))
+
+            }
             "新" -> {
                 holder.binding.tvItemLabel.background = ContextCompat.getDrawable(holder.itemView.context, R.drawable.shape_frame_on_primary)
                 holder.binding.tvItemLabel.setTextColor(ThemeColorUtil.getThemeColor(holder.itemView.context, R.attr.colorOnPrimary))

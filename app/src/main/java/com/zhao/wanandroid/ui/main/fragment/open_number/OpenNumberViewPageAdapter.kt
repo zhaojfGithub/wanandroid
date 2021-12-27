@@ -32,9 +32,9 @@ class OpenNumberViewPageAdapter(lifecycle: Lifecycle, supportFragment: FragmentM
         if (fragmentTitle.isNotEmpty()) {
             fragmentTitle.clear()
         }
-        data.forEach {
-            fragmentList.add(OpenNumberItemFragment.newInstance(it.id))
-            fragmentTitle.add(it.name)
+        data.forEachIndexed { index, openNumberBoxBean ->
+            fragmentList.add(OpenNumberItemFragment.newInstance(openNumberBoxBean.id, index))
+            fragmentTitle.add(openNumberBoxBean.name)
         }
         notifyItemRangeChanged(0, this.fragmentList.size)
     }

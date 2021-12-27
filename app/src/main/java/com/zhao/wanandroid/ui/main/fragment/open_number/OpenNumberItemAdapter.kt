@@ -14,6 +14,11 @@ import com.zhao.wanandroid.ui.main.fragment.home.HomeItemLabelAdapter
  *页面功能:
  */
 class OpenNumberItemAdapter : BaseSimplifiedAdapter<ItemHomeBinding, ArticleItemBean>() {
+
+    init {
+        addFooterView()
+    }
+
     override fun layoutId(): Int {
         return R.layout.item_home
     }
@@ -29,9 +34,10 @@ class OpenNumberItemAdapter : BaseSimplifiedAdapter<ItemHomeBinding, ArticleItem
                 }
                 layoutManager = linearLayoutManager
             }
-            if (adapter == null) {
-                adapter = HomeItemLabelAdapter(list[position])
-            }
+
+            adapter = HomeItemLabelAdapter(list[position])
+
         }
     }
+
 }

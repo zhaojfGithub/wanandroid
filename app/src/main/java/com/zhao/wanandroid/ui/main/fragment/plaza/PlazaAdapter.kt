@@ -30,9 +30,7 @@ class PlazaAdapter : BaseSimplifiedAdapter<ItemHomeBinding, ArticleItemBean>() {
                 }
                 layoutManager = linearLayoutManager
             }
-            if (adapter == null) {
-                adapter = HomeItemLabelAdapter(list[position])
-            }
+            adapter = HomeItemLabelAdapter(list[position])
         }
     }
 }

@@ -8,6 +8,7 @@ import androidx.databinding.ViewDataBinding
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.databinding.IncludeItemEndBinding
 import com.zhao.wanandroid.databinding.IncludeItemStartBinding
+import com.zhao.wanandroid.utils.LogUtils
 
 /**
  *创建时间： 2021/12/17
@@ -80,8 +81,11 @@ abstract class BaseUniversalAdapter<T : Any> : BaseBindingAdapter(), AdapterInte
             is IncludeItemEndBinding -> {
                 holder.binding.data = isShowFooter
             }
+            else -> {
+                onBindItemViewHolder(holder, position)
+            }
         }
-        onBindItemViewHolder(holder, position)
+
     }
 
     abstract fun onCreateBindingViewHolder(parent: ViewGroup): BindingViewHolder<ViewDataBinding>
@@ -161,18 +165,22 @@ abstract class BaseUniversalAdapter<T : Any> : BaseBindingAdapter(), AdapterInte
 
     override fun showHeaderView() {
         this.isShowHeader = true
+        notifyItemChanged(0)
     }
 
     override fun showFooterView() {
         this.isShowFooter = true
+        notifyItemChanged(itemCount - 1)
     }
 
     override fun dismissHeaderView() {
         this.isShowHeader = false
+        notifyItemChanged(0)
     }
 
     override fun dismissFooterView() {
         this.isShowFooter = false
+        notifyItemChanged(itemCount - 1)
     }
 
     override fun <VB : ViewDataBinding> getItemBindingViewHolder(parent: ViewGroup, layout: Int): BindingViewHolder<ViewDataBinding> {
