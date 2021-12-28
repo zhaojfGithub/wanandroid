@@ -13,6 +13,7 @@ import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.bean.BannerBean
 import com.zhao.wanandroid.databinding.BaseBannerBinding
 import com.zhao.wanandroid.databinding.ItemHomeBinding
+import com.zhao.wanandroid.utils.LogUtils
 
 /**
  *创建时间： 2021/12/14
@@ -55,7 +56,6 @@ class HomeAdapter : BaseUniversalAdapter<ArticleItemBean>() {
                     }
 
                     adapter = HomeItemLabelAdapter(list[position - 1])
-
                 }
             }
             else -> {

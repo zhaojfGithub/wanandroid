@@ -9,4 +9,5 @@ import com.zhao.wanandroid.common.AppState
  */
 interface LoadMoreInterface<T> {
     fun addData(loadingState: AppState.LoadingState,data: List<T>)
+    fun showFooter()
 }

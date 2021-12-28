@@ -42,4 +42,7 @@ interface ApiService {
 
     @GET("/wxarticle/list/{id}/{page}/json")
     suspend fun getOpenNumberItem(@Path("id") id : Int , @Path("page") page: Int) : HttpBean<ArticleBoxBean>
+
+    @GET("/tree/json")
+    suspend fun getSystemTree():HttpBean<List<SystemBean>>
 }

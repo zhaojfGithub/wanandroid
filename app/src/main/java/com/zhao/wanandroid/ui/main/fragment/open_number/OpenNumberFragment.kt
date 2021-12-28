@@ -1,15 +1,11 @@
 package com.zhao.wanandroid.ui.main.fragment.open_number
 
-import android.util.Log
-import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.databinding.FragmentOpenNumberBinding
-import com.zhao.wanandroid.ui.main.activity.MainViewModel
-import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,6 +47,10 @@ class OpenNumberFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumbe
             wxArticle.observe({ lifecycle }) {
                 val fragment: LoadMoreInterface<ArticleItemBean> = viewPageAdapter.getFragment(binding.viewPage.currentItem) as OpenNumberItemFragment
                 fragment.addData(it.first, it.second)
+            }
+            isLoadingEnd.observe({lifecycle}){
+                val fragment: LoadMoreInterface<ArticleItemBean> = viewPageAdapter.getFragment(binding.viewPage.currentItem) as OpenNumberItemFragment
+                fragment.showFooter()
             }
         }
     }

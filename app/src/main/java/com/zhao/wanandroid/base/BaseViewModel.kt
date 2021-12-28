@@ -21,6 +21,6 @@ abstract class BaseViewModel : ViewModel() {
 
     //用于recyclerView上拉加载更多
     val isPullLoads = MutableLiveData<Boolean>()
-
+    //
     val isLoadingEnd = MutableLiveData<Boolean>()
 }

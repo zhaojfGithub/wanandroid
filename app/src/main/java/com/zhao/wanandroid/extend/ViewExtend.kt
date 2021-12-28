@@ -18,7 +18,7 @@ fun RecyclerView.isSlideBottom(result: () -> Unit) {
             val lastPosition = linearLayoutManager.findLastVisibleItemPosition()
             val visibleItemCount = linearLayoutManager.childCount
             val totalItemCount = linearLayoutManager.itemCount
-            if (visibleItemCount > 0 && lastPosition == totalItemCount - 1) {
+            if (visibleItemCount > 0 && lastPosition == totalItemCount - 2) {
                 result()
             }
         }

@@ -11,7 +11,9 @@ import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.FragmentOpenNumberItemBinding
 import com.zhao.wanandroid.extend.isSlideBottom
+import com.zhao.wanandroid.utils.LogUtils
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
+import kotlin.math.log
 
 /**
  *创建时间： 2021/12/21
@@ -74,21 +76,23 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
     override fun addData(loadingState: AppState.LoadingState, data: List<ArticleItemBean>) {
         when (loadingState) {
             AppState.LoadingState.REFRESH -> {
+                adapter.dismissFooterView()
                 adapter.refreshAllItem(data)
                 binding.swipeRefreshLayout.isRefreshing = false
             }
             AppState.LoadingState.LOAD_MORE -> {
-                if (data.isEmpty()) {
-                    adapter.showFooterView()
-                } else {
-                    adapter.addFooterItemAllData(data)
-                }
+                adapter.addFooterItemAllData(data)
             }
         }
     }
 
     override fun moveHeader() {
         binding.recyclerView.smoothScrollToHeaderPosition()
+    }
+
+    override fun showFooter() {
+        LogUtils.e("调用显示了尾部")
+        adapter.showFooterView()
     }
 
 
