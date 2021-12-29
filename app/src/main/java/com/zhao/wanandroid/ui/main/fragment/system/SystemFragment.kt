@@ -2,6 +2,7 @@ package com.zhao.wanandroid.ui.main.fragment.system
 
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
+import com.zhao.wanandroid.MyApplication
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.view_page.BaseViewPageAdapter
@@ -31,7 +32,7 @@ class SystemFragment : BaseVmFragment<SystemViewModel, FragmentSystemBinding>() 
         TabLayoutMediator(binding.tabLayout, binding.viewPage) { tab, position ->
             tab.text = viewPageAdapter.getFragmentTitle(position)
         }.attach()
-       //viewPageAdapter.refreshFragments(fragmentList)
+       viewPageAdapter.refreshFragments(fragmentList)
     }
 
     override fun getLayoutId(): Int {

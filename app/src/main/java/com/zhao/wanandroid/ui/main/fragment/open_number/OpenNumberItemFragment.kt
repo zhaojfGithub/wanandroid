@@ -22,7 +22,7 @@ import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumberItemBinding>(), LoadMoreInterface<ArticleItemBean>, RecyclerMoveInterface {
 
     companion object {
-        private const val ID: String = "id"
+        private const val FRAGMENT_ID: String = "id"
         private const val INDEX: String = "index"
 
         @JvmStatic
@@ -30,40 +30,40 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
             LogUtils.e("OpenNumberItemFragment进行了初始化")
             val fragment = OpenNumberItemFragment()
             val bundle = Bundle()
-            bundle.putInt(ID, id)
+            bundle.putInt(FRAGMENT_ID, id)
             bundle.putInt(INDEX, index)
             fragment.arguments = bundle
             return fragment
         }
     }
 
-    private var id: Int? = null
+    private var fragmentId: Int? = null
     private var index: Int? = null
 
 
     private val adapter: AdapterInterface<ArticleItemBean> by lazy { OpenNumberItemAdapter() }
 
     override fun initData() {
-        val bundle = requireArguments()
-        id = bundle.getInt(ID)
-        index = bundle.getInt(INDEX)
+        arguments?.also {
+            fragmentId = it.getInt(FRAGMENT_ID)
+            index = it.getInt(INDEX)
+        }
     }
 
     override fun lazyData() {
         super.lazyData()
-        if (id != null && index != null){
-            viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.REFRESH)
-        }
+        if (fragmentId == null || index == null) return
+        viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.REFRESH)
     }
 
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter as OpenNumberItemAdapter
         binding.recyclerView.isSlideBottom(2) {
-            viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.LOAD_MORE)
+            viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.LOAD_MORE)
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.REFRESH)
+            viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.REFRESH)
         }
     }
 
