@@ -6,18 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.zhao.wanandroid.utils.LogUtils
 
 /**
  *创建时间： 2021/9/1
  *编   写：  zjf
  *页面功能:
  */
-abstract class BaseFragment: Fragment() {
+abstract class BaseFragment : Fragment() {
 
     private var isLazyInit = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(getLayoutId(),container,false)
+        return inflater.inflate(getLayoutId(), container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,10 +28,14 @@ abstract class BaseFragment: Fragment() {
 
     open fun initCreated() {
         initView()
-
+        initData()
     }
 
     abstract fun initData()
+
+    open fun lazyData() {
+
+    }
 
     abstract fun initView()
 
@@ -39,9 +44,9 @@ abstract class BaseFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (!isLazyInit){
-            initData()
+        if (!isLazyInit) {
             isLazyInit = true
+            lazyData()
         }
     }
 }

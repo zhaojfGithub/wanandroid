@@ -17,10 +17,8 @@ abstract class BaseViewModel : ViewModel() {
 
     val showMsg = MutableLiveData<String>()
 
-    val isRefresh = MutableLiveData<Boolean>()
-
     //用于recyclerView上拉加载更多
     val isPullLoads = MutableLiveData<Boolean>()
-    //
+    //加载更多到底了
     val isLoadingEnd = MutableLiveData<Boolean>()
 }

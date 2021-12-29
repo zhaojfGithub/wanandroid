@@ -2,11 +2,11 @@ package com.zhao.wanandroid.ui.main.fragment.open_number
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
+import com.zhao.wanandroid.base.adapter.BaseItemLabelAdapter
 import com.zhao.wanandroid.base.adapter.BindingViewHolder
 import com.zhao.wanandroid.base.adapter.BaseSimplifiedAdapter
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.databinding.ItemHomeBinding
-import com.zhao.wanandroid.ui.main.fragment.home.HomeItemLabelAdapter
 
 /**
  *创建时间： 2021/12/22
@@ -34,9 +34,19 @@ class OpenNumberItemAdapter : BaseSimplifiedAdapter<ItemHomeBinding, ArticleItem
                 }
                 layoutManager = linearLayoutManager
             }
-
-            adapter = HomeItemLabelAdapter(list[position])
-
+            val strList: MutableList<String> = ArrayList()
+            val data = list[position]
+            data.tags?.takeIf { it.isNotEmpty() }?.forEach {
+                (strList as ArrayList).add(it.name)
+            }
+            if (data.author != null && data.author.isNotEmpty()) {
+                (strList as ArrayList).add(data.author)
+            } else if (data.shareUser != null && data.shareUser.isNotEmpty()) {
+                (strList as ArrayList).add(data.shareUser)
+            }
+            val itemLabelAdapter = BaseItemLabelAdapter()
+            itemLabelAdapter.addHeaderItemAllData(strList)
+            adapter = itemLabelAdapter
         }
     }
 

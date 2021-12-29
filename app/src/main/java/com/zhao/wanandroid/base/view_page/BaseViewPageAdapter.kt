@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.zhao.wanandroid.utils.LogUtils
 
 /**
  *创建时间： 2021/12/28
@@ -17,6 +18,9 @@ class BaseViewPageAdapter(lifecycle: Lifecycle, supportFragment: FragmentManager
 
 
     override fun getItemCount(): Int {
+        if (fragmentList.isEmpty()){
+            return 0
+        }
         return fragmentList.size
     }
 
@@ -42,10 +46,10 @@ class BaseViewPageAdapter(lifecycle: Lifecycle, supportFragment: FragmentManager
     override fun refreshFragments(data: List<Pair<String,Fragment>>) {
         if (fragmentList.isNotEmpty()) {
             fragmentList.clear()
-
+            notifyItemRangeRemoved(0,itemCount)
         }
         fragmentList.addAll(data)
-        notifyItemRangeChanged(0, itemCount)
+        notifyItemRangeInserted(0, fragmentList.size)
     }
 
     override fun getFragment(index: Int): Fragment {

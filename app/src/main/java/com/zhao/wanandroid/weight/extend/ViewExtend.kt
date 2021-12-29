@@ -1,5 +1,6 @@
 package com.zhao.wanandroid.weight.extend
 
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -7,6 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
  *编   写：  zjf
  *页面功能:
  */
+
+fun RecyclerView.isSlideBottom(endNumber: Int = 1, result: () -> Unit) {
+    addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (layoutManager !is LinearLayoutManager) return
+            val linearLayoutManager = layoutManager as LinearLayoutManager
+            val lastPosition = linearLayoutManager.findLastVisibleItemPosition()
+            val visibleItemCount = linearLayoutManager.childCount
+            val totalItemCount = linearLayoutManager.itemCount
+            if (visibleItemCount > 0 && lastPosition == totalItemCount - endNumber) {
+                result()
+            }
+        }
+    })
+}
 
 /**
  * 扩展recyclerView方法，传入[position],使[position]在视图中居中显示
@@ -53,13 +70,13 @@ fun RecyclerView?.smoothScrollToMiddlePosition(position: Int, maxNumber: Int) {
 /**
  * 扩展recyclerView方法，移动到列表头部
  */
-fun RecyclerView?.smoothScrollToHeaderPosition(){
+fun RecyclerView?.smoothScrollToHeaderPosition() {
     this?.smoothScrollToPosition(0)
 }
 
 /**
  * 扩展recyclerView方法，移动到列表底部
  */
-fun RecyclerView?.smoothScrollToFooterPosition(){
+fun RecyclerView?.smoothScrollToFooterPosition() {
     this?.adapter?.itemCount?.let { this.smoothScrollToPosition(it) }
 }

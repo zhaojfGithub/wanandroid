@@ -1,33 +1,16 @@
-package com.zhao.wanandroid.ui.main.fragment.home
+package com.zhao.wanandroid.base.adapter
 
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.databinding.ViewDataBinding
 import com.zhao.wanandroid.R
-import com.zhao.wanandroid.base.adapter.BaseSimplifiedAdapter
-import com.zhao.wanandroid.base.adapter.BindingViewHolder
-import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.databinding.ItemLabelBinding
 import com.zhao.wanandroid.utils.ThemeColorUtil
 
 /**
- *创建时间： 2021/12/16
+ *创建时间： 2021/12/29
  *编   写：  zjf
- *页面功能:
+ *页面功能: 项目中有很多标签，认为可以做成一个标签通用的adapter
  */
-class HomeItemLabelAdapter(data: ArticleItemBean) : BaseSimplifiedAdapter<ItemLabelBinding, String>() {
-
-    init {
-        data.tags?.takeIf { it.isNotEmpty() }?.forEach {
-            (list as ArrayList).add(it.name)
-        }
-        if (data.author != null && data.author.isNotEmpty()) {
-            (list as ArrayList).add(data.author)
-        } else if (data.shareUser != null && data.shareUser.isNotEmpty()) {
-            (list as ArrayList).add(data.shareUser)
-        }
-    }
-
+class BaseItemLabelAdapter : BaseSimplifiedAdapter<ItemLabelBinding,String>(){
     override fun layoutId(): Int {
         return R.layout.item_label
     }
@@ -62,5 +45,4 @@ class HomeItemLabelAdapter(data: ArticleItemBean) : BaseSimplifiedAdapter<ItemLa
             }
         }
     }
-
 }

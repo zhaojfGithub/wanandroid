@@ -7,13 +7,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.youth.banner.indicator.CircleIndicator
 import com.zhao.wanandroid.R
+import com.zhao.wanandroid.base.adapter.BaseItemLabelAdapter
 import com.zhao.wanandroid.base.adapter.BaseUniversalAdapter
 import com.zhao.wanandroid.base.adapter.BindingViewHolder
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.bean.BannerBean
 import com.zhao.wanandroid.databinding.BaseBannerBinding
 import com.zhao.wanandroid.databinding.ItemHomeBinding
-import com.zhao.wanandroid.utils.LogUtils
 
 /**
  *创建时间： 2021/12/14
@@ -54,8 +54,19 @@ class HomeAdapter : BaseUniversalAdapter<ArticleItemBean>() {
                         }
                         layoutManager = linearLayoutManager
                     }
-
-                    adapter = HomeItemLabelAdapter(list[position - 1])
+                    val strList: MutableList<String> = ArrayList()
+                    val data = list[position - 1]
+                    data.tags?.takeIf { it.isNotEmpty() }?.forEach {
+                        (strList as ArrayList).add(it.name)
+                    }
+                    if (data.author != null && data.author.isNotEmpty()) {
+                        (strList as ArrayList).add(data.author)
+                    } else if (data.shareUser != null && data.shareUser.isNotEmpty()) {
+                        (strList as ArrayList).add(data.shareUser)
+                    }
+                    val itemLabelAdapter = BaseItemLabelAdapter()
+                    itemLabelAdapter.addHeaderItemAllData(strList)
+                    adapter = itemLabelAdapter
                 }
             }
             else -> {
@@ -75,6 +86,4 @@ class HomeAdapter : BaseUniversalAdapter<ArticleItemBean>() {
         (this.bannerList as ArrayList).addAll(data)
         bannerAdapter.setDatas(this.bannerList)
     }
-
-
 }

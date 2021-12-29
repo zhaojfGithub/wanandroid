@@ -44,6 +44,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
         )
         val adapter = MainViewPageAdapter(lifecycle, supportFragmentManager, fragments)
         binding.viewPage.adapter = adapter
+        binding.viewPage.offscreenPageLimit = 4
         binding.viewPage.isUserInputEnabled = false
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {

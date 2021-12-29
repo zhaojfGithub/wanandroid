@@ -10,10 +10,9 @@ import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.FragmentOpenNumberItemBinding
-import com.zhao.wanandroid.extend.isSlideBottom
 import com.zhao.wanandroid.utils.LogUtils
+import com.zhao.wanandroid.weight.extend.isSlideBottom
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
-import kotlin.math.log
 
 /**
  *创建时间： 2021/12/21
@@ -28,10 +27,11 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
 
         @JvmStatic
         fun newInstance(id: Int, index: Int): Fragment {
+            LogUtils.e("OpenNumberItemFragment进行了初始化")
+            val fragment = OpenNumberItemFragment()
             val bundle = Bundle()
             bundle.putInt(ID, id)
             bundle.putInt(INDEX, index)
-            val fragment = OpenNumberItemFragment()
             fragment.arguments = bundle
             return fragment
         }
@@ -44,16 +44,22 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
     private val adapter: AdapterInterface<ArticleItemBean> by lazy { OpenNumberItemAdapter() }
 
     override fun initData() {
-        val bundle = this.arguments
-        id = bundle!!.getInt(ID)
+        val bundle = requireArguments()
+        id = bundle.getInt(ID)
         index = bundle.getInt(INDEX)
-        viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.REFRESH)
+    }
+
+    override fun lazyData() {
+        super.lazyData()
+        if (id != null && index != null){
+            viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.REFRESH)
+        }
     }
 
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter as OpenNumberItemAdapter
-        binding.recyclerView.isSlideBottom {
+        binding.recyclerView.isSlideBottom(2) {
             viewModel.getWxArticle(id!!, index!!, AppState.LoadingState.LOAD_MORE)
         }
         binding.swipeRefreshLayout.setOnRefreshListener {

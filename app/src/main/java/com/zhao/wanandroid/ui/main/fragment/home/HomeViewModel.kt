@@ -36,8 +36,6 @@ class HomeViewModel @ViewModelInject constructor(private val repository: MainRep
         showMsg.value = ExceptionUtil.catchException(it)
     }, {
         isShowLoading.value = false
-        isRefresh.value = false
-
     })
 
     fun loadArticleData() = launch({

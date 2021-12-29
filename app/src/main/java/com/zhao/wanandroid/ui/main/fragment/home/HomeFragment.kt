@@ -6,7 +6,7 @@ import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.FragmentHomeBinding
-import com.zhao.wanandroid.extend.isSlideBottom
+import com.zhao.wanandroid.weight.extend.isSlideBottom
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +28,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>(), Recyc
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.isSlideBottom {
+        binding.recyclerView.isSlideBottom() {
             viewModel.loadArticleData()
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
@@ -50,14 +50,12 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>(), Recyc
                 adapter.changedBanner(it)
             }
             article.observe({ lifecycle }) {
-                if (it.curPage == 1) {
+                if (binding.swipeRefreshLayout.isRefreshing) {
                     adapter.refreshAllItem(it.data)
+                    binding.swipeRefreshLayout.isRefreshing = false
                 } else {
                     adapter.addFooterItemAllData(it.data)
                 }
-            }
-            isRefresh.observe({ lifecycle }) {
-                binding.swipeRefreshLayout.isRefreshing = it
             }
         }
     }

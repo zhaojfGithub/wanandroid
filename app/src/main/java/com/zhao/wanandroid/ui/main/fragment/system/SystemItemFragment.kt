@@ -2,6 +2,8 @@ package com.zhao.wanandroid.ui.main.fragment.system
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.databinding.FragmentSystemItemBinding
@@ -21,17 +23,30 @@ class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBin
         }
     }
 
-    override fun initData() {
+    private val adapter : SystemItemAdapter by lazy { SystemItemAdapter() }
 
+    override fun initData() {
+        viewModel.getSystemTree()
     }
 
     override fun initView() {
-
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
+        binding.recyclerView.adapter = adapter
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getSystemTree()
+        }
     }
 
     override fun observer() {
-        super.observer()
-
+        viewModel.apply {
+            systemTree.observe({lifecycle}){
+                adapter.refreshAllItem(it)
+                if (binding.swipeRefreshLayout.isRefreshing){
+                    binding.swipeRefreshLayout.isRefreshing = false
+                }
+            }
+        }
     }
 
     override fun getLayoutId(): Int {
