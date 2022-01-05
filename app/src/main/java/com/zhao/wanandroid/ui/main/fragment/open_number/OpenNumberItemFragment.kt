@@ -7,6 +7,7 @@ import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.adapter.AdapterInterface
 import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
+import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.FragmentOpenNumberItemBinding
@@ -27,7 +28,6 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
 
         @JvmStatic
         fun newInstance(id: Int, index: Int): Fragment {
-            LogUtils.e("OpenNumberItemFragment进行了初始化")
             val fragment = OpenNumberItemFragment()
             val bundle = Bundle()
             bundle.putInt(FRAGMENT_ID, id)
@@ -60,12 +60,10 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter as OpenNumberItemAdapter
         binding.recyclerView.isSlideBottom(2) {
-            LogUtils.e("swipeRefreshLayout22222触发回调")
             if (fragmentId == null || index == null) return@isSlideBottom
             viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.LOAD_MORE)
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
-            LogUtils.e("swipeRefreshLayout333333触发回调")
             if (fragmentId == null || index == null) return@setOnRefreshListener
             viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.REFRESH)
         }
@@ -101,7 +99,6 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
     }
 
     override fun showFooter() {
-        LogUtils.e("调用显示了尾部")
         adapter.showFooterView()
     }
 

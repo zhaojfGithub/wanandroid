@@ -27,4 +27,8 @@ class MainRepository @Inject constructor() {
     suspend fun getSystemTree() = withContext(Dispatchers.IO){ ApiHost.API.getSystemTree().getApiData() }
 
     suspend fun getNavigation() = withContext(Dispatchers.IO){ ApiHost.API.getNavigation().getApiData() }
+
+    suspend fun getProjectTree() = withContext(Dispatchers.IO){ ApiHost.API.getProjectTree().getApiData() }
+
+    suspend fun getProjectList(id: Int,page: Int) = withContext(Dispatchers.IO) { ApiHost.API.getProjectList(page,id).getApiData()  }
 }

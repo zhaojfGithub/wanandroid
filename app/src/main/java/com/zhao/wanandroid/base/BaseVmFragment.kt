@@ -8,6 +8,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.zhao.wanandroid.base.fragment.BaseFragment
 
 /**
  *创建时间： 2021/12/6

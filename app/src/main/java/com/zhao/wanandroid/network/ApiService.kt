@@ -41,11 +41,17 @@ interface ApiService {
     suspend fun getOpenNumberBox(): HttpBean<List<OpenNumberBoxBean>>
 
     @GET("/wxarticle/list/{id}/{page}/json")
-    suspend fun getOpenNumberItem(@Path("id") id : Int , @Path("page") page: Int) : HttpBean<ArticleBoxBean>
+    suspend fun getOpenNumberItem(@Path("id") id: Int, @Path("page") page: Int): HttpBean<ArticleBoxBean>
 
     @GET("/tree/json")
-    suspend fun getSystemTree():HttpBean<List<SystemBean>>
+    suspend fun getSystemTree(): HttpBean<List<SystemBean>>
 
     @GET("/navi/json")
     suspend fun getNavigation(): HttpBean<List<NavigationBoxBean>>
+
+    @GET("project/tree/json")
+    suspend fun getProjectTree(): HttpBean<List<ProjectTreeBean>>
+
+    @GET("/project/list/{page}/json")
+    suspend fun getProjectList(@Path("page") page: Int, @Query("cid") cid: Int) :HttpBean<ProjectBoxBean>
 }

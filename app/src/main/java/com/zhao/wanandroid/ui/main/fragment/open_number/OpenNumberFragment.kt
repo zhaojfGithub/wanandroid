@@ -5,6 +5,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
+import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.base.view_page.BaseViewPageAdapter
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.databinding.FragmentOpenNumberBinding

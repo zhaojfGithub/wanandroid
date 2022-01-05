@@ -2,6 +2,7 @@
 <resources>
     <dimen name="view_0dp">0dp</dimen>
     <dimen name="view_1dp">1dp</dimen>
+    <dimen name="view_3dp">3dp</dimen>
     <dimen name="view_2dp">2dp</dimen>
     <dimen name="view_4dp">4dp</dimen>
     <dimen name="view_6dp">6dp</dimen>
@@ -21,6 +22,7 @@
     <dimen name="view_60dp">60dp</dimen>
     <dimen name="view_70dp">70dp</dimen>
     <dimen name="view_100dp">100dp</dimen>
+    <dimen name="view_150dp">150dp</dimen>
     <dimen name="view_200dp">200dp</dimen>
     <dimen name="view_300dp">300dp</dimen>
 

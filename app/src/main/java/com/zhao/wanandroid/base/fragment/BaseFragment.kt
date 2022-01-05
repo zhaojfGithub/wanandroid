@@ -1,4 +1,4 @@
-package com.zhao.wanandroid.base
+package com.zhao.wanandroid.base.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

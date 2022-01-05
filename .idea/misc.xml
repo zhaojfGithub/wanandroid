@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.409375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/bg_aplash.xml" value="0.409375" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_add.xml" value="0.40307692307692305" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_android_black_48dp.xml" value="0.24322916666666666" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_arrow_upward.xml" value="0.409375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_article.xml" value="0.409375" />
@@ -12,6 +13,8 @@
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_clear.xml" value="0.39375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_collect.xml" value="0.39375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_density_medium.xml" value="0.409375" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_exit.xml" value="0.40307692307692305" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_favorite.xml" value="0.40307692307692305" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_forward.xml" value="0.40307692307692305" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.409375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_library_books.xml" value="0.24322916666666666" />
@@ -19,10 +22,14 @@
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_navigation.xml" value="0.39375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_night.xml" value="0.409375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_on_loading.xml" value="0.409375" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_plaza.xml" value="0.40307692307692305" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_pull_loading.xml" value="0.409375" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_search.xml" value="0.40307692307692305" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_setting.xml" value="0.21666666666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_shape_outline.xml" value="0.40572916666666664" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_square.xml" value="0.409375" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_system.xml" value="0.40307692307692305" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/ic_todo.xml" value="0.40307692307692305" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/shape_frame_on_primary.xml" value="0.409375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/drawable/shape_frame_primary.xml" value="0.409375" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/activity_lefr.xml" value="0.31666666666666665" />
@@ -41,6 +48,7 @@
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/fragment_open_number_item.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/fragment_plaza.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/fragment_project.xml" value="0.35507246376811596" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/fragment_project_item.xml" value="0.3796875" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/fragment_recycler.xml" value="0.38958333333333334" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/fragment_system.xml" value="0.35507246376811596" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/fragment_system_item.xml" value="0.33642384105960266" />
@@ -48,6 +56,7 @@
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/include_item_end.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/include_item_start.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/include_pull_loading.xml" value="0.2" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/include_recycler.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/inclue_pull_loading.xml" value="0.3351449275362319" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/item_banner.xml" value="0.2640625" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/item_home.xml" value="0.3229166666666667" />
@@ -55,6 +64,7 @@
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/item_navigation.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/item_navigation_left.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/item_navigation_two.xml" value="0.3932291666666667" />
+        <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/item_project.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/item_recycler.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/item_system.xml" value="0.3932291666666667" />
         <entry key="..\:/AndroidProject/wanandroid/app/src/main/res/layout/toolbar.xml" value="0.35507246376811596" />
