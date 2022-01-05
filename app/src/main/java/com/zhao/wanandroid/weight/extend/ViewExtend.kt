@@ -29,6 +29,7 @@ fun RecyclerView.isSlideBottom(endNumber: Int = 1, result: () -> Unit) {
  * 扩展recyclerView方法，传入[position],使[position]在视图中居中显示
  * @param position 移动到中间的item下标
  * @param maxNumber 当前数据源的最大数量
+ * 此种情况只适用于item宽度大体相同的情况
  */
 fun RecyclerView?.smoothScrollToMiddlePosition(position: Int, maxNumber: Int) {
     if (this == null) return
@@ -63,6 +64,40 @@ fun RecyclerView?.smoothScrollToMiddlePosition(position: Int, maxNumber: Int) {
                 val positionPixel = this.getChildAt(positionItem).top
                 this.smoothScrollBy(0, positionPixel - middlePixel)
             }
+        }
+    }
+}
+
+/**
+
+ */
+fun RecyclerView?.smoothScrollToTopPosition(position: Int) {
+    if (this == null || this.adapter == null) return
+    var isBottomScroll = false
+    val firstView = this.getChildAt(0)
+    val lastView = this.getChildAt(this.childCount - 1)
+    val firstIndex = this.getChildAdapterPosition(firstView)
+    val lastIndex = this.getChildAdapterPosition(lastView)
+    this.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if (isBottomScroll && RecyclerView.SCROLL_STATE_IDLE == newState){
+                isBottomScroll = false
+                smoothScrollToTopPosition(position)
+                this@smoothScrollToTopPosition.removeOnScrollListener(this)
+            }
+        }
+    })
+    if (position < firstIndex) {
+        this.smoothScrollToPosition(position)
+    }else if (position > lastIndex){
+        this.smoothScrollToPosition(position)
+        isBottomScroll = true
+    }else{
+        val movePosition = position - firstIndex
+        if (movePosition >= 0 && movePosition<this.childCount){
+            val top = this.getChildAt(movePosition).top
+            this.smoothScrollBy(0,top)
         }
     }
 }

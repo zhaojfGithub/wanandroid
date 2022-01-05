@@ -22,7 +22,7 @@ import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumberItemBinding>(), LoadMoreInterface<ArticleItemBean>, RecyclerMoveInterface {
 
     companion object {
-        private const val FRAGMENT_ID: String = "id"
+        private const val FRAGMENT_ID: String = "fragment_id"
         private const val INDEX: String = "index"
 
         @JvmStatic
@@ -60,9 +60,13 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter as OpenNumberItemAdapter
         binding.recyclerView.isSlideBottom(2) {
+            LogUtils.e("swipeRefreshLayout22222触发回调")
+            if (fragmentId == null || index == null) return@isSlideBottom
             viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.LOAD_MORE)
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
+            LogUtils.e("swipeRefreshLayout333333触发回调")
+            if (fragmentId == null || index == null) return@setOnRefreshListener
             viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.REFRESH)
         }
     }

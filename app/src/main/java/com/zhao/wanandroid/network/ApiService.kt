@@ -45,4 +45,7 @@ interface ApiService {
 
     @GET("/tree/json")
     suspend fun getSystemTree():HttpBean<List<SystemBean>>
+
+    @GET("/navi/json")
+    suspend fun getNavigation(): HttpBean<List<NavigationBoxBean>>
 }

@@ -27,9 +27,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_marginStart="@dimen/view_8dp"
             android:layout_width="@dimen/view_0dp"
             android:layout_height="@dimen/view_0dp"
+            android:layout_marginStart="@dimen/view_4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageFilterView2"
             app:layout_constraintStart_toStartOf="parent"

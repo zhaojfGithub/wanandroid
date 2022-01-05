@@ -25,4 +25,6 @@ class MainRepository @Inject constructor() {
     suspend fun getWxArticle(id: Int, page: Int = 0) = withContext(Dispatchers.IO) { ApiHost.API.getOpenNumberItem(id, page).getApiData() }
 
     suspend fun getSystemTree() = withContext(Dispatchers.IO){ ApiHost.API.getSystemTree().getApiData() }
+
+    suspend fun getNavigation() = withContext(Dispatchers.IO){ ApiHost.API.getNavigation().getApiData() }
 }

@@ -115,8 +115,10 @@ abstract class BaseUniversalAdapter<T : Any> : BaseBindingAdapter(), AdapterInte
     }
 
     override fun refreshAllItem(data: List<T>) {
-        notifyItemRangeRemoved(0, this.list.size)
-        this.list.clear()
+        if (list.isNotEmpty()) {
+            notifyItemRangeRemoved(0, this.list.size)
+            this.list.clear()
+        }
         this.list.addAll(data)
         notifyItemRangeChanged(0, this.list.size)
 

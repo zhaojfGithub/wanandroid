@@ -1,6 +1,7 @@
 package com.zhao.wanandroid.ui.main.fragment.system
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.adapter.BaseItemLabelAdapter
 import com.zhao.wanandroid.base.adapter.BaseSimplifiedAdapter
@@ -23,15 +24,10 @@ class SystemItemAdapter : BaseSimplifiedAdapter<ItemSystemBinding, SystemBean>()
         holder.binding.data = list[position].name
         holder.binding.recyclerView.apply {
             if (layoutManager == null) {
-                val linearLayoutManager = object : LinearLayoutManager(holder.itemView.context, HORIZONTAL, false) {
-                    override fun canScrollHorizontally(): Boolean {
-                        return false
-                    }
-                }
-                layoutManager = linearLayoutManager
+                layoutManager = FlexboxLayoutManager(holder.itemView.context)
             }
             val strList: MutableList<String> = ArrayList()
-            val data = list[position - 1]
+            val data = list[position]
             data.children.forEach {
                 strList.add(it.name)
             }

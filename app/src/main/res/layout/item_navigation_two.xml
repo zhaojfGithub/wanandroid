@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="String" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        app:cardBackgroundColor="@color/gray"
+        android:layout_margin="@dimen/view_8dp"
+        app:cardElevation="@dimen/view_2dp"
+        app:cardCornerRadius="@dimen/view_4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvName"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/view_8dp"
+            android:paddingBottom="@dimen/view_8dp"
+            android:paddingStart="@dimen/view_12dp"
+            android:paddingEnd="@dimen/view_12dp"
+            android:text="@{data}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="常用网站" />
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

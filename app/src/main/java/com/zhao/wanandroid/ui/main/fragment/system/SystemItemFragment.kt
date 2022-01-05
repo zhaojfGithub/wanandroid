@@ -6,20 +6,24 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
+import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.FragmentSystemItemBinding
 import com.zhao.wanandroid.ui.main.fragment.open_number.OpenNumberItemFragment
+import com.zhao.wanandroid.utils.LogUtils
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  *创建时间： 2021/12/28
  *编   写：  zjf
  *页面功能:
  */
-class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBinding>() {
+@AndroidEntryPoint
+class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBinding>(),RecyclerMoveInterface {
 
     companion object {
         @JvmStatic
         fun newInstance(): Fragment {
-            return OpenNumberItemFragment()
+            return SystemItemFragment()
         }
     }
 
@@ -55,5 +59,9 @@ class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBin
 
     override fun getModelClass(): Class<SystemViewModel> {
         return SystemViewModel::class.java
+    }
+
+    override fun moveHeader() {
+
     }
 }
