@@ -20,7 +20,7 @@ object ApiFactory {
 
     private val okHttpClient by lazy {
         OkHttpClient.Builder().retryOnConnectionFailure(true).connectTimeout(timeOutSecond, TimeUnit.SECONDS).readTimeout(timeOutSecond, TimeUnit.SECONDS)
-                .writeTimeout(timeOutSecond, TimeUnit.SECONDS).addInterceptor(AddCookiesInterceptor()).addInterceptor(LogInterceptor()).build()
+                .writeTimeout(timeOutSecond, TimeUnit.SECONDS).addNetworkInterceptor(LogInterceptor()).addInterceptor(AddCookiesInterceptor()).build()
     }
 
     fun <T> getRetrofit(baseUrl: String ,clazz: Class<T>): T = Retrofit.Builder().baseUrl(baseUrl).client(okHttpClient).addConverterFactory(ScalarsConverterFactory.create())

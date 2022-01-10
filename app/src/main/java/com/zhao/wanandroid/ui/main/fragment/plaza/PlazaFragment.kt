@@ -29,6 +29,7 @@ class PlazaFragment : BaseVmFragment<PlazaViewModel, FragmentPlazaBinding>(), Re
         viewModel.refreshPlazaData()
     }
 
+
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter

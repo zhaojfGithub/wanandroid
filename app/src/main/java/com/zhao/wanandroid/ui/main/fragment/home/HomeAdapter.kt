@@ -44,7 +44,8 @@ class HomeAdapter : BaseUniversalAdapter<ArticleItemBean>() {
                 }
             }
             is ItemHomeBinding -> {
-                holder.binding.data = list[position - 1]
+                val data = list[position - 1]
+                holder.binding.data = data
                 holder.binding.recyclerView.apply {
                     if (layoutManager == null) {
                         val linearLayoutManager = object : LinearLayoutManager(holder.itemView.context, HORIZONTAL, false) {
@@ -55,7 +56,6 @@ class HomeAdapter : BaseUniversalAdapter<ArticleItemBean>() {
                         layoutManager = linearLayoutManager
                     }
                     val strList: MutableList<String> = ArrayList()
-                    val data = list[position - 1]
                     data.tags?.takeIf { it.isNotEmpty() }?.forEach {
                         (strList as ArrayList).add(it.name)
                     }
@@ -68,6 +68,12 @@ class HomeAdapter : BaseUniversalAdapter<ArticleItemBean>() {
                     itemLabelAdapter.addHeaderItemAllData(strList)
                     adapter = itemLabelAdapter
                 }
+                onClick?.also {
+                    holder.itemView.setOnClickListener { _->
+                        it(0, data)
+                    }
+                }
+
             }
             else -> {
                 return

@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 class LoginRepository @Inject constructor() {
 
-    fun isLogin(key:String) = getSpValue(SpName.cookie.COOLIE, hashSetOf<String>())
+    fun isLogin(key:String) = getSpValue(key, hashSetOf<String>())
 
     suspend fun login(userName: String, password: String) = ApiHost.API.login(userName, password).getApiData()
 

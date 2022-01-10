@@ -7,4 +7,5 @@ package com.zhao.wanandroid.base
  */
 interface BaseLoadingInterface {
     fun isShowLoadingDialog(isShow: Boolean)
+    fun isShowMsgDialog(content: String)
 }

@@ -42,6 +42,9 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewDataBinding> : BaseFr
         viewModel.isShowLoading.observe({ lifecycle }) {
             (requireActivity() as BaseLoadingInterface).isShowLoadingDialog(it)
         }
+        viewModel.showMsg.observe({lifecycle}){
+            (requireActivity() as BaseLoadingInterface).isShowMsgDialog(it)
+        }
     }
 
 }

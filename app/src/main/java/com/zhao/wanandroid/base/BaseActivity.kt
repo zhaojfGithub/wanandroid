@@ -56,6 +56,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadingInterface {
         }
     }
 
+    override fun isShowMsgDialog(content: String) {
+        showGeneralDialog(null,content,null)
+    }
+
     protected fun showLoadingDialog() {
         hideLoadingDialog()
         loadingDialog.show()

@@ -27,7 +27,6 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
 
     override fun initOnclick() {
         binding.btRegister.setOnClickListener {
-            LogUtils.e("11111")
             start(this, type = 1)
         }
         binding.btLogin.setOnClickListener {

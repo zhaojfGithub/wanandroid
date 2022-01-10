@@ -6,6 +6,7 @@ import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.FragmentHomeBinding
+import com.zhao.wanandroid.ui.web.WebActivity
 import com.zhao.wanandroid.weight.extend.isSlideBottom
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +35,9 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>(), Recyc
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.initHomeData()
         }
+        adapter.onItemClick { _, articleItemBean ->
+            WebActivity.start(requireActivity(),articleItemBean.link,articleItemBean.title)
+        }
     }
 
     override fun getLayoutId(): Int {
@@ -45,6 +49,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>(), Recyc
     }
 
     override fun observer() {
+        super.observer()
         viewModel.apply {
             banner.observe({ lifecycle }) {
                 adapter.changedBanner(it)

@@ -29,7 +29,6 @@ class SystemFragment : BaseVmFragment<SystemViewModel, FragmentSystemBinding>(),
         val itemFragment = Pair("体系",SystemItemFragment.newInstance())
         val navigationFragment = Pair( "导航",SystemNavigationFragment.newInstance())
         val fragmentList : List<Pair<String, Fragment>> = arrayListOf(itemFragment,navigationFragment)
-        binding.viewPage.offscreenPageLimit = 1
         binding.viewPage.adapter = viewPageAdapter
         TabLayoutMediator(binding.tabLayout, binding.viewPage) { tab, position ->
             tab.text = viewPageAdapter.getFragmentTitle(position)

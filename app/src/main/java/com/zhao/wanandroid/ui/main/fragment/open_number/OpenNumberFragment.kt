@@ -25,7 +25,6 @@ class OpenNumberFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumbe
 
     override fun initData() {
         viewModel.getWxParentArticle()
-        LogUtils.e(viewPageAdapter.toString())
     }
 
 

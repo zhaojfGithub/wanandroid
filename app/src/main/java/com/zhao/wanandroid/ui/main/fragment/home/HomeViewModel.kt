@@ -41,7 +41,8 @@ class HomeViewModel @ViewModelInject constructor(private val repository: MainRep
     fun loadArticleData() = launch({
         isShowLoading.value = true
         isPullLoads.value = true
-        article.value = repository.getArticle(article.value!!.curPage)
+        val page = article.value?.curPage ?: 0
+        article.value = repository.getArticle(page)
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {

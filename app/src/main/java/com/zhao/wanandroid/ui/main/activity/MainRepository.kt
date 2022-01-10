@@ -12,23 +12,23 @@ import javax.inject.Inject
  */
 class MainRepository @Inject constructor() {
 
-    suspend fun getBanner() = withContext(Dispatchers.IO) { ApiHost.API.getBanner().getApiData() }
+    suspend fun getBanner() = ApiHost.API.getBanner().getApiData()
 
-    suspend fun getTopArticle() = withContext(Dispatchers.IO) { ApiHost.API.getTopArticle().getApiData() }
+    suspend fun getTopArticle() = ApiHost.API.getTopArticle().getApiData()
 
-    suspend fun getArticle(page: Int = 0) = withContext(Dispatchers.IO) { ApiHost.API.getArticle(page).getApiData() }
+    suspend fun getArticle(page: Int = 0) = ApiHost.API.getArticle(page).getApiData()
 
-    suspend fun getPlazaArticle(page: Int = 0) = withContext(Dispatchers.IO) { ApiHost.API.getPlazaArticle(page).getApiData() }
+    suspend fun getPlazaArticle(page: Int = 0) = ApiHost.API.getPlazaArticle(page).getApiData()
 
-    suspend fun getWxParentArticle() = withContext(Dispatchers.IO) { ApiHost.API.getOpenNumberBox().getApiData() }
+    suspend fun getWxParentArticle() = ApiHost.API.getOpenNumberBox().getApiData()
 
-    suspend fun getWxArticle(id: Int, page: Int = 0) = withContext(Dispatchers.IO) { ApiHost.API.getOpenNumberItem(id, page).getApiData() }
+    suspend fun getWxArticle(id: Int, page: Int = 0) = ApiHost.API.getOpenNumberItem(id, page).getApiData()
 
-    suspend fun getSystemTree() = withContext(Dispatchers.IO){ ApiHost.API.getSystemTree().getApiData() }
+    suspend fun getSystemTree() = ApiHost.API.getSystemTree().getApiData()
 
-    suspend fun getNavigation() = withContext(Dispatchers.IO){ ApiHost.API.getNavigation().getApiData() }
+    suspend fun getNavigation() = ApiHost.API.getNavigation().getApiData()
 
-    suspend fun getProjectTree() = withContext(Dispatchers.IO){ ApiHost.API.getProjectTree().getApiData() }
+    suspend fun getProjectTree() = ApiHost.API.getProjectTree().getApiData()
 
-    suspend fun getProjectList(id: Int,page: Int) = withContext(Dispatchers.IO) { ApiHost.API.getProjectList(page,id).getApiData()  }
+    suspend fun getProjectList(id: Int, page: Int) = ApiHost.API.getProjectList(page, id).getApiData()
 }
