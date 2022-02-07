@@ -41,7 +41,7 @@
                 android:layout_gravity="bottom"
                 android:background="@color/white"
                 app:menu="@menu/menu_home"
-                app:layout_behavior=".weight.BottomNavigationBehavior"/>
+                app:layout_behavior=".weight.behavior.BottomNavigationBehavior"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton"
@@ -52,7 +52,7 @@
                 android:layout_marginBottom="@dimen/view_100dp"
                 android:contentDescription="@string/add"
                 android:src="@drawable/ic_arrow_upward"
-                app:layout_behavior=".weight.FloatingActionBehavior" />
+                app:layout_behavior=".weight.behavior.FloatingActionBehavior" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

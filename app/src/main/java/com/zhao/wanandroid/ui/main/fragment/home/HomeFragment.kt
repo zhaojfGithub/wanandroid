@@ -23,6 +23,11 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>(), Recyc
     private val adapter: HomeAdapter by lazy { HomeAdapter() }
 
     override fun initData() {
+
+    }
+
+    override fun lazyData() {
+        super.lazyData()
         viewModel.initHomeData()
     }
 
@@ -33,10 +38,12 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>(), Recyc
             viewModel.loadArticleData()
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.initHomeData()
+            if (binding.swipeRefreshLayout.isRefreshing){
+                viewModel.initHomeData()
+            }
         }
         adapter.onItemClick { _, articleItemBean ->
-            WebActivity.start(requireActivity(),articleItemBean.link,articleItemBean.title)
+            WebActivity.start(requireActivity(),articleItemBean.link)
         }
     }
 

@@ -22,7 +22,8 @@ class LoginActivity : BaseVmActivity<LoginViewModel, ActivityLoginBinding>() {
     }
 
     override fun initView() {
-
+        binding.editUsername.setText("kakazhao")
+        binding.editPassword.setText("123456")
     }
 
     override fun initOnclick() {

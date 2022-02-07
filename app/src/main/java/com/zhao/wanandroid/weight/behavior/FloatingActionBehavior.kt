@@ -1,4 +1,4 @@
-package com.zhao.wanandroid.weight
+package com.zhao.wanandroid.weight.behavior
 
 import android.animation.ObjectAnimator
 import android.content.Context

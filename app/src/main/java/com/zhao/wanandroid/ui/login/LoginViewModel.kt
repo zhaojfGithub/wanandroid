@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.zhao.wanandroid.base.BaseViewModel
 import com.zhao.wanandroid.common.launch
 import com.zhao.wanandroid.local.SpName
+import com.zhao.wanandroid.local.putSpValue
 import com.zhao.wanandroid.utils.ExceptionUtil
 import com.zhao.wanandroid.utils.LogUtils
 
@@ -30,8 +31,7 @@ class LoginViewModel @ViewModelInject constructor(private val repository: LoginR
 
     fun isLogin() = launch({
         isShowLoading.value = true
-        val data = repository.isLogin(SpName.cookie.COOLIE).isNotEmpty()
-        isLogin.value = data
+        isLogin.value = repository.isLogin(SpName.User.LOGIN_KEY)
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {
@@ -40,7 +40,10 @@ class LoginViewModel @ViewModelInject constructor(private val repository: LoginR
 
     fun login(userName: String, password: String) = launch({
         isShowLoading.value = true
-        repository.login(userName, password)
+        val bean = repository.login(userName, password).getApiData()
+        putSpValue(SpName.User.LOGIN_KEY,true)
+        putSpValue(SpName.User.USERNAME_KEY,bean.username)
+        putSpValue(SpName.User.PASSWORD_KEY,bean.password)
         submitType.value = 0
     }, {
         showMsg.value = ExceptionUtil.catchException(it)

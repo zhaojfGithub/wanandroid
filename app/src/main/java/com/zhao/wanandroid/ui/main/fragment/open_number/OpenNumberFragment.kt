@@ -24,6 +24,11 @@ class OpenNumberFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumbe
 
 
     override fun initData() {
+
+    }
+
+    override fun lazyData() {
+        super.lazyData()
         viewModel.getWxParentArticle()
     }
 

@@ -26,6 +26,11 @@ class PlazaFragment : BaseVmFragment<PlazaViewModel, FragmentPlazaBinding>(), Re
     private val adapter: PlazaAdapter by lazy { PlazaAdapter() }
 
     override fun initData() {
+
+    }
+
+    override fun lazyData() {
+        super.lazyData()
         viewModel.refreshPlazaData()
     }
 

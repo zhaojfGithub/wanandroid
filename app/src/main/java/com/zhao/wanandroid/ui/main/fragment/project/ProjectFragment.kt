@@ -22,6 +22,11 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel, FragmentProjectBinding>
     private val viewPageAdapter by lazy { BaseViewPageAdapter(lifecycle, requireActivity().supportFragmentManager) }
 
     override fun initData() {
+
+    }
+
+    override fun lazyData() {
+        super.lazyData()
         viewModel.getProjectTree()
     }
 

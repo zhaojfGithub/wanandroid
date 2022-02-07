@@ -1,11 +1,10 @@
-package com.zhao.wanandroid.network
+package com.zhao.wanandroid.network.interceptor
 
 import com.zhao.wanandroid.local.SpName
 import com.zhao.wanandroid.local.putSpValue
 import com.zhao.wanandroid.utils.LogUtils
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.util.logging.Logger
 
 /**
  *创建时间： 2021/9/3
@@ -21,7 +20,7 @@ class LogInterceptor : Interceptor {
 
         val request = chain.request()
         val startTime = System.nanoTime()
-        LogUtils.v(TAG,"url = ${request.url()} , ${chain.connection()} , ${request.headers()}")
+        LogUtils.v(TAG,"url = ${request.url} , ${chain.connection()} , ${request.headers}")
 
         val response = chain.proceed(request)
         val list : HashSet<String> = HashSet()
@@ -29,12 +28,12 @@ class LogInterceptor : Interceptor {
             LogUtils.v(TAG,"cookies=${it}")
             list.add(it)
         }
-        putSpValue(SpName.cookie.COOLIE,list)
+        //putSpValue(SpName.cookie.COOLIE,list)
 
         val endTime = System.nanoTime()
-        LogUtils.v(TAG,"${response.request().url()} , ${(endTime - startTime) / 1000000 }ms . ${response.headers()} , ${response.message()}")
+        LogUtils.v(TAG,"${response.request.url} , ${(endTime - startTime) / 1000000 }ms . ${response.headers} , ${response.message}")
 
-        val body = response.body()
+        val body = response.body
         LogUtils.v(TAG,"contentLength:${body?.contentLength()}")
         return response
     }

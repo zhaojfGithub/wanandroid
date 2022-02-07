@@ -30,6 +30,11 @@ class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBin
     private val adapter : SystemItemAdapter by lazy { SystemItemAdapter() }
 
     override fun initData() {
+        //viewModel.getSystemTree()
+    }
+
+    override fun lazyData() {
+        super.lazyData()
         viewModel.getSystemTree()
     }
 

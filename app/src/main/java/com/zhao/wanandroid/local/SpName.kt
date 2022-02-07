@@ -7,7 +7,15 @@ package com.zhao.wanandroid.local
  */
 object SpName {
 
-    object cookie{
-        const val COOLIE = "cookie"
+    object User{
+        const val LOGIN_KEY = "login"
+        const val USERNAME_KEY = "user_name"
+        const val PASSWORD_KEY = "password_key"
+    }
+
+
+    object HTTP{
+        const val COOLIE_KEY = "cookie"
+        const val TOKEN_KEY = "token"
     }
 }
