@@ -14,14 +14,14 @@ import okhttp3.Response
 class CacheInterceptor : Interceptor{
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        if (!NetWorkUtil.isNetWorkAvailable(MyApplication.Instance())){
+        if (!NetWorkUtil.isNetWorkAvailable(MyApplication.getInstance())){
             //如果没有网络
             request = request.newBuilder()
                 .cacheControl(CacheControl.FORCE_CACHE)
                 .build()
         }
         val response = chain.proceed(request)
-        if (NetWorkUtil.isNetWorkAvailable(MyApplication.Instance())){
+        if (NetWorkUtil.isNetWorkAvailable(MyApplication.getInstance())){
             val maxAge = 60 * 3
             response.newBuilder()
                 .header("Cache-Control","public, max-age=$maxAge")

@@ -54,4 +54,8 @@ interface ApiService {
 
     @GET("/project/list/{page}/json")
     suspend fun getProjectList(@Path("page") page: Int, @Query("cid") cid: Int) :HttpBean<ProjectBoxBean>
+
+    @GET("/hotkey/json")
+    suspend fun getHotSearchBean():HttpBean<List<HotSearchBean>>
+
 }

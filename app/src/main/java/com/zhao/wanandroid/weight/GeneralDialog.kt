@@ -16,7 +16,7 @@ import com.zhao.wanandroid.databinding.DialogGeneraBinding
  */
 class GeneralDialog(context: Context) : AlertDialog(context) {
 
-    var title: String = MyApplication.Instance().getString(R.string.hint)
+    var title: String = MyApplication.getInstance().getString(R.string.hint)
     var onClickCancel: ((Boolean) -> Unit)? = null
     var body: String? = null
     var onClickSure: ((Boolean) -> Unit)? = null

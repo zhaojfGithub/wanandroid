@@ -21,31 +21,31 @@ object ExceptionUtil {
         e.printStackTrace()
         when (e) {
             is HttpException -> {
-                return MyApplication.Instance().getString(R.string.err_http_msg)
+                return MyApplication.getInstance().getString(R.string.err_http_msg)
             }
             is SocketTimeoutException -> {
-                return MyApplication.Instance().getString(R.string.err_socket_msg)
+                return MyApplication.getInstance().getString(R.string.err_socket_msg)
             }
             is UnknownHostException -> {
-                return MyApplication.Instance().getString(R.string.err_socket_msg)
+                return MyApplication.getInstance().getString(R.string.err_socket_msg)
             }
             is NetworkErrorException -> {
-                return MyApplication.Instance().getString(R.string.err_network_msg)
+                return MyApplication.getInstance().getString(R.string.err_network_msg)
             }
             is MalformedJsonException -> {
-                return MyApplication.Instance().getString(R.string.err_json_msg)
+                return MyApplication.getInstance().getString(R.string.err_json_msg)
             }
             is JsonSyntaxException -> {
-                return MyApplication.Instance().getString(R.string.err_json_msg)
+                return MyApplication.getInstance().getString(R.string.err_json_msg)
             }
             is ApiException -> {
                 return e.toString()
             }
             is Exception -> {
-                return MyApplication.Instance().getString(R.string.err_general_msg) + e.toString()
+                return MyApplication.getInstance().getString(R.string.err_general_msg) + e.toString()
             }
             else -> {
-                return MyApplication.Instance().getString(R.string.err_general_msg) + e.toString()
+                return MyApplication.getInstance().getString(R.string.err_general_msg) + e.toString()
             }
         }
     }

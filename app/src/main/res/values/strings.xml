@@ -41,4 +41,8 @@
     <string name="no_loading">没有更多数据</string>
     <string name="no_more_data">没有更多数据了</string>
     <string name="show_item_header">头部显示</string>
+    <string name="hot_search">热门搜索</string>
+    <string name="search">搜索</string>
+    <string name="discover_knowledge">发现更多干货</string>
+    <string name="search_clear">清空</string>
 </resources>

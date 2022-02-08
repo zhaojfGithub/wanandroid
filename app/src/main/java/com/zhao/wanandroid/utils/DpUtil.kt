@@ -9,12 +9,12 @@ import com.zhao.wanandroid.MyApplication
  *页面功能:
  */
 object DpUtil {
-    fun dip2px(context: Context = MyApplication.Instance(), dp: Float): Int {
+    fun dip2px(context: Context = MyApplication.getInstance(), dp: Float): Int {
         val scale = context.resources.displayMetrics.density
         return (dp * scale + 0.5F).toInt()
     }
 
-    fun px2dp(context: Context = MyApplication.Instance(), px: Float): Int {
+    fun px2dp(context: Context = MyApplication.getInstance(), px: Float): Int {
         val scale = context.resources.displayMetrics.density
         return (px / scale + 0.5F).toInt()
     }

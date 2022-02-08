@@ -14,7 +14,7 @@
             android:background="?attr/colorPrimary"
             app:contentInsetStart="@dimen/view_0dp"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/Theme.MaterialComponents.Light" />
+            app:popupTheme="@style/Theme.MaterialComponents.Light"/>
     </com.google.android.material.appbar.AppBarLayout>
 </layout>
 

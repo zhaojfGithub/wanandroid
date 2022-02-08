@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.search.SearchActivity">
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/base_toolbar" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvHotSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/view_12dp"
+            android:text="@string/hot_search"
+            android:textColor="?attr/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/include" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHot"
+            android:layout_width="@dimen/view_0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHotSearch" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvHistorySearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_10dp"
+            android:padding="@dimen/view_12dp"
+            android:text="@string/hot_search"
+            android:textColor="?attr/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerViewHot" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvSearchClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/view_12dp"
+            android:text="@string/search_clear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvHistorySearch" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHistory"
+            android:layout_width="@dimen/view_0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvHistorySearch" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

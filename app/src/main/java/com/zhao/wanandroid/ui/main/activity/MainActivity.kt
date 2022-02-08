@@ -15,6 +15,7 @@ import com.zhao.wanandroid.ui.main.fragment.system.SystemFragment
 import com.zhao.wanandroid.ui.main.fragment.home.HomeFragment
 import com.zhao.wanandroid.ui.main.fragment.open_number.OpenNumberFragment
 import com.zhao.wanandroid.ui.main.fragment.plaza.PlazaFragment
+import com.zhao.wanandroid.ui.search.SearchActivity
 import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -73,7 +74,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
         }
         binding.floatingActionButton.setOnClickListener {
             val index = binding.viewPage.currentItem
-            val fragment : RecyclerMoveInterface = fragments[index] as RecyclerMoveInterface
+            val fragment : RecyclerMoveInterface = fragments[index]
             fragment.moveHeader()
         }
         binding.navigationView.setNavigationItemSelectedListener {
@@ -127,7 +128,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
                 binding.drawerLayout.openDrawer(binding.navigationView)
             }
             R.id.toolbarSearch -> {
-                LogUtils.e("toolbarSearch")
+                SearchActivity.start(this)
             }
             R.id.toolbarAdd -> {
 

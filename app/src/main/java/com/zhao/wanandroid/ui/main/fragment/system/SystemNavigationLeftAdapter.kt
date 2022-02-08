@@ -32,9 +32,9 @@ class SystemNavigationLeftAdapter : BaseSimplifiedAdapter<ItemNavigationBinding,
     override fun onBindBindingViewHolder(holder: BindingViewHolder<ItemNavigationBinding>, position: Int) {
         holder.binding.data = list[position]
         if (list[position].isSelect) {
-            holder.itemView.setBackgroundColor(ThemeColorUtil.getThemeColor(MyApplication.Instance(), R.attr.colorPrimary))
+            holder.itemView.setBackgroundColor(ThemeColorUtil.getThemeColor(MyApplication.getInstance(), R.attr.colorPrimary))
         } else {
-            holder.itemView.setBackgroundColor(ContextCompat.getColor(MyApplication.Instance(), R.color.gray))
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(MyApplication.getInstance(), R.color.gray))
         }
         holder.itemView.setOnClickListener {
             onClick?.also {

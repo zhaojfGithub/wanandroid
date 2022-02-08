@@ -11,11 +11,12 @@ import com.zhao.wanandroid.MyApplication
 private const val SP_SITE = "sp_wan_android"
 
 
+@Suppress("UNCHECKED_CAST")
 fun <T> getSpValue(
     key: String,
     defaultVal: T,
 ): T {
-    val sp = MyApplication.Instance().getSharedPreferences(SP_SITE, Context.MODE_PRIVATE)
+    val sp = MyApplication.getInstance().getSharedPreferences(SP_SITE, Context.MODE_PRIVATE)
     return when (defaultVal) {
         is Boolean -> sp.getBoolean(key, defaultVal) as T
         is String -> sp.getString(key, defaultVal) as T
@@ -27,12 +28,12 @@ fun <T> getSpValue(
     }
 }
 
-
+@Suppress("UNCHECKED_CAST")
 fun <T> putSpValue(
     key: String,
     value: T
 ) {
-    val editor = MyApplication.Instance().getSharedPreferences(SP_SITE, Context.MODE_PRIVATE).edit()
+    val editor = MyApplication.getInstance().getSharedPreferences(SP_SITE, Context.MODE_PRIVATE).edit()
     when (value) {
         is Boolean -> editor.putBoolean(key, value)
         is String -> editor.putString(key, value)
@@ -48,7 +49,7 @@ fun <T> putSpValue(
 @JvmOverloads
 fun removeSpValue(
     filename: String = SP_SITE,
-    context: Context = MyApplication.Instance(),
+    context: Context = MyApplication.getInstance(),
     key: String
 ) {
     context.getSharedPreferences(filename, Context.MODE_PRIVATE)
@@ -58,7 +59,7 @@ fun removeSpValue(
 }
 
 @JvmOverloads
-fun clearSpValue(filename: String = SP_SITE, context: Context = MyApplication.Instance()) {
+fun clearSpValue(filename: String = SP_SITE, context: Context = MyApplication.getInstance()) {
     context.getSharedPreferences(filename, Context.MODE_PRIVATE)
         .edit()
         .clear()

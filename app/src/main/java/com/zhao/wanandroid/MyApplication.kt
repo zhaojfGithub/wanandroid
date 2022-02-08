@@ -1,6 +1,8 @@
 package com.zhao.wanandroid
 
 import android.app.Application
+import androidx.room.Room
+import com.zhao.wanandroid.local.AppDatabase
 import dagger.hilt.android.HiltAndroidApp
 
 
@@ -13,15 +15,16 @@ import dagger.hilt.android.HiltAndroidApp
 class MyApplication : Application() {
 
     companion object {
-        private var instance: MyApplication? = null
+        private lateinit var instance: MyApplication
+        private lateinit var roomDb : AppDatabase
 
-        const val isDebug: Boolean = false
-        fun Instance() = instance!!
-
+        fun getInstance() = instance
+        fun getRoomDb() = roomDb
     }
 
     override fun onCreate() {
         super.onCreate()
         instance = this
+        roomDb = Room.databaseBuilder(this,AppDatabase::class.java,AppDatabase.databaseName).build()
     }
 }

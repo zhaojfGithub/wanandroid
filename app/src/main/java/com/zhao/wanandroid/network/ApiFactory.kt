@@ -36,7 +36,7 @@ object ApiFactory {
         }
 
         //Setting cache size and file
-        val cacheFile = File(MyApplication.Instance().cacheDir,"cache")
+        val cacheFile = File(MyApplication.getInstance().cacheDir,"cache")
         val cache = Cache(cacheFile,HttpConstant.MAX_CACHE_SIZE)
 
         builder.run {

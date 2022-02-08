@@ -12,6 +12,7 @@ import androidx.databinding.ViewDataBinding
  *编   写：  zjf
  *页面功能:  简化通用adapter，应用于单布局但数据源
  */
+@Suppress("UNCHECKED_CAST")
 abstract class BaseSimplifiedAdapter<VB : ViewDataBinding, T : Any> : BaseUniversalAdapter<T>() {
 
     @LayoutRes

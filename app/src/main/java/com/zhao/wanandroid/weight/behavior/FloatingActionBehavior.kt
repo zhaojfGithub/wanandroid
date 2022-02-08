@@ -20,7 +20,7 @@ class FloatingActionBehavior(context: Context, attrs: AttributeSet?) : Coordinat
     private var inAnimator: ObjectAnimator? = null
 
     private var width: Float = 0F
-    private val windowWidth: Float = MyApplication.Instance().resources.displayMetrics.widthPixels.toFloat()
+    private val windowWidth: Float = MyApplication.getInstance().resources.displayMetrics.widthPixels.toFloat()
 
     override fun onStartNestedScroll(coordinatorLayout: CoordinatorLayout, child: View, directTargetChild: View, target: View, axes: Int, type: Int): Boolean {
         return axes == ViewCompat.SCROLL_AXIS_VERTICAL
