@@ -1,9 +1,7 @@
 package com.zhao.wanandroid.ui.login
 
-import com.zhao.wanandroid.local.SpName
-import com.zhao.wanandroid.local.getSpValue
+import com.zhao.wanandroid.utils.getSpValue
 import com.zhao.wanandroid.network.ApiHost
-import com.zhao.wanandroid.utils.LogUtils
 import javax.inject.Inject
 
 /**

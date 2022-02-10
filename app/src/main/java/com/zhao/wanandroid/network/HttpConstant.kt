@@ -1,6 +1,6 @@
 package com.zhao.wanandroid.network
 
-import com.zhao.wanandroid.local.putSpValue
+import com.zhao.wanandroid.utils.putSpValue
 
 /**
  *创建时间： 2022/2/7

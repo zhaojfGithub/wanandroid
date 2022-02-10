@@ -1,7 +1,5 @@
 package com.zhao.wanandroid.network.interceptor
 
-import com.zhao.wanandroid.local.SpName
-import com.zhao.wanandroid.local.putSpValue
 import com.zhao.wanandroid.utils.LogUtils
 import okhttp3.Interceptor
 import okhttp3.Response

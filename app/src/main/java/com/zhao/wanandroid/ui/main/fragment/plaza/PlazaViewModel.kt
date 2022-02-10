@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.zhao.wanandroid.base.BaseViewModel
 import com.zhao.wanandroid.common.launch
 import com.zhao.wanandroid.bean.ArticleBoxBean
+import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.ui.main.activity.MainRepository
 import com.zhao.wanandroid.utils.ExceptionUtil
 
@@ -30,15 +31,21 @@ class PlazaViewModel @ViewModelInject constructor(private val repository: MainRe
 
     fun loadPlazaData() = launch(
         {
+            if (article.value?.over == true) return@launch
             isShowLoading.value = true
-            isPullLoads.value = true
             val page = article.value?.curPage ?: 0
-            article.value = repository.getPlazaArticle(page)
+            viewSate.value = AppState.LoadingState.LOAD_MORE
+            val bean = repository.getPlazaArticle(page)
+            if (bean.over){
+                viewSate.value = AppState.LoadingState.LOAD_END
+            }else{
+                viewSate.value = AppState.LoadingState.NORMAL
+                article.value = bean
+            }
         }, {
             showMsg.value = ExceptionUtil.catchException(it)
         }, {
             isShowLoading.value = false
-            isPullLoads.value = false
         }
     )
 

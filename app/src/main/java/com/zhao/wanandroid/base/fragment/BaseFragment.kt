@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ConcatAdapter
+import com.zhao.wanandroid.base.adapter.footer.BaseSimplenessFooterAdapter
 import com.zhao.wanandroid.utils.LogUtils
 
 /**
@@ -14,6 +16,9 @@ import com.zhao.wanandroid.utils.LogUtils
  *页面功能:
  */
 abstract class BaseFragment : Fragment() {
+
+    protected val footerAdapter: BaseSimplenessFooterAdapter by lazy { BaseSimplenessFooterAdapter() }
+    protected val config by lazy { ConcatAdapter.Config.Builder().setIsolateViewTypes(true).build() }
 
     private var isLazyInit = false
 

@@ -9,6 +9,6 @@ import com.zhao.wanandroid.common.AppState
  * 又没必要每次都删除重新注册,所以在这里卸载其父注册，然后接口传值
  */
 interface LoadMoreInterface<T> {
-    fun addData(loadingState: AppState.LoadingState, data: List<T>)
-    fun showFooter()
+    fun addData(data: List<T>)
+    fun viewState(state: AppState.LoadingState)
 }

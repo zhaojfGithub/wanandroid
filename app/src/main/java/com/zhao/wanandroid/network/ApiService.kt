@@ -11,6 +11,7 @@ import retrofit2.http.Query
  *编   写：  zjf
  *页面功能:
  */
+@Suppress("SpellCheckingInspection")
 interface ApiService {
 
     @GET("/wxarticle/chapters/json")
@@ -53,9 +54,21 @@ interface ApiService {
     suspend fun getProjectTree(): HttpBean<List<ProjectTreeBean>>
 
     @GET("/project/list/{page}/json")
-    suspend fun getProjectList(@Path("page") page: Int, @Query("cid") cid: Int) :HttpBean<ProjectBoxBean>
+    suspend fun getProjectList(@Path("page") page: Int, @Query("cid") cid: Int): HttpBean<ProjectBoxBean>
 
     @GET("/hotkey/json")
-    suspend fun getHotSearchBean():HttpBean<List<HotSearchBean>>
+    suspend fun getHotSearchBean(): HttpBean<List<HotSearchBean>>
+
+    @POST("/article/query/{page}/json")
+    suspend fun getSearchQuery(@Path("page") page: Int, @Query("k") k: String): HttpBean<ArticleBoxBean>
+
+    @POST("/lg/collect/{id}/json")
+    suspend fun insertCollect(@Path("id") id: Int): HttpBean<ArticleItemBean>
+
+    @POST("/lg/collect/list/{page}/json")
+    suspend fun getCollectList(@Path("page") page: Int): HttpBean<ArticleBoxBean>
+
+    @POST("/lg/uncollect_originId/{id}/json")
+    suspend fun clearCollect(@Path("id") id: Int): HttpBean<ArticleItemBean>
 
 }

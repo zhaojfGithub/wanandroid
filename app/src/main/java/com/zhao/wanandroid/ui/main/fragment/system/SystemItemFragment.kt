@@ -1,15 +1,12 @@
 package com.zhao.wanandroid.ui.main.fragment.system
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
-import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
+import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.FragmentSystemItemBinding
-import com.zhao.wanandroid.ui.main.fragment.open_number.OpenNumberItemFragment
-import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -18,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
  *页面功能:
  */
 @AndroidEntryPoint
-class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBinding>(),RecyclerMoveInterface {
+class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBinding>(), RecyclerMoveInterface {
 
     companion object {
         @JvmStatic
@@ -67,6 +64,6 @@ class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBin
     }
 
     override fun moveHeader() {
-
+        binding.recyclerView.smoothScrollToPosition(0)
     }
 }

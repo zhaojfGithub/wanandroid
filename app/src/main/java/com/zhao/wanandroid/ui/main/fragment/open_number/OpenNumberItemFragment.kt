@@ -2,16 +2,17 @@ package com.zhao.wanandroid.ui.main.fragment.open_number
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
-import com.zhao.wanandroid.base.adapter.AdapterInterface
-import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
+import com.zhao.wanandroid.base.adapter.body.AdapterInterface
+import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
+import com.zhao.wanandroid.base.adapter.footer.BaseSimplenessFooterAdapter
 import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.FragmentOpenNumberItemBinding
-import com.zhao.wanandroid.utils.LogUtils
 import com.zhao.wanandroid.weight.extend.isSlideBottom
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 
@@ -41,7 +42,7 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
     private var index: Int? = null
 
 
-    private val adapter: AdapterInterface<ArticleItemBean> by lazy { OpenNumberItemAdapter() }
+    private val itemAdapter: OpenNumberItemAdapter by lazy { OpenNumberItemAdapter() }
 
     override fun initData() {
         arguments?.also {
@@ -58,8 +59,8 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
 
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.adapter = adapter as OpenNumberItemAdapter
-        binding.recyclerView.isSlideBottom(2) {
+        binding.recyclerView.adapter = ConcatAdapter(config,itemAdapter,footerAdapter)
+        binding.recyclerView.isSlideBottom {
             if (fragmentId == null || index == null) return@isSlideBottom
             viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.LOAD_MORE)
         }
@@ -81,25 +82,21 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
         return OpenNumberViewModel::class.java
     }
 
-    override fun addData(loadingState: AppState.LoadingState, data: List<ArticleItemBean>) {
-        when (loadingState) {
-            AppState.LoadingState.REFRESH -> {
-                adapter.dismissFooterView()
-                adapter.refreshAllItem(data)
-                binding.swipeRefreshLayout.isRefreshing = false
-            }
-            AppState.LoadingState.LOAD_MORE -> {
-                adapter.addFooterItemAllData(data)
-            }
+    override fun addData(data: List<ArticleItemBean>) {
+        if (binding.swipeRefreshLayout.isRefreshing) {
+            itemAdapter.refreshAllItem(data)
+            binding.swipeRefreshLayout.isRefreshing = false
+        } else {
+            itemAdapter.addFooterItemAllData(data)
         }
+    }
+
+    override fun viewState(state: AppState.LoadingState) {
+        footerAdapter.updateViewState(state)
     }
 
     override fun moveHeader() {
         binding.recyclerView.smoothScrollToHeaderPosition()
-    }
-
-    override fun showFooter() {
-        adapter.showFooterView()
     }
 
 

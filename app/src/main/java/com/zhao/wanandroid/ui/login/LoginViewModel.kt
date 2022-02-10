@@ -5,9 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.zhao.wanandroid.base.BaseViewModel
 import com.zhao.wanandroid.common.launch
 import com.zhao.wanandroid.local.SpName
-import com.zhao.wanandroid.local.putSpValue
+import com.zhao.wanandroid.utils.putSpValue
 import com.zhao.wanandroid.utils.ExceptionUtil
-import com.zhao.wanandroid.utils.LogUtils
 
 
 /**

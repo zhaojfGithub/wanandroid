@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
-import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
+import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
 import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.bean.ProjectItemBean
 import com.zhao.wanandroid.common.AppState
@@ -16,7 +16,7 @@ import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProjectItemFragment : BaseVmFragment<ProjectViewModel, IncludeRecyclerBinding>(),LoadMoreInterface<ProjectItemBean>,RecyclerMoveInterface {
+class ProjectItemFragment : BaseVmFragment<ProjectViewModel, IncludeRecyclerBinding>(), LoadMoreInterface<ProjectItemBean>, RecyclerMoveInterface {
 
     companion object {
         const val FRAGMENT_ID = "project_id"
@@ -77,25 +77,23 @@ class ProjectItemFragment : BaseVmFragment<ProjectViewModel, IncludeRecyclerBind
 
     }
 
-    override fun addData(loadingState: AppState.LoadingState, data: List<ProjectItemBean>) {
-        when (loadingState) {
-            AppState.LoadingState.REFRESH -> {
-                adapter.dismissFooterView()
-                adapter.refreshAllItem(data)
-                binding.swipeRefreshLayout.isRefreshing = false
-            }
-            AppState.LoadingState.LOAD_MORE -> {
-                adapter.addFooterItemAllData(data)
-            }
+    override fun addData(data: List<ProjectItemBean>) {
+        if (binding.swipeRefreshLayout.isRefreshing) {
+            adapter.refreshAllItem(data)
+            binding.swipeRefreshLayout.isRefreshing = false
+        } else {
+            adapter.addFooterItemAllData(data)
         }
     }
 
-    override fun showFooter() {
-        adapter.showFooterView()
-    }
 
     override fun moveHeader() {
         binding.recyclerView.smoothScrollToHeaderPosition()
     }
+
+    override fun viewState(state: AppState.LoadingState) {
+        footerAdapter.updateViewState(state)
+    }
+
 
 }

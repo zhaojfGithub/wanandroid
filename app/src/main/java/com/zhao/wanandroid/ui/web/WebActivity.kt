@@ -21,11 +21,12 @@ class WebActivity : BaseActivity() {
 
     companion object {
         private const val ACTIVITY_URL = "webUrl"
+        private const val ACTIVITY_TITLE = "webTitle"
 
-
-        fun start(context: Context, url: String) {
+        fun start(context: Context, title: String, url: String) {
             val intent = Intent(context, WebActivity::class.java)
             val bundle = Bundle()
+            bundle.putString(ACTIVITY_TITLE,title)
             bundle.putString(ACTIVITY_URL, url)
             intent.putExtras(bundle)
             context.startActivity(intent)
@@ -72,7 +73,7 @@ class WebActivity : BaseActivity() {
                 .ready()
                 .go(url)*/
             mAgentWeb = AgentWeb.with(this)
-                .setAgentWebParent(rootLayout,LinearLayout.LayoutParams(-1,-1))
+                .setAgentWebParent(rootLayout, LinearLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator()
                 .createAgentWeb()
                 .ready()
@@ -80,14 +81,14 @@ class WebActivity : BaseActivity() {
         } catch (e: Exception) {
             showGeneralDialog(null, e.toString(), null)
         }
-       /* mAgentWeb.webCreator.webView.apply {
-            overScrollMode = WebView.OVER_SCROLL_NEVER
-            settings.domStorageEnabled = true
-            settings.javaScriptEnabled = true
-            settings.loadsImagesAutomatically = true
-            settings.useWideViewPort = true
-            settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
-        }*/
+        /* mAgentWeb.webCreator.webView.apply {
+             overScrollMode = WebView.OVER_SCROLL_NEVER
+             settings.domStorageEnabled = true
+             settings.javaScriptEnabled = true
+             settings.loadsImagesAutomatically = true
+             settings.useWideViewPort = true
+             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+         }*/
     }
 
     override fun initOnclick() {
@@ -122,7 +123,7 @@ class WebActivity : BaseActivity() {
         super.onDestroy()
     }
 
-    private val webChromeClient = object : WebChromeClient(){
+    private val webChromeClient = object : WebChromeClient() {
         override fun onReceivedTitle(view: WebView?, title: String?) {
             super.onReceivedTitle(view, title)
             toolbar.title = title

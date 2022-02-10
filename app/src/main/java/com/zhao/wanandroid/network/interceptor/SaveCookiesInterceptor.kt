@@ -1,10 +1,7 @@
 package com.zhao.wanandroid.network.interceptor
 
-import com.zhao.wanandroid.local.SpName
-import com.zhao.wanandroid.local.getSpValue
 import com.zhao.wanandroid.network.HttpConstant
 import okhttp3.Interceptor
-import okhttp3.Request
 import okhttp3.Response
 
 /**

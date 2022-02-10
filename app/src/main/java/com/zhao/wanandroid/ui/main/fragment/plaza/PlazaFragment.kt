@@ -3,7 +3,7 @@ package com.zhao.wanandroid.ui.main.fragment.plaza
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
-import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
+import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.FragmentPlazaBinding
 import com.zhao.wanandroid.weight.extend.isSlideBottom
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition

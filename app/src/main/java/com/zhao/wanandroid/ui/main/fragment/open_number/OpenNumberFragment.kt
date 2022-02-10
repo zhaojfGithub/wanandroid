@@ -4,12 +4,11 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
-import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
+import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
 import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.base.view_page.BaseViewPageAdapter
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.databinding.FragmentOpenNumberBinding
-import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,11 +60,11 @@ class OpenNumberFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumbe
             }
             wxArticle.observe({ lifecycle }) {
                 val fragment: LoadMoreInterface<ArticleItemBean> = viewPageAdapter.getFragment(binding.viewPage.currentItem) as OpenNumberItemFragment
-                fragment.addData(it.first, it.second)
+                fragment.addData(it)
             }
-            isLoadingEnd.observe({ lifecycle }) {
+            viewSate.observe({lifecycle}){
                 val fragment: LoadMoreInterface<ArticleItemBean> = viewPageAdapter.getFragment(binding.viewPage.currentItem) as OpenNumberItemFragment
-                fragment.showFooter()
+                fragment.viewState(it)
             }
         }
     }

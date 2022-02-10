@@ -1,7 +1,9 @@
-package com.zhao.wanandroid.base.adapter
+package com.zhao.wanandroid.base.adapter.business
 
 import androidx.core.content.ContextCompat
 import com.zhao.wanandroid.R
+import com.zhao.wanandroid.base.adapter.body.BaseSimplenessAdapter
+import com.zhao.wanandroid.base.adapter.BindingViewHolder
 import com.zhao.wanandroid.databinding.ItemLabelBinding
 import com.zhao.wanandroid.utils.ThemeColorUtil
 
@@ -10,7 +12,7 @@ import com.zhao.wanandroid.utils.ThemeColorUtil
  *编   写：  zjf
  *页面功能: 项目中有很多标签，认为可以做成一个标签通用的adapter
  */
-open class BaseItemLabelAdapter : BaseSimplifiedAdapter<ItemLabelBinding,String>(){
+open class BaseItemLabelAdapter : BaseSimplenessAdapter<ItemLabelBinding, String>(){
     override fun layoutId(): Int {
         return R.layout.item_label
     }

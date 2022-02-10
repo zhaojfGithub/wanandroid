@@ -8,6 +8,7 @@ import com.zhao.wanandroid.bean.ArticleBoxBean
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.bean.ArticleLabelBean
 import com.zhao.wanandroid.bean.BannerBean
+import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.ui.main.activity.MainRepository
 import com.zhao.wanandroid.utils.ExceptionUtil
 
@@ -28,9 +29,9 @@ class HomeViewModel @ViewModelInject constructor(private val repository: MainRep
         val topArticleList: List<ArticleItemBean> = repository.getTopArticle()
         val articleData: ArticleBoxBean = repository.getArticle()
         topArticleList.forEach {
-            (it.tags as ArrayList).add(0,ArticleLabelBean("置顶"))
+            (it.tags as ArrayList).add(0, ArticleLabelBean("置顶"))
         }
-        (articleData.data as ArrayList).addAll(0,topArticleList)
+        (articleData.data as ArrayList).addAll(0, topArticleList)
         article.value = articleData
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
@@ -40,13 +41,20 @@ class HomeViewModel @ViewModelInject constructor(private val repository: MainRep
 
     fun loadArticleData() = launch({
         isShowLoading.value = true
-        isPullLoads.value = true
-        val page = article.value?.curPage ?: 0
-        article.value = repository.getArticle(page)
+        if (article.value?.over == true) return@launch
+        val page: Int = article.value?.run {
+            curPage
+        } ?: 0
+        val bean = repository.getArticle(page)
+        if (bean.over) {
+            viewSate.value = AppState.LoadingState.LOAD_END
+        } else {
+            viewSate.value = AppState.LoadingState.NORMAL
+            article.value = bean
+        }
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {
         isShowLoading.value = false
-        isPullLoads.value = false
     })
 }

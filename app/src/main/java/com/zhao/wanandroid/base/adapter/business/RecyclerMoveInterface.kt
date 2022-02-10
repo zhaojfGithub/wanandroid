@@ -1,4 +1,4 @@
-package com.zhao.wanandroid.base.adapter
+package com.zhao.wanandroid.base.adapter.business
 
 /**
  *创建时间： 2021/12/21

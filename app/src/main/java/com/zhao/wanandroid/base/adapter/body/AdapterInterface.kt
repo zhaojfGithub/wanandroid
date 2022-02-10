@@ -1,9 +1,9 @@
-package com.zhao.wanandroid.base.adapter
+package com.zhao.wanandroid.base.adapter.body
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
+import com.zhao.wanandroid.base.adapter.BindingViewHolder
 
 /**
  *创建时间： 2021/12/17
@@ -60,36 +60,6 @@ interface AdapterInterface<T> {
      * 删除多个item，要求在总列表中必须相连
      */
     fun removePartItemData(data: List<T>)
-
-    /**
-     * 添加列表头,并设置一个默认值，此值控制表头的显示和消息
-     */
-    fun addHeaderView()
-
-    /**
-     * 添加列表尾部,并设置一个默认值，此值控制表头的显示和消息
-     */
-    fun addFooterView()
-
-    /**
-     * 显示列表头
-     */
-    fun showHeaderView()
-
-    /**
-     * 显示列表尾
-     */
-    fun showFooterView()
-
-    /**
-     * 隐藏列表头
-     */
-    fun dismissHeaderView()
-
-    /**
-     * 隐藏列表尾
-     */
-    fun dismissFooterView()
 
     /**
      * 获取这个layout的bindingViewHolder

@@ -1,12 +1,18 @@
 package com.zhao.wanandroid.base
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Window
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ConcatAdapter
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import com.zhao.wanandroid.R
+import com.zhao.wanandroid.base.adapter.footer.BaseSimplenessFooterAdapter
+import com.zhao.wanandroid.local.SpName
+import com.zhao.wanandroid.ui.login.LoginActivity
+import com.zhao.wanandroid.utils.getSpValue
 import com.zhao.wanandroid.weight.GeneralDialog
 
 /**
@@ -17,6 +23,9 @@ import com.zhao.wanandroid.weight.GeneralDialog
 abstract class BaseActivity : AppCompatActivity(), BaseLoadingInterface {
 
     protected val TAG = this.javaClass.simpleName
+
+    protected val footerAdapter: BaseSimplenessFooterAdapter by lazy { BaseSimplenessFooterAdapter() }
+    protected val config by lazy { ConcatAdapter.Config.Builder().setIsolateViewTypes(true).build() }
 
     private val loadingDialog: AlertDialog by lazy {
         AlertDialog.Builder(this).setView(R.layout.dialog_loading).create()
@@ -57,7 +66,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadingInterface {
     }
 
     override fun isShowMsgDialog(content: String) {
-        showGeneralDialog(null,content,null)
+        showGeneralDialog(null, content, null)
     }
 
     protected fun showLoadingDialog() {
@@ -108,5 +117,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadingInterface {
     override fun onDestroy() {
         super.onDestroy()
         dismissLoadingDialog()
+    }
+
+    protected fun loginAssist(): Boolean {
+        if (!getSpValue(SpName.User.LOGIN_KEY, false)) {
+            LoginActivity.start(this)
+            return false
+        }
+        return true
     }
 }

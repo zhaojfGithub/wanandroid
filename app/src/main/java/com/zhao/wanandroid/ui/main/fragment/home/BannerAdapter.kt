@@ -30,6 +30,4 @@ class HomeBannerAdapter(data: List<BannerBean>) : BannerAdapter<BannerBean, Home
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivBannerImg: ImageView = itemView.findViewById(R.id.ivBannerImg)
     }
-
-
 }

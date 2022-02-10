@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmActivity
-import com.zhao.wanandroid.base.adapter.RecyclerMoveInterface
+import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.ActivityMainBinding
 import com.zhao.wanandroid.databinding.DrawerHeaderBinding
 import com.zhao.wanandroid.ui.main.fragment.project.ProjectFragment
@@ -16,7 +16,6 @@ import com.zhao.wanandroid.ui.main.fragment.home.HomeFragment
 import com.zhao.wanandroid.ui.main.fragment.open_number.OpenNumberFragment
 import com.zhao.wanandroid.ui.main.fragment.plaza.PlazaFragment
 import com.zhao.wanandroid.ui.search.SearchActivity
-import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 

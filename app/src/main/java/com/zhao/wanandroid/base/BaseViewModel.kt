@@ -3,6 +3,7 @@ package com.zhao.wanandroid.base
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.zhao.wanandroid.common.AppState
 
 /**
  *创建时间： 2021/9/1
@@ -13,12 +14,9 @@ abstract class BaseViewModel : ViewModel() {
 
     protected val TAG = this.javaClass.simpleName
 
-    val isShowLoading = MutableLiveData<Boolean>()
+    val isShowLoading by lazy { MutableLiveData<Boolean>() }
 
-    val showMsg = MutableLiveData<String>()
+    val showMsg by lazy { MutableLiveData<String>() }
 
-    //用于recyclerView上拉加载更多
-    val isPullLoads = MutableLiveData<Boolean>()
-    //加载更多到底了
-    val isLoadingEnd = MutableLiveData<Boolean>()
+    val viewSate by lazy { MutableLiveData<AppState.LoadingState>() }
 }

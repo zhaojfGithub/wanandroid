@@ -1,7 +1,7 @@
 package com.zhao.wanandroid.ui.search
 
 import com.zhao.wanandroid.R
-import com.zhao.wanandroid.base.adapter.BaseSimplifiedAdapter
+import com.zhao.wanandroid.base.adapter.body.BaseSimplenessAdapter
 import com.zhao.wanandroid.base.adapter.BindingViewHolder
 import com.zhao.wanandroid.databinding.ItemHistorySearchBinding
 
@@ -10,7 +10,7 @@ import com.zhao.wanandroid.databinding.ItemHistorySearchBinding
  *编   写：  zjf
  *页面功能:
  */
-class HistorySearchAdapter : BaseSimplifiedAdapter<ItemHistorySearchBinding,String>() {
+class HistorySearchAdapter : BaseSimplenessAdapter<ItemHistorySearchBinding, String>() {
     override fun layoutId(): Int {
         return R.layout.item_history_search
     }

@@ -14,6 +14,6 @@ object AppState {
     }
 
     enum class LoadingState{
-        REFRESH,LOAD_MORE,
+        NORMAL,REFRESH,LOAD_MORE,LOAD_END
     }
 }

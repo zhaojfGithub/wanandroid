@@ -1,10 +1,11 @@
-package com.zhao.wanandroid.base.adapter
+package com.zhao.wanandroid.base.adapter.body
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.zhao.wanandroid.base.adapter.BindingViewHolder
 
 
 /**
@@ -13,7 +14,7 @@ import androidx.databinding.ViewDataBinding
  *页面功能:  简化通用adapter，应用于单布局但数据源
  */
 @Suppress("UNCHECKED_CAST")
-abstract class BaseSimplifiedAdapter<VB : ViewDataBinding, T : Any> : BaseUniversalAdapter<T>() {
+abstract class BaseSimplenessAdapter<VB : ViewDataBinding, T : Any> : BaseUniversalAdapter<T>() {
 
     @LayoutRes
     protected abstract fun layoutId(): Int
@@ -28,7 +29,7 @@ abstract class BaseSimplifiedAdapter<VB : ViewDataBinding, T : Any> : BaseUniver
         onBindBindingViewHolder(holder as BindingViewHolder<VB>,position)
     }
 
-    abstract fun onBindBindingViewHolder(holder: BindingViewHolder<VB>,position: Int)
+    abstract fun onBindBindingViewHolder(holder: BindingViewHolder<VB>, position: Int)
 
 }
 

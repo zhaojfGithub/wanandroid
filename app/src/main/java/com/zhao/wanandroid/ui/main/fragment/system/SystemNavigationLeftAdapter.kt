@@ -3,7 +3,7 @@ package com.zhao.wanandroid.ui.main.fragment.system
 import androidx.core.content.ContextCompat
 import com.zhao.wanandroid.MyApplication
 import com.zhao.wanandroid.R
-import com.zhao.wanandroid.base.adapter.BaseSimplifiedAdapter
+import com.zhao.wanandroid.base.adapter.body.BaseSimplenessAdapter
 import com.zhao.wanandroid.base.adapter.BindingViewHolder
 import com.zhao.wanandroid.bean.NavigationBoxBean
 import com.zhao.wanandroid.databinding.ItemNavigationBinding
@@ -15,7 +15,7 @@ import com.zhao.wanandroid.utils.ThemeColorUtil
  *编   写：  zjf
  *页面功能:
  */
-class SystemNavigationLeftAdapter : BaseSimplifiedAdapter<ItemNavigationBinding, NavigationBoxBean>() {
+class SystemNavigationLeftAdapter : BaseSimplenessAdapter<ItemNavigationBinding, NavigationBoxBean>() {
 
     /**
      * 当前选中的item

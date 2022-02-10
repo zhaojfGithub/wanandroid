@@ -1,11 +1,9 @@
 package com.zhao.wanandroid.ui.main.fragment.project
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.zhao.wanandroid.base.BaseViewModel
 import com.zhao.wanandroid.bean.LoadBean
-import com.zhao.wanandroid.bean.LoadState
 import com.zhao.wanandroid.bean.ProjectItemBean
 import com.zhao.wanandroid.bean.ProjectTreeBean
 import com.zhao.wanandroid.common.AppState
@@ -21,7 +19,7 @@ import com.zhao.wanandroid.utils.ExceptionUtil
 class ProjectViewModel @ViewModelInject constructor(private val repository: MainRepository) : BaseViewModel() {
 
     val projectTree = MutableLiveData<List<ProjectTreeBean>>()
-    val projectItem = MutableLiveData<Pair<AppState.LoadingState, List<ProjectItemBean>>>()
+    val projectItem = MutableLiveData<List<ProjectItemBean>>()
 
     private lateinit var pageArray: Array<LoadBean>
 
@@ -37,36 +35,32 @@ class ProjectViewModel @ViewModelInject constructor(private val repository: Main
     })
 
     fun getProjectItem(id: Int, index: Int, loadingState: AppState.LoadingState = AppState.LoadingState.LOAD_MORE) = launch({
-        if (pageArray[index].state == LoadState.END && loadingState == AppState.LoadingState.LOAD_MORE) return@launch
+        if (pageArray[index].state == AppState.LoadingState.LOAD_END && loadingState == AppState.LoadingState.LOAD_MORE) return@launch
         isShowLoading.value = true
         when (loadingState) {
             AppState.LoadingState.REFRESH -> {
                 pageArray[index].page = 0
+                viewSate.value = AppState.LoadingState.REFRESH
             }
             AppState.LoadingState.LOAD_MORE -> {
-                isPullLoads.value = true
+                viewSate.value = loadingState
+            }
+            else -> {
+                return@launch
             }
         }
         val data = repository.getProjectList(id, pageArray[index].page)
         if (data.over) {
             //没有更多数据了
-            pageArray[index].state = LoadState.END
-            isLoadingEnd.value = true
+            pageArray[index].state = AppState.LoadingState.LOAD_END
         } else {
-            pageArray[index].page = ++pageArray[index].page
-            projectItem.value = Pair(loadingState, data.data)
+            pageArray[index].page = data.curPage
+            projectItem.value = data.data
+            pageArray[index].state = AppState.LoadingState.NORMAL
         }
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {
-        when (loadingState) {
-            AppState.LoadingState.REFRESH -> {
-                pageArray[index].state = LoadState.STATE
-            }
-            AppState.LoadingState.LOAD_MORE -> {
-                isPullLoads.value = false
-            }
-        }
         isShowLoading.value = false
     })
 

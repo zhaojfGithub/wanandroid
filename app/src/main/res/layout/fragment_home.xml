@@ -19,7 +19,7 @@
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="@dimen/view_0dp"
             android:layout_height="@dimen/view_0dp"
-            app:layout_constraintBottom_toTopOf="@+id/include"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,10 +29,5 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <include
-            android:id="@+id/include"
-            layout="@layout/include_pull_loading"
-            android:visibility="@{data.isPullLoads() ? View.VISIBLE : View.GONE}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

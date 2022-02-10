@@ -1,4 +1,4 @@
-package com.zhao.wanandroid.local
+package com.zhao.wanandroid.utils
 
 import android.content.Context
 import com.zhao.wanandroid.MyApplication
