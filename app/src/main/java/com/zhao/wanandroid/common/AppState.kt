@@ -16,4 +16,8 @@ object AppState {
     enum class LoadingState{
         NORMAL,REFRESH,LOAD_MORE,LOAD_END
     }
+
+    enum class CommonState{
+        SHARE,INTEGRAL,COLLECT,TODO,PATTERN,SETTING,ME,QUIT
+    }
 }

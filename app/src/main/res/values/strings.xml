@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">WanAndroid</string>
 
     <string name="hint_username">Username</string>
@@ -45,4 +45,18 @@
     <string name="search">搜索</string>
     <string name="discover_knowledge">发现更多干货</string>
     <string name="search_clear">清空</string>
+    <string name="collect_succeed">收藏成功</string>
+    <string name="collect_cancel">取消收藏</string>
+    <string name="share">分享</string>
+    <string name="share_article">分享文章</string>
+    <string name="share_title">文字标题</string>
+    <string name="share_article_title_tip">100字以内</string>
+    <string name="article_url">文章链接</string>
+    <string name="url_hint">例如:WWW.wanandroid.com</string>
+    <string name="share_hint" translatable="false">1. 只要是任何好文都可以分享哈，并不一定要是原创！投递的文章会进入广场 tab;\n2. CSDN，掘金，简书等官方博客站点会直接通过，不需要审核;
+        \n3. 其他个人站点会进入审核阶段，不要投递任何无效链接，测试的请尽快删除，否则可能会对你的账号产生一定影响;\n4. 目前处于测试阶段，如果你发现500等错误，可以向我提交日志，让我们一起使网站变得更好。
+        \n5. 由于本站只有我一个人开发与维护，会尽力保证24小时内审核，当然有可能哪天太累，会延期，请保持佛系...</string>
+    <string name="please_examine_hint">请检查输入的文本</string>
+    <string name="share_succeed">分享成功</string>
+    <string name="integral_detail">积分明细</string>
 </resources>

@@ -71,4 +71,10 @@ interface ApiService {
     @POST("/lg/uncollect_originId/{id}/json")
     suspend fun clearCollect(@Path("id") id: Int): HttpBean<ArticleItemBean>
 
+    @POST("/lg/user_article/add/json")
+    suspend fun articleShare(@Query("link") url: String, @Query("title") title: String) : HttpBean<ArticleItemBean>
+
+    @GET("/article/list/{page}/json")
+    suspend fun getIntegralDetail(@Path("page") page: Int) : HttpBean<IntegralBoxBean>
+
 }

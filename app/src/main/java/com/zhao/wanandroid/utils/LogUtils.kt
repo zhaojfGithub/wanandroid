@@ -16,52 +16,52 @@ class LogUtils {
         private const val key = "MyApp"
 
         fun e(msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.e(key, msg)
         }
 
         fun w(msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.e(key, msg)
         }
 
         fun i(msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.i(key, msg)
         }
 
         fun d(msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.d(key, msg)
         }
 
         fun v(msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.v(key, msg)
         }
 
         fun e(tag: String, msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.e(tag, msg)
         }
 
         fun w(tag: String, msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.e(tag, msg)
         }
 
         fun i(tag: String, msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.i(tag, msg)
         }
 
         fun d(tag: String, msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.d(tag, msg)
         }
 
         fun v(tag: String, msg: String) {
-            if (BuildConfig.DEBUG) return
+            if (!BuildConfig.DEBUG) return
             Log.v(tag, msg)
         }
     }

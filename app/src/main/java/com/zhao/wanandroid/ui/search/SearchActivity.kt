@@ -2,6 +2,7 @@ package com.zhao.wanandroid.ui.search
 
 import android.content.Intent
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
@@ -105,7 +106,6 @@ class SearchActivity : BaseVmActivity<SearchViewModel, ActivitySearchBinding>() 
 
     private val queryTextListener = object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
-            LogUtils.e("SearchActivity",query.toString())
             if (query != null) {
                 startDisposeText(query)
             }
@@ -127,5 +127,12 @@ class SearchActivity : BaseVmActivity<SearchViewModel, ActivitySearchBinding>() 
         viewModel.getHistorySearchOperate(text, DataState.UPDATE)
         historySearchAdapter.updateItemIndex(text)
         SearchDetailActivity.start(this, text)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> onBackPressed()
+        }
+        return true
     }
 }

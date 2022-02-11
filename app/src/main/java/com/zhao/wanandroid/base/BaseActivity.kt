@@ -115,8 +115,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadingInterface {
 
 
     override fun onDestroy() {
-        super.onDestroy()
         dismissLoadingDialog()
+        super.onDestroy()
     }
 
     protected fun loginAssist(): Boolean {

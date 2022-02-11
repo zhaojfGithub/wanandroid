@@ -8,8 +8,10 @@ import androidx.databinding.DataBindingUtil
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmActivity
 import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
+import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.ActivityMainBinding
 import com.zhao.wanandroid.databinding.DrawerHeaderBinding
+import com.zhao.wanandroid.ui.common.CommonActivity
 import com.zhao.wanandroid.ui.main.fragment.project.ProjectFragment
 import com.zhao.wanandroid.ui.main.fragment.system.SystemFragment
 import com.zhao.wanandroid.ui.main.fragment.home.HomeFragment
@@ -79,7 +81,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.drawerIntegral -> {
-
+                    CommonActivity.start(this,AppState.CommonState.INTEGRAL)
                 }
                 R.id.drawerCollect -> {
 
@@ -130,7 +132,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
                 SearchActivity.start(this)
             }
             R.id.toolbarAdd -> {
-
+                CommonActivity.start(this,AppState.CommonState.SHARE)
             }
         }
         return true

@@ -1,5 +1,6 @@
 package com.zhao.wanandroid.ui.search
 
+import androidx.constraintlayout.motion.utils.ViewState
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import com.zhao.wanandroid.MyApplication
@@ -25,7 +26,9 @@ class SearchViewModel @ViewModelInject constructor(private val repository: Searc
      */
     val hotSearch by lazy { MutableLiveData<List<String>>() }
     val historySearch by lazy { MutableLiveData<List<String>>() }
-    val searchQuery by lazy { MutableLiveData<Pair<AppState.LoadingState, ArticleBoxBean>>() }
+    val searchQuery by lazy { MutableLiveData<ArticleBoxBean>() }
+
+    val refreshBean by lazy { MutableLiveData<ArticleItemBean>() }
 
     fun getHotSearch() = launch({
         isShowLoading.value = true
@@ -73,21 +76,27 @@ class SearchViewModel @ViewModelInject constructor(private val repository: Searc
 
     fun getSearchQuery(text: String, loadingState: AppState.LoadingState = AppState.LoadingState.LOAD_MORE) = launch({
         isShowLoading.value = true
-        if (text.isEmpty()) return@launch
+        if (text.isEmpty() || viewSate.value ?: AppState.LoadingState.NORMAL == AppState.LoadingState.LOAD_END) return@launch
         when (loadingState) {
             AppState.LoadingState.REFRESH -> {
-                searchQuery.value = Pair(loadingState, repository.getSearchQuery(0, text))
+                viewSate.value = AppState.LoadingState.REFRESH
+                searchQuery.value = repository.getSearchQuery(0, text)
             }
             AppState.LoadingState.LOAD_MORE -> {
-                if (searchQuery.value != null && searchQuery.value!!.second.over) {
-                    //isLoadingEnd.value = true
+                viewSate.value = AppState.LoadingState.LOAD_MORE
+                val page = searchQuery.value?.curPage ?: 0
+                val bean = repository.getSearchQuery(page, text)
+                if (bean.over) {
+                    viewSate.value = AppState.LoadingState.LOAD_END
                 } else {
-                    val page = searchQuery.value?.second?.curPage ?: 0
-                    repository.getSearchQuery(page, text)
+                    searchQuery.value = bean
+                    viewSate.value = AppState.LoadingState.NORMAL
                 }
             }
+            else -> {
+                return@launch
+            }
         }
-
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {
@@ -101,6 +110,9 @@ class SearchViewModel @ViewModelInject constructor(private val repository: Searc
         } else {
             repository.insertCollect(bean.id)
         }
+        //没报错说明修改成功了
+        bean.collect = !bean.collect
+        refreshBean.value = bean
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {

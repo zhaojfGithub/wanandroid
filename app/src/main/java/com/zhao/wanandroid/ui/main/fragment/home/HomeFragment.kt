@@ -39,7 +39,7 @@ class HomeFragment : BaseVmFragment<HomeViewModel, FragmentHomeBinding>(), Recyc
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val adapter = ConcatAdapter(config, bannerAdapter, homeAdapter, footerAdapter)
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.isSlideBottom(2) {
+        binding.recyclerView.isSlideBottom {
             viewModel.loadArticleData()
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
