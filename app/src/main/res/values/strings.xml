@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
     <string name="app_name">WanAndroid</string>
 
     <string name="hint_username">Username</string>
@@ -59,4 +59,7 @@
     <string name="please_examine_hint">请检查输入的文本</string>
     <string name="share_succeed">分享成功</string>
     <string name="integral_detail">积分明细</string>
+    <string name="symbol_add">+</string>
+    <string name="menu_query">疑问</string>
+    <string name="integral_no_text">----</string>
 </resources>

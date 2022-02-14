@@ -29,3 +29,10 @@ data class IntegralItemBean(
     val userId: Int,
     val userName: String,
 )
+
+data class UserIntegralBean(
+    val coinCount: Int,
+    val rank: Int,
+    val userId: Int,
+    val username: String
+)

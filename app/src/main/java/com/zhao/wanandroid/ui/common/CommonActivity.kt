@@ -5,6 +5,7 @@ import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.zhao.wanandroid.R
@@ -52,6 +53,7 @@ class CommonActivity : BaseVmActivity<CommonViewModel, ActivityCommonBinding>() 
                 ShareFragment.newInstance()
             }
             AppState.CommonState.INTEGRAL.name ->{
+                binding.include.toolbar.visibility = View.GONE
                 IntegralFragment.newInstance()
             }
             else -> {

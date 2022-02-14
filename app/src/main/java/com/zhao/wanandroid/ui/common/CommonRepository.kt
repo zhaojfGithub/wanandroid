@@ -13,5 +13,7 @@ class CommonRepository @Inject constructor() {
 
     suspend fun articleShare(url: String, title: String) = ApiHost.API.articleShare(url, title).getApiData()
 
-    suspend fun getIntegralDetail(page: Int = 1) = ApiHost.API.getIntegralDetail(page)
+    suspend fun getIntegralDetail(page: Int = 1) = ApiHost.API.getIntegralDetail(page).getApiData()
+
+    suspend fun getUserIntegral() = ApiHost.API.getUserIntegral().getApiData()
 }
