@@ -1,9 +1,16 @@
 package com.zhao.wanandroid.ui.main.activity
 
+import android.animation.ObjectAnimator
 import android.content.Intent
+import android.os.Bundle
+import android.os.SystemClock
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmActivity
@@ -12,11 +19,11 @@ import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.ActivityMainBinding
 import com.zhao.wanandroid.databinding.DrawerHeaderBinding
 import com.zhao.wanandroid.ui.common.CommonActivity
-import com.zhao.wanandroid.ui.main.fragment.project.ProjectFragment
-import com.zhao.wanandroid.ui.main.fragment.system.SystemFragment
 import com.zhao.wanandroid.ui.main.fragment.home.HomeFragment
 import com.zhao.wanandroid.ui.main.fragment.open_number.OpenNumberFragment
 import com.zhao.wanandroid.ui.main.fragment.plaza.PlazaFragment
+import com.zhao.wanandroid.ui.main.fragment.project.ProjectFragment
+import com.zhao.wanandroid.ui.main.fragment.system.SystemFragment
 import com.zhao.wanandroid.ui.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,6 +38,28 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
             val intent = Intent(context, MainActivity::class.java)
             context.startActivity(intent)
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        initSplashScreen()
+        super.onCreate(savedInstanceState)
+    }
+
+    private fun initSplashScreen() {
+        val splashScreen = installSplashScreen()
+        //不知道为什么添加到动画的时候显示这个在之前添加
+        /*splashScreen.setOnExitAnimationListener { splashScreenView ->
+            //val animationDuration = splashScreenView.iconAnimationDurationMillis
+            //val animationStart = splashScreenView.iconAnimationDurationMillis
+            //val remainingDuration = (
+            //        animationDuration - (SystemClock.uptimeMillis() - animationStart)
+            //        ).coerceAtLeast(0L)
+            val slideUp = ObjectAnimator.ofFloat(splashScreenView.iconView, View.TRANSLATION_Y, 0F, -splashScreenView.iconView.height.toFloat())
+            slideUp.interpolator = AnticipateInterpolator()
+            slideUp.duration = 300L
+            slideUp.doOnEnd { splashScreenView.remove() }
+            slideUp.start()
+        }*/
     }
 
     override fun initView() {
@@ -75,13 +104,13 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
         }
         binding.floatingActionButton.setOnClickListener {
             val index = binding.viewPage.currentItem
-            val fragment : RecyclerMoveInterface = fragments[index]
+            val fragment: RecyclerMoveInterface = fragments[index]
             fragment.moveHeader()
         }
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.drawerIntegral -> {
-                    CommonActivity.start(this,AppState.CommonState.INTEGRAL)
+                    CommonActivity.start(this, AppState.CommonState.INTEGRAL)
                 }
                 R.id.drawerCollect -> {
 
@@ -132,7 +161,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
                 SearchActivity.start(this)
             }
             R.id.toolbarAdd -> {
-                CommonActivity.start(this,AppState.CommonState.SHARE)
+                CommonActivity.start(this, AppState.CommonState.SHARE)
             }
         }
         return true

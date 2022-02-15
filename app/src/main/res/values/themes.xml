@@ -45,4 +45,18 @@
         <!--背景变暗-->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
+    <!--SplashScreen适配-->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen.IconBackground">
+        <!--启动背景-->
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <!--中间图标-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo_foreground</item>
+        <!--在图标下添加背景颜色-->
+        <item name="windowSplashScreenIconBackgroundColor">@color/gray</item>
+        <!--启动时间-->
+        <item name="windowSplashScreenAnimationDuration">200</item>
+        <!--设置主题，跟随设置的主题-->
+        <item name="postSplashScreenTheme">@style/Theme.Wanandroid</item>
+    </style>
 </resources>
