@@ -9,6 +9,7 @@
         <!--在图标下添加背景颜色-->
         <item name="android:windowSplashScreenIconBackgroundColor">@color/gray</item>
         <!--启动时间-->
-        <item name="android:windowSplashScreenAnimationDuration">300</item>
+        <item name="android:windowSplashScreenAnimationDuration">200</item>
+
     </style>
 </resources>
