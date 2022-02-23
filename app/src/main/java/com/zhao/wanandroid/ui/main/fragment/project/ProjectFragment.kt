@@ -9,6 +9,7 @@ import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.base.view_page.BaseViewPageAdapter
 import com.zhao.wanandroid.bean.ProjectItemBean
 import com.zhao.wanandroid.databinding.FragmentProjectBinding
+import com.zhao.wanandroid.utils.ThemeColorUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +33,9 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel, FragmentProjectBinding>
 
     override fun initView() {
         binding.viewPage.adapter = viewPageAdapter
+        binding.tabLayout.setBackgroundColor(ThemeColorUtil.getThemeColor(requireContext(), R.attr.backgroundColor))
+        binding.tabLayout.setTabTextColors(ThemeColorUtil.getThemeColor(requireContext(), R.attr.colorOnPrimary),
+            ThemeColorUtil.getThemeColor(requireContext(), R.attr.colorPrimary))
         TabLayoutMediator(binding.tabLayout, binding.viewPage) { tab, position ->
             tab.text = viewPageAdapter.getFragmentTitle(position)
         }.attach()
@@ -57,7 +61,11 @@ class ProjectFragment : BaseVmFragment<ProjectViewModel, FragmentProjectBinding>
             }
             projectItem.observe({ lifecycle }) {
                 val fragment: LoadMoreInterface<ProjectItemBean> = viewPageAdapter.getFragment(binding.viewPage.currentItem) as ProjectItemFragment
-                //fragment.addData(it.first, it.second)
+                fragment.addData(it)
+            }
+            viewSate.observe({ lifecycle }) {
+                val fragment: LoadMoreInterface<ProjectItemBean> = viewPageAdapter.getFragment(binding.viewPage.currentItem) as ProjectItemFragment
+                fragment.viewState(it)
             }
         }
     }

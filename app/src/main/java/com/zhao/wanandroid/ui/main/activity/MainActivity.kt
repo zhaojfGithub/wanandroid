@@ -29,6 +29,7 @@ import com.zhao.wanandroid.ui.main.fragment.plaza.PlazaFragment
 import com.zhao.wanandroid.ui.main.fragment.project.ProjectFragment
 import com.zhao.wanandroid.ui.main.fragment.system.SystemFragment
 import com.zhao.wanandroid.ui.search.SearchActivity
+import com.zhao.wanandroid.ui.setting.SettingActivity
 import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.Duration.between
@@ -60,26 +61,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
         //不知道为什么添加到动画的时候显示这个在之前添加
     }
 
-    private fun startSplashScreen() {
-        /*splashScreen.setOnExitAnimationListener { splashScreenView ->
-            val animationDuration = splashScreenView.iconAnimationDurationMillis
-            val animationStart = splashScreenView.iconAnimationDurationMillis
-            LogUtils.e("animationDuration:",animationDuration.toString())
-            LogUtils.e("animationStart:",animationStart.toString())
-            val remainingDuration = (
-                    animationDuration - (SystemClock.uptimeMillis() - animationStart)
-                    ).coerceAtLeast(0L)
-            LogUtils.e("remainingDuration:",remainingDuration.toString())
-            val slideUp = ObjectAnimator.ofFloat(splashScreenView.iconView, View.TRANSLATION_Y, 0F, -splashScreenView.iconView.height.toFloat())
-            slideUp.interpolator = LinearInterpolator()
-            slideUp.duration = 200L
-            slideUp.doOnEnd { splashScreenView.remove() }
-            slideUp.start()
-        }*/
-    }
-
     override fun initView() {
-        startSplashScreen()
         binding.include.toolbar.setNavigationIcon(R.drawable.ic_density_medium)
         setSupportActionBar(binding.include.toolbar)
         binding.navigationView.addHeaderView(drawerHeaderBinder.root)
@@ -139,7 +121,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
 
                 }
                 R.id.drawerSetting -> {
-
+                    SettingActivity.start(this)
                 }
                 R.id.drawerMy -> {
 

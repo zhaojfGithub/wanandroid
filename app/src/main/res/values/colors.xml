@@ -17,4 +17,40 @@
     <color name="orange_200">#FFAB91</color>
     
     <color name="alpha_100">#FFFFFFFF</color>
+
+    <color name="red_900">#B71C1C</color>
+    <color name="red_700">#D32F2F</color>
+    <color name="red_500">#F44336</color>
+    <color name="red_400">#F44336</color>
+    <color name="red_200">#EF5350</color>
+
+    <color name="green_900">#80CBC4</color>
+    <color name="green_700">#00796B</color>
+    <color name="green_500">#009688</color>
+    <color name="green_400">#26A69A</color>
+    <color name="green_200">#80CBC4</color>
+
+    <color name="violet_900">#4A148C</color>
+    <color name="violet_700">#7B1FA2</color>
+    <color name="violet_500">#9C27B0</color>
+    <color name="violet_400">#AB47BC</color>
+    <color name="violet_200">#CE93D8</color>
+
+    <color name="yellow_900">#33691E</color>
+    <color name="yellow_700">#689F38</color>
+    <color name="yellow_500">#8BC34A</color>
+    <color name="yellow_400">#9CCC65</color>
+    <color name="yellow_200">#C5E1A5</color>
+
+    <color name="dark_blue_900">#1A237E</color>
+    <color name="dark_blue_700">#303F9F</color>
+    <color name="dark_blue_500">#3F51B5</color>
+    <color name="dark_blue_400">#5C6BC0</color>
+    <color name="dark_blue_200">#9FA8DA</color>
+
+    <color name="dark_yellow_900">#F57F17</color>
+    <color name="dark_yellow_700">#FBC02D</color>
+    <color name="dark_yellow_500">#FFEB3B</color>
+    <color name="dark_yellow_400">#FFEE58</color>
+    <color name="dark_yellow_200">#FFF59D</color>
 </resources>

@@ -21,27 +21,6 @@ abstract class BaseUniversalAdapter<T : Any> : BaseBindingAdapter(), AdapterInte
     protected var onClick: ((Int, T) -> Unit)? = null
     protected var onLongClick: ((Int, T) -> Unit)? = null
 
-    /*头布局和尾布局*/
-    private var isAddHeader: Boolean = false
-    private var isAddFooter: Boolean = false
-
-    protected var isShowHeader: Boolean = false
-    protected var isShowFooter: AppState.LoadingState = AppState.LoadingState.REFRESH
-
-    override fun getItemViewType(position: Int): Int {
-        if (isAddHeader && position == 0) {
-            return ADAPTER_HEADER
-        }
-        if (isAddFooter) {
-            if (!isAddHeader && position == list.size) {
-                return ADAPTER_FOOTER
-            }
-            if (isAddHeader && position == list.size + 1) {
-                return ADAPTER_FOOTER
-            }
-        }
-        return ADAPTER_ITEM
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<ViewDataBinding> {
         return onCreateBindingViewHolder(parent)
@@ -57,10 +36,7 @@ abstract class BaseUniversalAdapter<T : Any> : BaseBindingAdapter(), AdapterInte
 
 
     override fun getItemCount(): Int {
-        var size = list.size
-        if (isAddHeader) size++
-        if (isAddFooter) size++
-        return size
+        return list.size
     }
 
     override fun onItemClick(onClick: (Int, T) -> Unit) {

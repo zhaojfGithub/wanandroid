@@ -34,8 +34,13 @@ abstract class BaseVmFragment<VM : BaseViewModel, VB : ViewDataBinding> : BaseFr
 
     override fun initCreated() {
         initView()
+        initClick()
         observer()
         initData()
+    }
+
+    protected open fun initClick() {
+
     }
 
     open fun observer() {

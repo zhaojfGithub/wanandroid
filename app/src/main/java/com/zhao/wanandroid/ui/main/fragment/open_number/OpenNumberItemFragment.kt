@@ -13,6 +13,7 @@ import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.FragmentOpenNumberItemBinding
+import com.zhao.wanandroid.ui.web.WebActivity
 import com.zhao.wanandroid.weight.extend.isSlideBottom
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 
@@ -67,6 +68,13 @@ class OpenNumberItemFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenN
         binding.swipeRefreshLayout.setOnRefreshListener {
             if (fragmentId == null || index == null) return@setOnRefreshListener
             viewModel.getWxArticle(fragmentId!!, index!!, AppState.LoadingState.REFRESH)
+        }
+    }
+
+    override fun initClick() {
+        super.initClick()
+        itemAdapter.onItemClick { _, articleItemBean ->
+            WebActivity.start(requireContext(),articleItemBean.title,articleItemBean.link)
         }
     }
 

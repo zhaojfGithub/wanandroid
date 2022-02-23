@@ -1,4 +1,4 @@
-<resources >
+<resources>
     <string name="app_name">WanAndroid</string>
 
     <string name="hint_username">Username</string>
@@ -62,4 +62,5 @@
     <string name="symbol_add">+</string>
     <string name="menu_query">疑问</string>
     <string name="integral_no_text">----</string>
+    <string name="clear_success">清除成功</string>
 </resources>

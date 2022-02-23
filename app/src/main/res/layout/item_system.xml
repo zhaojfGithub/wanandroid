@@ -10,41 +10,54 @@
             type="String" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/view_4dp"
+        app:cardBackgroundColor="?attr/backgroundColor"
+        app:cardCornerRadius="@dimen/view_6dp"
+        app:cardElevation="@dimen/view_4dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:padding="@dimen/view_8dp"
-            android:text="@{data}"
-            android:textColor="?android:attr/textColorPrimary"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="开发环境" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="@dimen/view_0dp"
-            android:layout_height="@dimen/view_0dp"
-            android:layout_marginStart="@dimen/view_4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageFilterView2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/view_8dp"
+                android:paddingEnd="@dimen/view_0dp"
+                android:paddingTop="@dimen/view_3dp"
+                android:paddingBottom="@dimen/view_3dp"
+                android:text="@{data}"
+                android:textColor="?android:attr/textColorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="开发环境" />
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/imageFilterView2"
-            android:layout_width="15dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/view_20dp"
-            android:layout_marginEnd="@dimen/view_30dp"
-            android:layout_marginBottom="@dimen/view_20dp"
-            android:src="@drawable/ic_forward"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.zhao.wanandroid.weight.NoTouchRecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="@dimen/view_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/view_4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageFilterView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/imageFilterView2"
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/view_20dp"
+                android:layout_marginEnd="@dimen/view_30dp"
+                android:layout_marginBottom="@dimen/view_20dp"
+                android:src="@drawable/ic_forward"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

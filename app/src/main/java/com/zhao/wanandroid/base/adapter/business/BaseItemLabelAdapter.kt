@@ -12,7 +12,7 @@ import com.zhao.wanandroid.utils.ThemeColorUtil
  *编   写：  zjf
  *页面功能: 项目中有很多标签，认为可以做成一个标签通用的adapter
  */
-open class BaseItemLabelAdapter : BaseSimplenessAdapter<ItemLabelBinding, String>(){
+open class BaseItemLabelAdapter : BaseSimplenessAdapter<ItemLabelBinding, String>() {
     override fun layoutId(): Int {
         return R.layout.item_label
     }
@@ -44,6 +44,11 @@ open class BaseItemLabelAdapter : BaseSimplenessAdapter<ItemLabelBinding, String
             }
             else -> {
 
+            }
+        }
+        onClick?.also {
+            holder.itemView.setOnClickListener {
+                it(position, list[position])
             }
         }
     }

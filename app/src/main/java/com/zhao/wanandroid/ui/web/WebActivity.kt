@@ -31,6 +31,14 @@ class WebActivity : BaseActivity() {
             intent.putExtras(bundle)
             context.startActivity(intent)
         }
+
+        fun start(context: Context, url: String) {
+            val intent = Intent(context, WebActivity::class.java)
+            val bundle = Bundle()
+            bundle.putString(ACTIVITY_URL, url)
+            intent.putExtras(bundle)
+            context.startActivity(intent)
+        }
     }
 
     private lateinit var toolbar: Toolbar

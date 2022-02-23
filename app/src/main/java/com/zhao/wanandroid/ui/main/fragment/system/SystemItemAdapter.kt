@@ -2,9 +2,9 @@ package com.zhao.wanandroid.ui.main.fragment.system
 
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.zhao.wanandroid.R
-import com.zhao.wanandroid.base.adapter.business.BaseItemLabelAdapter
-import com.zhao.wanandroid.base.adapter.body.BaseSimplenessAdapter
 import com.zhao.wanandroid.base.adapter.BindingViewHolder
+import com.zhao.wanandroid.base.adapter.body.BaseSimplenessAdapter
+import com.zhao.wanandroid.base.adapter.business.BaseItemLabelAdapter
 import com.zhao.wanandroid.bean.SystemBean
 import com.zhao.wanandroid.databinding.ItemSystemBinding
 
@@ -34,11 +34,8 @@ class SystemItemAdapter : BaseSimplenessAdapter<ItemSystemBinding, SystemBean>()
             itemLabelAdapter.addHeaderItemAllData(strList)
             adapter = itemLabelAdapter
         }
-        onClick?.also {
-            holder.itemView.setOnClickListener {
-                it(0, list[position])
-            }
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(position, list[position])
         }
-
     }
 }

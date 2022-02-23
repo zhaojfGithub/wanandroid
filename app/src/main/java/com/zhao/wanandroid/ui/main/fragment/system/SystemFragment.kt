@@ -7,6 +7,7 @@ import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
 import com.zhao.wanandroid.base.view_page.BaseViewPageAdapter
 import com.zhao.wanandroid.databinding.FragmentSystemBinding
+import com.zhao.wanandroid.utils.ThemeColorUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,6 +28,9 @@ class SystemFragment : BaseVmFragment<SystemViewModel, FragmentSystemBinding>(),
         val navigationFragment = Pair( "导航",SystemNavigationFragment.newInstance())
         val fragmentList : List<Pair<String, Fragment>> = arrayListOf(itemFragment,navigationFragment)
         binding.viewPage.adapter = viewPageAdapter
+        binding.tabLayout.setBackgroundColor(ThemeColorUtil.getThemeColor(requireContext(), R.attr.backgroundColor))
+        binding.tabLayout.setTabTextColors(ThemeColorUtil.getThemeColor(requireContext(), R.attr.colorOnPrimary),
+            ThemeColorUtil.getThemeColor(requireContext(), R.attr.colorPrimary))
         TabLayoutMediator(binding.tabLayout, binding.viewPage) { tab, position ->
             tab.text = viewPageAdapter.getFragmentTitle(position)
         }.attach()

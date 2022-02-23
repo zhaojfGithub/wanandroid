@@ -10,6 +10,7 @@ import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.common.launch
 import com.zhao.wanandroid.ui.main.activity.MainRepository
 import com.zhao.wanandroid.utils.ExceptionUtil
+import com.zhao.wanandroid.utils.LogUtils
 
 /**
  *创建时间： 2022/1/5
@@ -39,7 +40,7 @@ class ProjectViewModel @ViewModelInject constructor(private val repository: Main
         isShowLoading.value = true
         when (loadingState) {
             AppState.LoadingState.REFRESH -> {
-                pageArray[index].page = 0
+                pageArray[index].page = 1
                 viewSate.value = AppState.LoadingState.REFRESH
             }
             AppState.LoadingState.LOAD_MORE -> {
@@ -50,14 +51,17 @@ class ProjectViewModel @ViewModelInject constructor(private val repository: Main
             }
         }
         val data = repository.getProjectList(id, pageArray[index].page)
+        projectItem.value = data.data
         if (data.over) {
             //没有更多数据了
             pageArray[index].state = AppState.LoadingState.LOAD_END
+            LogUtils.e("没有更多数据了")
         } else {
-            pageArray[index].page = data.curPage
-            projectItem.value = data.data
             pageArray[index].state = AppState.LoadingState.NORMAL
+            pageArray[index].page += 1
+            LogUtils.e("还没加载完")
         }
+        viewSate.value = pageArray[index].state
     }, {
         showMsg.value = ExceptionUtil.catchException(it)
     }, {

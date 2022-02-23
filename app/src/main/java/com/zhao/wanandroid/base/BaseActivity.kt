@@ -1,6 +1,5 @@
 package com.zhao.wanandroid.base
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.Window
 import androidx.annotation.LayoutRes
@@ -12,7 +11,9 @@ import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.adapter.footer.BaseSimplenessFooterAdapter
 import com.zhao.wanandroid.local.SpName
 import com.zhao.wanandroid.ui.login.LoginActivity
+import com.zhao.wanandroid.utils.LogUtils
 import com.zhao.wanandroid.utils.getSpValue
+import com.zhao.wanandroid.utils.putSpValue
 import com.zhao.wanandroid.weight.GeneralDialog
 
 /**
@@ -37,6 +38,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadingInterface {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
         window.sharedElementsUseOverlay = false
+        settingTheme()
         super.onCreate(savedInstanceState)
         initCreate(savedInstanceState)
     }
@@ -125,5 +127,22 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadingInterface {
             return false
         }
         return true
+    }
+
+    private val themeBox =
+        intArrayOf(R.style.Theme_Blue_Wanandroid, R.style.Theme_Red_Wanandroid, R.style.Theme_Violet_Wanandroid, R.style.Theme_DarkRed_Wanandroid)
+
+
+    protected fun settingTheme(theme: Int = R.style.Theme_Red_Wanandroid, isForce: Boolean = false) {
+        val nowTheme = getSpValue(SpName.Setting.THEME_KEY, -1)
+        val index = themeBox.indexOf(nowTheme)
+        if (index != -1) {
+            setTheme(themeBox[index])
+        } else {
+            setTheme(theme)
+        }
+        if (isForce) {
+            this.recreate()
+        }
     }
 }

@@ -44,5 +44,8 @@ class PlazaAdapter : BaseSimplenessAdapter<ItemHomeBinding, ArticleItemBean>() {
             itemLabelAdapter.addHeaderItemAllData(strList)
             adapter = itemLabelAdapter
         }
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(position,list[position])
+        }
     }
 }

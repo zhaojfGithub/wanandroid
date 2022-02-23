@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.Wanandroid" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Blue.Wanandroid" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/blue_500</item>
         <!-- appbar背景色，应用的主要色调，actionBar默认使用此颜色 -->
         <item name="colorPrimary">@color/blue_500</item>
@@ -19,6 +19,78 @@
 
         <item name="backgroundColor">@color/white</item>
         <item name="colorOnBackground">@color/blue_200</item>
+
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="Theme.Red.Wanandroid" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/red_500</item>
+        <!-- appbar背景色，应用的主要色调，actionBar默认使用此颜色 -->
+        <item name="colorPrimary">@color/red_500</item>
+        <!--colorPrimary的对比色-->
+        <item name="colorOnPrimary">@color/green_500</item>
+        <!--app次级颜色，通常作为主色的补充色-->
+        <item name="colorSecondary">@color/red_200</item>
+        <!--colorSecondary的对比色-->
+        <item name="colorOnSecondary">@color/green_200</item>
+        <!--组件界面（卡片，表格，菜单等）的颜色-->
+        <item name="colorSurface">@color/red_400</item>
+        <!--colorSurface的对比色-->
+        <item name="colorOnSurface">@color/green_400</item>
+        <!--错误信息-->
+        <item name="colorError">@color/black</item>
+
+        <item name="backgroundColor">@color/white</item>
+        <item name="colorOnBackground">@color/red_200</item>
+
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="Theme.Violet.Wanandroid" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/violet_500</item>
+        <!-- appbar背景色，应用的主要色调，actionBar默认使用此颜色 -->
+        <item name="colorPrimary">@color/violet_500</item>
+        <!--colorPrimary的对比色-->
+        <item name="colorOnPrimary">@color/yellow_500</item>
+        <!--app次级颜色，通常作为主色的补充色-->
+        <item name="colorSecondary">@color/violet_200</item>
+        <!--colorSecondary的对比色-->
+        <item name="colorOnSecondary">@color/yellow_200</item>
+        <!--组件界面（卡片，表格，菜单等）的颜色-->
+        <item name="colorSurface">@color/violet_400</item>
+        <!--colorSurface的对比色-->
+        <item name="colorOnSurface">@color/yellow_400</item>
+        <!--错误信息-->
+        <item name="colorError">@color/black</item>
+
+        <item name="backgroundColor">@color/white</item>
+        <item name="colorOnBackground">@color/violet_200</item>
+
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+    <style name="Theme.DarkRed.Wanandroid" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/dark_blue_500</item>
+        <!-- appbar背景色，应用的主要色调，actionBar默认使用此颜色 -->
+        <item name="colorPrimary">@color/dark_blue_500</item>
+        <!--colorPrimary的对比色-->
+        <item name="colorOnPrimary">@color/dark_yellow_500</item>
+        <!--app次级颜色，通常作为主色的补充色-->
+        <item name="colorSecondary">@color/dark_blue_200</item>
+        <!--colorSecondary的对比色-->
+        <item name="colorOnSecondary">@color/dark_yellow_200</item>
+        <!--组件界面（卡片，表格，菜单等）的颜色-->
+        <item name="colorSurface">@color/dark_blue_400</item>
+        <!--colorSurface的对比色-->
+        <item name="colorOnSurface">@color/dark_yellow_400</item>
+        <!--错误信息-->
+        <item name="colorError">@color/black</item>
+
+        <item name="backgroundColor">@color/white</item>
+        <item name="colorOnBackground">@color/dark_blue_200</item>
 
         <item name="android:textColorPrimary">@color/text_initial</item>
         <item name="android:textColorSecondary">@color/white</item>
@@ -56,7 +128,5 @@
         <item name="windowSplashScreenIconBackgroundColor">@color/gray</item>
         <!--启动时间-->
         <item name="windowSplashScreenAnimationDuration">200</item>
-        <!--设置主题，跟随设置的主题-->
-        <item name="postSplashScreenTheme">@style/Theme.Wanandroid</item>
     </style>
 </resources>

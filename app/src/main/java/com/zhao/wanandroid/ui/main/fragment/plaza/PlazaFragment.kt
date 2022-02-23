@@ -1,10 +1,12 @@
 package com.zhao.wanandroid.ui.main.fragment.plaza
 
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.FragmentPlazaBinding
+import com.zhao.wanandroid.ui.web.WebActivity
 import com.zhao.wanandroid.weight.extend.isSlideBottom
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 
@@ -37,12 +39,19 @@ class PlazaFragment : BaseVmFragment<PlazaViewModel, FragmentPlazaBinding>(), Re
 
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
+        binding.recyclerView.adapter = ConcatAdapter(config,adapter,footerAdapter)
         binding.recyclerView.isSlideBottom {
             viewModel.loadPlazaData()
         }
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.refreshPlazaData()
+        }
+    }
+
+    override fun initClick() {
+        super.initClick()
+        adapter.onItemClick { _, articleItemBean ->
+            WebActivity.start(requireContext(),articleItemBean.title,articleItemBean.link)
         }
     }
 
@@ -63,6 +72,9 @@ class PlazaFragment : BaseVmFragment<PlazaViewModel, FragmentPlazaBinding>(), Re
                 } else {
                     adapter.addFooterItemAllData(it.data)
                 }
+            }
+            viewSate.observe({lifecycle}){
+                footerAdapter.updateViewState(it)
             }
         }
     }

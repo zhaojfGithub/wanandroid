@@ -44,6 +44,9 @@ class OpenNumberItemAdapter : BaseSimplenessAdapter<ItemHomeBinding, ArticleItem
             itemLabelAdapter.addHeaderItemAllData(strList)
             adapter = itemLabelAdapter
         }
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(position,list[position])
+        }
     }
 
 }

@@ -8,6 +8,6 @@ import com.zhao.wanandroid.common.AppState
  *页面功能:
  */
 data class LoadBean(
-    var page: Int = 0,
+    var page: Int = 1,
     var state: AppState.LoadingState = AppState.LoadingState.LOAD_MORE
 )

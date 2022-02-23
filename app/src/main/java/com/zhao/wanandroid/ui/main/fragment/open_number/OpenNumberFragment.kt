@@ -9,6 +9,7 @@ import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.base.view_page.BaseViewPageAdapter
 import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.databinding.FragmentOpenNumberBinding
+import com.zhao.wanandroid.utils.ThemeColorUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -34,6 +35,9 @@ class OpenNumberFragment : BaseVmFragment<OpenNumberViewModel, FragmentOpenNumbe
 
     override fun initView() {
         binding.viewPage.adapter = viewPageAdapter
+        binding.tabLayout.setBackgroundColor(ThemeColorUtil.getThemeColor(requireContext(), R.attr.backgroundColor))
+        binding.tabLayout.setTabTextColors(ThemeColorUtil.getThemeColor(requireContext(), R.attr.colorOnPrimary),
+            ThemeColorUtil.getThemeColor(requireContext(), R.attr.colorPrimary))
         TabLayoutMediator(binding.tabLayout, binding.viewPage) { tab, position ->
             tab.text = viewPageAdapter.getFragmentTitle(position)
         }.attach()

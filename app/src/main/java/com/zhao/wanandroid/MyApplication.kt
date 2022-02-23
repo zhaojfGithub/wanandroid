@@ -16,7 +16,7 @@ class MyApplication : Application() {
 
     companion object {
         private lateinit var instance: MyApplication
-        private lateinit var roomDb : AppDatabase
+        private lateinit var roomDb: AppDatabase
 
         fun getInstance() = instance
         fun getRoomDb() = roomDb
@@ -25,6 +25,6 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        roomDb = Room.databaseBuilder(this,AppDatabase::class.java,AppDatabase.databaseName).build()
+        roomDb = Room.databaseBuilder(this, AppDatabase::class.java, AppDatabase.databaseName).build()
     }
 }

@@ -31,17 +31,17 @@ class PlazaViewModel @ViewModelInject constructor(private val repository: MainRe
 
     fun loadPlazaData() = launch(
         {
-            if (article.value?.over == true) return@launch
+            if (viewSate.value == AppState.LoadingState.LOAD_END) return@launch
             isShowLoading.value = true
-            val page = article.value?.curPage ?: 0
+            val page = (article.value?.curPage?.plus(1)) ?: 1
             viewSate.value = AppState.LoadingState.LOAD_MORE
             val bean = repository.getPlazaArticle(page)
-            if (bean.over){
+            if (bean.over) {
                 viewSate.value = AppState.LoadingState.LOAD_END
-            }else{
+            } else {
                 viewSate.value = AppState.LoadingState.NORMAL
-                article.value = bean
             }
+            article.value = bean
         }, {
             showMsg.value = ExceptionUtil.catchException(it)
         }, {

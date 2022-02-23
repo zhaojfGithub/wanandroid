@@ -3,10 +3,13 @@ package com.zhao.wanandroid.ui.main.fragment.system
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmFragment
 import com.zhao.wanandroid.base.adapter.business.RecyclerMoveInterface
 import com.zhao.wanandroid.databinding.FragmentSystemItemBinding
+import com.zhao.wanandroid.ui.system_details.SystemDetailsActivity
+import com.zhao.wanandroid.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -24,7 +27,7 @@ class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBin
         }
     }
 
-    private val adapter : SystemItemAdapter by lazy { SystemItemAdapter() }
+    private val adapter: SystemItemAdapter by lazy { SystemItemAdapter() }
 
     override fun initData() {
         //viewModel.getSystemTree()
@@ -37,18 +40,25 @@ class SystemItemFragment : BaseVmFragment<SystemViewModel, FragmentSystemItemBin
 
     override fun initView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
-        binding.recyclerView.addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
+        //binding.recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         binding.recyclerView.adapter = adapter
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getSystemTree()
         }
     }
 
+    override fun initClick() {
+        super.initClick()
+        adapter.onItemClick { _, systemBean ->
+            SystemDetailsActivity.start(requireContext(), Gson().toJson(systemBean))
+        }
+    }
+
     override fun observer() {
         viewModel.apply {
-            systemTree.observe({lifecycle}){
+            systemTree.observe({ lifecycle }) {
                 adapter.refreshAllItem(it)
-                if (binding.swipeRefreshLayout.isRefreshing){
+                if (binding.swipeRefreshLayout.isRefreshing) {
                     binding.swipeRefreshLayout.isRefreshing = false
                 }
             }
