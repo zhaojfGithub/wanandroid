@@ -26,5 +26,12 @@ class ProjectItemAdapter : BaseSimplenessAdapter<ItemProjectBinding, ProjectItem
         } else {
             holder.binding.ivIsCollect.setImageResource(R.drawable.ic_favorite_false)
         }
+        holder.itemView.setOnClickListener {
+            onClick?.invoke(0,list[position])
+        }
+        holder.binding.ivIsCollect.setOnClickListener {
+            list[position].collect = !list[position].collect
+            onClick?.invoke(1,list[position])
+        }
     }
 }

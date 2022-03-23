@@ -16,4 +16,8 @@ class CommonRepository @Inject constructor() {
     suspend fun getIntegralDetail(page: Int = 1) = ApiHost.API.getIntegralDetail(page).getApiData()
 
     suspend fun getUserIntegral() = ApiHost.API.getUserIntegral().getApiData()
+
+    suspend fun getCollectList(page: Int) = ApiHost.API.getCollectList(page).getApiData()
+
+    suspend fun clearCollect(id: Int) = ApiHost.API.clearCollect(id).getApiData()
 }

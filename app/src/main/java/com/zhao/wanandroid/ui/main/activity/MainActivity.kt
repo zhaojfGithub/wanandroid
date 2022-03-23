@@ -62,7 +62,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initView() {
-        binding.include.toolbar.setNavigationIcon(R.drawable.ic_density_medium)
+        /*binding.include.toolbar.setNavigationIcon(R.drawable.ic_density_medium)
         setSupportActionBar(binding.include.toolbar)
         binding.navigationView.addHeaderView(drawerHeaderBinder.root)
         val fragments = listOf(
@@ -109,10 +109,14 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.drawerIntegral -> {
-                    CommonActivity.start(this, AppState.CommonState.INTEGRAL)
+                    if (loginAssist()){
+                        CommonActivity.start(this, AppState.CommonState.INTEGRAL)
+                    }
                 }
                 R.id.drawerCollect -> {
-
+                    if (loginAssist()){
+                        CommonActivity.start(this,AppState.CommonState.COLLECT)
+                    }
                 }
                 R.id.drawerTodo -> {
 
@@ -130,8 +134,8 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
 
                 }
             }
-            true
-        }
+            true*/
+        //}
     }
 
     override fun initOnclick() {
@@ -139,7 +143,7 @@ class MainActivity : BaseVmActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initData() {
-
+        viewModel.test()
     }
 
     override fun getModelClass() = MainViewModel::class.java

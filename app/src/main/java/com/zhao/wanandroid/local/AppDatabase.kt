@@ -6,6 +6,8 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.zhao.wanandroid.bean.HistorySearchBean
 import com.zhao.wanandroid.bean.HistorySearchDao
+import com.zhao.wanandroid.bean.TodoBean
+import com.zhao.wanandroid.bean.TodoDao
 
 /**
  *创建时间： 2022/2/8
@@ -13,7 +15,7 @@ import com.zhao.wanandroid.bean.HistorySearchDao
  *页面功能:
  * 自动迁移玩不转啊 ，之后再说咯
  */
-@Database(version = 1, entities = [HistorySearchBean::class], exportSchema = false)
+@Database(version = 1, entities = [HistorySearchBean::class, TodoBean::class],exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
@@ -22,4 +24,6 @@ abstract class AppDatabase : RoomDatabase() {
     }
 
     abstract fun historySearchDao(): HistorySearchDao
+
+    abstract fun todoDao(): TodoDao
 }

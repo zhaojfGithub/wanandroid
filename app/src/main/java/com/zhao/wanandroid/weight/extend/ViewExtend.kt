@@ -1,7 +1,9 @@
 package com.zhao.wanandroid.weight.extend
 
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.zhao.wanandroid.MyApplication
 
 /**
  *创建时间： 2021/12/21
@@ -18,7 +20,7 @@ fun RecyclerView.isSlideBottom(endNumber: Int = 1, result: () -> Unit) {
             val lastPosition = linearLayoutManager.findLastVisibleItemPosition()
             val visibleItemCount = linearLayoutManager.childCount
             val totalItemCount = linearLayoutManager.itemCount
-            if (visibleItemCount > 0 && lastPosition == totalItemCount -1 - endNumber) {
+            if (visibleItemCount > 0 && lastPosition == totalItemCount - 1 - endNumber) {
                 result()
             }
         }
@@ -78,10 +80,10 @@ fun RecyclerView?.smoothScrollToTopPosition(position: Int) {
     val lastView = this.getChildAt(this.childCount - 1)
     val firstIndex = this.getChildAdapterPosition(firstView)
     val lastIndex = this.getChildAdapterPosition(lastView)
-    this.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+    this.addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if (isBottomScroll && RecyclerView.SCROLL_STATE_IDLE == newState){
+            if (isBottomScroll && RecyclerView.SCROLL_STATE_IDLE == newState) {
                 isBottomScroll = false
                 smoothScrollToTopPosition(position)
                 this@smoothScrollToTopPosition.removeOnScrollListener(this)
@@ -90,14 +92,14 @@ fun RecyclerView?.smoothScrollToTopPosition(position: Int) {
     })
     if (position < firstIndex) {
         this.smoothScrollToPosition(position)
-    }else if (position > lastIndex){
+    } else if (position > lastIndex) {
         this.smoothScrollToPosition(position)
         isBottomScroll = true
-    }else{
+    } else {
         val movePosition = position - firstIndex
-        if (movePosition >= 0 && movePosition<this.childCount){
+        if (movePosition >= 0 && movePosition < this.childCount) {
             val top = this.getChildAt(movePosition).top
-            this.smoothScrollBy(0,top)
+            this.smoothScrollBy(0, top)
         }
     }
 }
@@ -114,4 +116,8 @@ fun RecyclerView?.smoothScrollToHeaderPosition() {
  */
 fun RecyclerView?.smoothScrollToFooterPosition() {
     this?.adapter?.itemCount?.let { this.smoothScrollToPosition(it) }
+}
+
+fun showToast(msg: String) {
+    Toast.makeText(MyApplication.getInstance(),msg,Toast.LENGTH_SHORT).show()
 }

@@ -19,4 +19,6 @@ abstract class BaseViewModel : ViewModel() {
     val showMsg by lazy { MutableLiveData<String>() }
 
     val viewSate by lazy { MutableLiveData<AppState.LoadingState>() }
+
+    val showToast by lazy { MutableLiveData<String>() }
 }

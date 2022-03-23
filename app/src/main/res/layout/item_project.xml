@@ -9,78 +9,84 @@
             type="com.zhao.wanandroid.bean.ProjectItemBean" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/backgroundColor">
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/ivImage"
-            android:layout_width="@dimen/view_100dp"
-            android:layout_height="@dimen/view_150dp"
-            android:layout_margin="@dimen/view_8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/view_8dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@{data.title}"
-            android:textSize="@dimen/view_18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivImage"
-            app:layout_constraintTop_toTopOf="@+id/ivImage" />
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/ivImage"
+                android:layout_width="@dimen/view_100dp"
+                android:layout_height="@dimen/view_150dp"
+                android:layout_margin="@dimen/view_8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvContext"
-            android:layout_width="@dimen/view_0dp"
-            android:layout_height="0dp"
-            android:maxLines="3"
-            android:ellipsize="end"
-            android:paddingTop="@dimen/view_12dp"
-            android:paddingBottom="@dimen/view_12dp"
-            android:text="@{data.desc}"
-            app:layout_constraintBottom_toTopOf="@id/tvName"
-            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
-            app:layout_constraintStart_toStartOf="@+id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/view_8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{data.title}"
+                android:textSize="@dimen/view_18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivImage"
+                app:layout_constraintTop_toTopOf="@+id/ivImage" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:maxLength="10"
-            android:maxLines="1"
-            android:padding="@dimen/view_3dp"
-            android:text="@{data.author}"
-            app:layout_constraintBottom_toBottomOf="@+id/tvTime"
-            app:layout_constraintEnd_toStartOf="@+id/tvTime"
-            app:layout_constraintStart_toStartOf="@id/tvTitle"
-            app:layout_constraintTop_toTopOf="@+id/tvTime" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvContext"
+                android:layout_width="@dimen/view_0dp"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:paddingTop="@dimen/view_12dp"
+                android:paddingBottom="@dimen/view_12dp"
+                android:text="@{data.desc}"
+                app:layout_constraintBottom_toTopOf="@id/tvName"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{data.niceDate}"
-            android:maxLength="10"
-            android:maxLines="1"
-            android:padding="@dimen/view_3dp"
-            app:layout_constraintBottom_toTopOf="@+id/ivIsCollect"
-            app:layout_constraintEnd_toEndOf="@+id/ivIsCollect"
-            app:layout_constraintStart_toEndOf="@id/tvName" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:padding="@dimen/view_3dp"
+                android:text="@{data.author}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTime"
+                app:layout_constraintEnd_toStartOf="@+id/tvTime"
+                app:layout_constraintStart_toStartOf="@id/tvTitle"
+                app:layout_constraintTop_toTopOf="@+id/tvTime" />
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/ivIsCollect"
-            android:scaleType="centerCrop"
-            android:layout_width="@dimen/view_30dp"
-            android:layout_height="@dimen/view_30dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivImage"
-            app:layout_constraintEnd_toEndOf="@+id/tvTitle" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:padding="@dimen/view_3dp"
+                android:text="@{data.niceDate}"
+                app:layout_constraintBottom_toTopOf="@+id/ivIsCollect"
+                app:layout_constraintEnd_toEndOf="@+id/ivIsCollect"
+                app:layout_constraintStart_toEndOf="@id/tvName" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/ivIsCollect"
+                android:layout_width="@dimen/view_30dp"
+                android:layout_height="@dimen/view_30dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+                app:layout_constraintEnd_toEndOf="@+id/tvTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>

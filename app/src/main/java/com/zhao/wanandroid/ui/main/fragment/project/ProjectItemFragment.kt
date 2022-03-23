@@ -12,6 +12,7 @@ import com.zhao.wanandroid.base.fragment.LoadMoreInterface
 import com.zhao.wanandroid.bean.ProjectItemBean
 import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.IncludeRecyclerBinding
+import com.zhao.wanandroid.ui.web.WebActivity
 import com.zhao.wanandroid.weight.extend.isSlideBottom
 import com.zhao.wanandroid.weight.extend.smoothScrollToHeaderPosition
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,6 +64,17 @@ class ProjectItemFragment : BaseVmFragment<ProjectViewModel, IncludeRecyclerBind
         binding.swipeRefreshLayout.setOnRefreshListener {
             if (projectId == null || index == null) return@setOnRefreshListener
             viewModel.getProjectItem(projectId!!, index!!, AppState.LoadingState.REFRESH)
+        }
+    }
+
+    override fun initClick() {
+        super.initClick()
+        adapter.onItemClick { i, projectItemBean ->
+            if (i == 0){
+                WebActivity.start(requireContext(),projectItemBean.title,projectItemBean.link)
+            }else{
+
+            }
         }
     }
 

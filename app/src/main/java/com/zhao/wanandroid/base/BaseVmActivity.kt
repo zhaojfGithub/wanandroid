@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.zhao.wanandroid.weight.extend.showToast
 
 /**
  *创建时间： 2021/9/1
@@ -29,6 +30,9 @@ abstract class BaseVmActivity<VM: BaseViewModel, VB: ViewDataBinding> : BaseActi
             }
             showMsg.observe({lifecycle}){
                 showGeneralDialog(null,it,null)
+            }
+            showToast.observe({lifecycle}){
+                showToast(it)
             }
         }
     }

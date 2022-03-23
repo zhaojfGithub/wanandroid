@@ -8,8 +8,11 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.snackbar.Snackbar
 import com.zhao.wanandroid.R
 import com.zhao.wanandroid.base.BaseVmActivity
+import com.zhao.wanandroid.base.fragment.LoadMoreInterface
+import com.zhao.wanandroid.bean.ArticleItemBean
 import com.zhao.wanandroid.common.AppState
 import com.zhao.wanandroid.databinding.ActivityCommonBinding
 import com.zhao.wanandroid.ui.main.activity.MainActivity
@@ -56,6 +59,9 @@ class CommonActivity : BaseVmActivity<CommonViewModel, ActivityCommonBinding>() 
                 binding.include.toolbar.visibility = View.GONE
                 IntegralFragment.newInstance()
             }
+            AppState.CommonState.COLLECT.name ->{
+                CollectFragment.newInstance()
+            }
             else -> {
                 null
             }
@@ -77,4 +83,14 @@ class CommonActivity : BaseVmActivity<CommonViewModel, ActivityCommonBinding>() 
         return super.onOptionsItemSelected(item)
     }
 
+    override fun observe() {
+        super.observe()
+        //如果viewModel
+        viewModel.viewSate.observe({lifecycle}){
+            val fragment = supportFragmentManager.findFragmentById(binding.frameLayout.id)
+            if (fragment is LoadMoreInterface<*>){
+                fragment.viewState(it)
+            }
+        }
+    }
 }

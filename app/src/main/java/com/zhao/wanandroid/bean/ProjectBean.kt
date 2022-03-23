@@ -36,7 +36,7 @@ data class ProjectItemBean(
     val canEdit: Boolean,
     val chapterId: Int,
     val chapterName: String,
-    val collect: Boolean,
+    var collect: Boolean,
     val courseId: Int,
     val desc: String,
     val descMd: String,

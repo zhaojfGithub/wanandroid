@@ -1,10 +1,7 @@
 package com.zhao.wanandroid.network
 
 import com.zhao.wanandroid.bean.*
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  *创建时间： 2021/9/3
@@ -65,7 +62,7 @@ interface ApiService {
     @POST("/lg/collect/{id}/json")
     suspend fun insertCollect(@Path("id") id: Int): HttpBean<ArticleItemBean>
 
-    @POST("/lg/collect/list/{page}/json")
+    @GET("/lg/collect/list/{page}/json")
     suspend fun getCollectList(@Path("page") page: Int): HttpBean<ArticleBoxBean>
 
     @POST("/lg/uncollect_originId/{id}/json")
@@ -82,5 +79,8 @@ interface ApiService {
 
     @GET("/article/list/{page}/json")
     suspend fun getSystemArticle(@Path("page") page: Int, @Query("cid") cid: Int): HttpBean<ArticleBoxBean>
+
+    @POST("login/selectUser")
+    suspend fun loading(@Body testBean: TestBean = TestBean()) : String
 
 }

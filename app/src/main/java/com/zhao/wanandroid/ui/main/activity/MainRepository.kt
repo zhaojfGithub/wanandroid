@@ -31,4 +31,6 @@ class MainRepository @Inject constructor() {
     suspend fun getProjectTree() = ApiHost.API.getProjectTree().getApiData()
 
     suspend fun getProjectList(id: Int, page: Int) = ApiHost.API.getProjectList(page, id).getApiData()
+
+    suspend fun test() = ApiHost.TEST_API.loading()
 }
